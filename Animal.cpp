@@ -18,6 +18,17 @@ void Animal::mostrar_animal() {
     << "Higiene: " << higiene << endl;
 }
 
+int* Animal::generar_posiciones() {
+    srand( (unsigned)time( NULL ) );
+    int n = 5;
+    int* posiciones = new int[n];
+    for (int i = 0; i < n; ++i) {
+        posiciones[i] = 1 + (rand() % 63);
+    }
+    return posiciones;
+}
+
+
 Animal::~Animal() {
   delete this->personalidad;
 }
