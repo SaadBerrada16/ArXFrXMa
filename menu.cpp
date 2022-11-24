@@ -143,7 +143,8 @@ void procesar_opcion(Reserva* reserva, int opcion){
             break;
 
         case RESCATAR_ANIMAL:
-            nombre = pedir_nombre();
+            animal = reserva->generar_animal();
+            nombre = animal->nombre;
             while(reserva->buscar_animal(nombre) != 0 && opcion_rescatar == INGRESAR_NOMBRE) {
                 mostrar_menu_rescatar();
                 opcion_rescatar = pedir_opcion();
@@ -153,7 +154,7 @@ void procesar_opcion(Reserva* reserva, int opcion){
                 }
             }
             if (opcion_rescatar == INGRESAR_NOMBRE) {
-                Animal* animal = reserva->generar_animal();
+                animal->nombre = nombre;
                 reserva->agregar_animal(animal);
                 cout << endl << "Animal guardado correctamente" << endl << endl;
             }
