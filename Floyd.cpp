@@ -130,10 +130,6 @@ Floyd::~Floyd(){
     liberarMatrices();
 }
 
-Floyd::Floyd(Lista<Vertice> *vertices, int ** matrizAdyacencia) : CaminoMinimo(vertices, matrizAdyacencia){
+Floyd::Floyd(Lista_Grafo<Vertice> *vertices, int ** matrizAdyacencia) : CaminoMinimo(vertices, matrizAdyacencia){
     calcularMatrices();
 }
-
-
-
-

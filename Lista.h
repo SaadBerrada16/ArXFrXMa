@@ -1,5 +1,5 @@
-#ifndef GRAFOS_LISTA_H
-#define GRAFOS_LISTA_H
+#ifndef GRAFOS_Lista_Grafo_H
+#define GRAFOS_Lista_Grafo_H
 #include <string>
 #include "Nodo.h"
 
@@ -9,18 +9,18 @@ const int POSICION_NO_ENCONTRADA = -1;
 const string NOMBRE_NO_ENCONTRADO = "";
 
 template < typename Tipo >
-class Lista{
+class Lista_Grafo{
 /*ATRIBUTOS*/
 private:
     int cantidadDeElementos;
-    Nodo<Tipo>* primero;
-    Nodo<Tipo>* ultimo;
+    Nodo_Grafo<Tipo>* primero;
+    Nodo_Grafo<Tipo>* ultimo;
 
 /*MÉTODOS*/
 public:
-    Lista();
+    Lista_Grafo();
 
-    //post: devuelve la cantidad de elementos que tiene la lista
+    //post: devuelve la cantidad de elementos que tiene la Lista_Grafo
     int obtenerCantidadDeElementos();
 
     //post: devuelve la posicion en la que se encuentra el nombre que recibe o -1 si no lo encuentra
@@ -29,29 +29,29 @@ public:
     //post: devuelve el  nombre que se encuentra en la posicion recibida o NOMBRE_NO_ENCONTRADO si no lo encuentra
     string obtenerNombre(int posicion);
 
-    //post: agrega un nuevo elemento a la lista
+    //post: agrega un nuevo elemento a la Lista_Grafo
     void agregar(string nuevoElemento);
 
-    ~Lista();
+    ~Lista_Grafo();
 };
 
 template < typename Tipo >
-Lista<Tipo>::Lista(){
+Lista_Grafo<Tipo>::Lista_Grafo(){
     cantidadDeElementos = 0;
     ultimo = nullptr;
     primero =  nullptr;
 }
 
 template < typename Tipo >
-int Lista<Tipo>::obtenerCantidadDeElementos(){
+int Lista_Grafo<Tipo>::obtenerCantidadDeElementos(){
     return cantidadDeElementos;
 }
 
 template < typename Tipo >
-int Lista<Tipo>::obtenerPosicion(string nombre) {
+int Lista_Grafo<Tipo>::obtenerPosicion(string nombre) {
     bool elementoEncontrado = false;
     int i = 0;
-    Nodo<Tipo>* auxiliar = primero;
+    Nodo_Grafo<Tipo>* auxiliar = primero;
 
     while(!elementoEncontrado && i < cantidadDeElementos){
         if(auxiliar -> obtenerNombre() == nombre){
@@ -68,21 +68,21 @@ int Lista<Tipo>::obtenerPosicion(string nombre) {
 }
 
 template < typename Tipo >
-void Lista<Tipo>::agregar(string nuevoElemento) {
-    Nodo<Tipo>* nuevoNodo = new Nodo<Tipo>(nuevoElemento);
+void Lista_Grafo<Tipo>::agregar(string nuevoElemento) {
+    Nodo_Grafo<Tipo>* nuevoNodo_Grafo = new Nodo_Grafo<Tipo>(nuevoElemento);
     if(primero == nullptr){
-        primero = nuevoNodo;
+        primero = nuevoNodo_Grafo;
         ultimo = primero;
     } else {
-        ultimo -> asignarSiguiente(nuevoNodo);
-        ultimo = nuevoNodo;
+        ultimo -> asignarSiguiente(nuevoNodo_Grafo);
+        ultimo = nuevoNodo_Grafo;
     }
     cantidadDeElementos++;
 }
 
 template<typename Tipo>
-Lista<Tipo>::~Lista() {
-    Nodo<Tipo>* siguiente;
+Lista_Grafo<Tipo>::~Lista_Grafo() {
+    Nodo_Grafo<Tipo>* siguiente;
     while(primero != nullptr){
         siguiente = primero -> obtenerSiguiente();
         delete primero;
@@ -91,9 +91,9 @@ Lista<Tipo>::~Lista() {
 }
 
 template<typename Tipo>
-string Lista<Tipo>::obtenerNombre(int posicion) {
+string Lista_Grafo<Tipo>::obtenerNombre(int posicion) {
     int i = 0;
-    Nodo<Tipo>* auxiliar = primero;
+    Nodo_Grafo<Tipo>* auxiliar = primero;
 
     if(posicion > cantidadDeElementos){
         return NOMBRE_NO_ENCONTRADO;
@@ -106,4 +106,4 @@ string Lista<Tipo>::obtenerNombre(int posicion) {
     return auxiliar -> obtenerNombre();
 }
 
-#endif //GRAFOS_LISTA_H
+#endif //GRAFOS_Lista_Grafo_H

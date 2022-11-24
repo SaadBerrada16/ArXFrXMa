@@ -2,6 +2,8 @@
 #define MENU_HPP
 
 #include "Reserva.hpp"
+#include "Mapa.hpp"
+
 using namespace std;
 
 enum OpcionMenu {
@@ -60,7 +62,7 @@ void validar_opcion_elegida(int &opcion_elegida);
 
 // pre: que una reserva existe y que el usuario ingresó a una opcion
 // pos: procesar los métodos de la reserva propuesta por el menu
-void procesar_opcion(Reserva* reserva, int opcion);
+void procesar_opcion(Reserva* reserva, int opcion, Mapa* mapa);
 
 // pre: -
 // pos: devuelve el nombre que el usuario ingrese en el terminal

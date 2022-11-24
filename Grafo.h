@@ -11,7 +11,7 @@ class Grafo {
 /*ATRIBUTOS*/
 private:
     int ** matrizDeAdyacencia;
-    Lista<Vertice> * vertices;
+    Lista_Grafo<Vertice> * vertices;
     CaminoMinimo * algoritmoCaminoMinimo;
 
 /*MÉTODOS*/

@@ -26,7 +26,7 @@ private:
     void calcularMatrices();
 
 public:
-    Floyd(Lista<Vertice> *vertices, int ** matrizAdyacencia);
+    Floyd(Lista_Grafo<Vertice> *vertices, int ** matrizAdyacencia);
 
     //post: muestra por pantalla el camino mínimo entre el origen y el destino, detallando su recorrido y peso
     void caminoMinimo(int origen, int destino) override;

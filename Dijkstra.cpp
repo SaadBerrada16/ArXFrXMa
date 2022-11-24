@@ -1,6 +1,6 @@
 #include "Dijkstra.h"
 
-Dijkstra::Dijkstra(Lista<Vertice> *vertices, int **matrizAdyacencia) : CaminoMinimo(vertices, matrizAdyacencia) {
+Dijkstra::Dijkstra(Lista_Grafo<Vertice> *vertices, int **matrizAdyacencia) : CaminoMinimo(vertices, matrizAdyacencia) {
     verticesVisitados = new bool[cantidadVertices];
     distancia = new int[cantidadVertices];
     recorrido = new int[cantidadVertices];
@@ -124,6 +124,3 @@ void Dijkstra::mostrarIteracion(int iteracion) {
     }
     cout << "]" << endl << endl;
 }
-
-
-

@@ -1,57 +1,57 @@
-#ifndef GRAFOS_NODO_H
-#define GRAFOS_NODO_H
+#ifndef GRAFOS_Nodo_Grafo_H
+#define GRAFOS_Nodo_Grafo_H
 #include <string>
 
 using namespace std;
 
 template < typename Tipo >
-class Nodo {
+class Nodo_Grafo {
 /*ATRIBUTOS*/
 private:
     Tipo* elemento;
-    Nodo<Tipo>* siguiente;
+    Nodo_Grafo<Tipo>* siguiente;
 
 /*MÉTODOS*/
 public:
-    Nodo(string nombre);
+    Nodo_Grafo(string nombre);
 
-    //post: devuelve el nodo siguiente.
-    Nodo<Tipo>* obtenerSiguiente();
+    //post: devuelve el Nodo_Grafo siguiente.
+    Nodo_Grafo<Tipo>* obtenerSiguiente();
 
-    //post: devuelve el nombre del nodo
+    //post: devuelve el nombre del Nodo_Grafo
     string obtenerNombre();
 
-    //post: le asigna como siguiente el nodo recibido
-    void asignarSiguiente(Nodo<Tipo>* siguiente);
+    //post: le asigna como siguiente el Nodo_Grafo recibido
+    void asignarSiguiente(Nodo_Grafo<Tipo>* siguiente);
 
-    ~Nodo();
+    ~Nodo_Grafo();
 };
 
 template<typename Tipo>
-Nodo<Tipo>::Nodo(string nombre) {
+Nodo_Grafo<Tipo>::Nodo_Grafo(string nombre) {
     elemento = new Tipo(nombre);
     siguiente = nullptr;
 }
 
 template<typename Tipo>
-Nodo<Tipo> *Nodo<Tipo>::obtenerSiguiente() {
+Nodo_Grafo<Tipo> *Nodo_Grafo<Tipo>::obtenerSiguiente() {
     return siguiente;
 }
 
 template<typename Tipo>
-string Nodo<Tipo>::obtenerNombre() {
+string Nodo_Grafo<Tipo>::obtenerNombre() {
     return elemento -> obtenerNombre();
 }
 
 template<typename Tipo>
-void Nodo<Tipo>::asignarSiguiente(Nodo<Tipo> *siguiente) {
+void Nodo_Grafo<Tipo>::asignarSiguiente(Nodo_Grafo<Tipo> *siguiente) {
     this -> siguiente = siguiente;
 }
 
 template<typename Tipo>
-Nodo<Tipo>::~Nodo() {
+Nodo_Grafo<Tipo>::~Nodo_Grafo() {
     delete elemento;
 }
 
 
-#endif //GRAFOS_NODO_H
+#endif //GRAFOS_Nodo_Grafo_H

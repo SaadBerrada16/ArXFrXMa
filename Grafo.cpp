@@ -4,7 +4,7 @@
 
 Grafo::Grafo() {
     matrizDeAdyacencia = nullptr;
-    vertices = new Lista<Vertice>();
+    vertices = new Lista_Grafo<Vertice>();
     algoritmoCaminoMinimo = nullptr;
 }
 
@@ -94,7 +94,7 @@ Grafo::~Grafo() {
 }
 
 void Grafo::mostrarVertices() {
-    cout << "Lista de vértices: [";
+    cout << "Lista_Grafo de vértices: [";
     for(int i = 0; i < vertices -> obtenerCantidadDeElementos(); i++){
         cout << vertices -> obtenerNombre(i + 1);
         if(i + 1 != vertices -> obtenerCantidadDeElementos()){

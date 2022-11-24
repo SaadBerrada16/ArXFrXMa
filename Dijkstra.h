@@ -34,7 +34,7 @@ private:
     //post: muestra el estado instantaneo del vector de recorrido, distancia y visitados.
     void mostrarIteracion(int iteracion);
 public:
-    Dijkstra(Lista<Vertice> * vertices, int ** matrizAdyacencia);
+    Dijkstra(Lista_Grafo<Vertice> * vertices, int ** matrizAdyacencia);
 
     //post: muestra por pantalla el camino mínimo entre el origen y el destino, detallando su recorrido y peso
     void caminoMinimo(int origen, int destino) override;

@@ -80,6 +80,8 @@ class Reserva {
         //post devuelve un Animal* aleatorio
         Animal* generar_animal();
 
+        int* generar_posiciones();
+
         ~Reserva();
 };
 
@@ -94,6 +96,6 @@ Animal* crear_animal(string nombre, string edad, string tamano, string especie, 
 
 //pre: un rango sea definido
 //post: devuelve un entero aleatorio entre 0 y rango
-int random(int rango);
+int random_num(int rango);
 
 #endif

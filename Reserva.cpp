@@ -223,13 +223,14 @@ Animal* Reserva::generar_animal(){
     string tamanos[5] = {"diminuto","pequeño","mediano","grande","gigante"};
     string nombres[20] = {"Rocky", "Tobi", "Teo", "Max", "Jack", "Bruno", "Coco", "Lucas", "Zeus", "Rei", "Maya", "Lola", "Luna", "Cleo", "Mila", "Michi", "Nina", "Bella", "Kiara", "Reina"};
 
-    string especie = especies[random(7)];
-    string personalidad = personalidades[random(4)];
-    string tamano = tamanos[random(5)];
-    string nombre = nombres[random(20)];
-    int edad = 1+random(20); // pq no puede ser un animal de 0 ano de edad
+    string especie = especies[random_num(7)];
+    string personalidad = personalidades[random_num(4)];
+    string tamano = tamanos[random_num(5)];
+    string nombre = nombres[random_num(20)];
+    int edad = 1+random_num(20); // pq no puede ser un animal de 0 ano de edad
 
     Personalidad* p = convertir_personalidad(personalidad);
+
     if (especie == "P")
         return new Perro(nombre, edad, tamano, p);
     else if (especie == "G")
@@ -247,8 +248,28 @@ Animal* Reserva::generar_animal(){
 
 }
 
-int random(int rango){
-    srand((unsigned)time(NULL));
+int* Reserva::generar_posiciones() {
+  int n = 5;
+  srand((unsigned)time(NULL));
+  int* posiciones = new int[n];
+  for (int i = 0; i < n; i++) {
+      bool unico = false;
+      while(!unico){
+          int rd = 2 + random_num(63);
+          posiciones[i] = rd;
+          unico = true;
+          for (int k = 0; k<i; k++){
+              if(posiciones[i]==posiciones[k]) unico = false;
+          }
+
+      }
+
+  }
+    return posiciones;
+}
+
+int random_num(int rango){
+    // srand((unsigned)time(NULL));
     int random = rand() % rango;
     return random;
 }
