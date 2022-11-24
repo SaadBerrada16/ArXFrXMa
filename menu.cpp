@@ -153,11 +153,7 @@ void procesar_opcion(Reserva* reserva, int opcion){
                 }
             }
             if (opcion_rescatar == INGRESAR_NOMBRE) {
-                edad = pedir_edad();
-                tamano = pedir_tamano();
-                especie = pedir_especie();
-                personalidad = pedir_personalidad();
-                Animal* animal = crear_animal(nombre, edad, tamano, especie, personalidad);
+                Animal* animal = reserva->generar_animal();
                 reserva->agregar_animal(animal);
                 cout << endl << "Animal guardado correctamente" << endl << endl;
             }
