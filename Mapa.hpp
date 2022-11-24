@@ -24,6 +24,7 @@ class Mapa {
         int n;
         Grafo* grafo;
         char* mapa;
+        int* pos;
     public:
         // Constructor
         Mapa();
@@ -33,8 +34,8 @@ class Mapa {
 
         void colocar_animales(char* animales, int* pos);
 
-
-    private:
+        void actualizar_posiciones();
+    protected:
         int conseguir_peso(int i);
 
 

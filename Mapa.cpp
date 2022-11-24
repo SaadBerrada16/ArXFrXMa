@@ -5,6 +5,7 @@ Mapa::Mapa() {
     grafo = new Grafo();
     mapa= new char[n*n];
     mapa[0] = 'A';
+    pos = new int[5];
 
     //mapa de char
     for(int i =1; i<n*n; i++){
@@ -44,5 +45,16 @@ void Mapa::colocar_animales(char* animales, int* pos){
     int n_animales = 5;
     for(int i = 0; i<n_animales; i++){
         mapa[pos[i]]= animales[i];
+    }
+}
+
+
+void Mapa::actualizar_posiciones(){
+    int j = 0;
+    for(int i =1; i<n*n; i++){
+        if(mapa[i]!='.'){
+            pos[j] = i;
+            j++;
+        }
     }
 }

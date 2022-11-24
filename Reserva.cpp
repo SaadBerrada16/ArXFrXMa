@@ -9,6 +9,7 @@
 //constructor
 Reserva::Reserva() {
   animales = new Lista;
+  coche = new Auto;
 }
 
 void Reserva::listar_animales() {
@@ -176,7 +177,28 @@ void Reserva::adoptar_animal(int espacio) {
   	}
 }
 
+void Reserva::generar_mapa(Mapa* mapa){
+  int n_animales = 5;
+  Animal** animales = new Animal*[n_animales];
+  char* esp= new char[n_animales];
+  int* pos = generar_posiciones();
 
+  srand((unsigned)time(NULL));
+
+  for(int i = 0; i<n_animales; i++){
+    animales[i] = generar_animal();
+    esp[i] = animales[i]->especie[0];
+  }
+
+  mapa->colocar_animales(esp,pos);
+  mapa->imprimir_mapa();
+}
+
+void Reserva::rescatar_animales(Mapa* mapa){
+    mapa->actualizar_posiciones();
+    cout<<mapa->pos[0]<<endl;
+
+}
 
 Personalidad* convertir_personalidad(string p) {
     if (p == "dormilon") {
@@ -195,7 +217,6 @@ Personalidad* convertir_personalidad(string p) {
         return 0;
     }
 }
-
 
 Animal* crear_animal(string nombre, string edad, string tamano, string especie, string personalidad) {
     int e = stoi(edad);
@@ -216,8 +237,6 @@ Animal* crear_animal(string nombre, string edad, string tamano, string especie, 
         return new Lagartija(nombre, e, tamano, p);
 }
 
-//pre: -
-//post devuelve un Animal* aleatorio
 Animal* generar_animal(){
     string especies[7] = {"P","G","C","R","O","E","L"};
     string personalidades[4] = {"dormilon","travieso","jugueton","sociable"};
@@ -267,24 +286,6 @@ int* generar_posiciones() {
 
   }
     return posiciones;
-}
-
-
-void Reserva::generar_mapa(Mapa* mapa){
-    int n_animales = 5;
-    Animal** animales = new Animal*[n_animales];
-    char* esp= new char[n_animales];
-    int* pos = generar_posiciones();
-
-    srand((unsigned)time(NULL));
-
-    for(int i = 0; i<n_animales; i++){
-      animales[i] = generar_animal();
-      esp[i] = animales[i]->especie[0];
-    }
-
-    mapa->colocar_animales(esp,pos);
-    mapa->imprimir_mapa();
 }
 
 int random_num(int rango){

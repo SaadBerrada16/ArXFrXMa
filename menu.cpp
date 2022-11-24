@@ -144,7 +144,7 @@ void procesar_opcion(Reserva* reserva, int opcion, Mapa* mapa){
             break;
 
         case RESCATAR_ANIMAL:
-
+            reserva->rescatar_animales(mapa);
 
 
           cout<<"OK"<<endl;

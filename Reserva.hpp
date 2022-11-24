@@ -23,6 +23,7 @@
 #include "Sociable.hpp"
 #include "Travieso.hpp"
 #include "Mapa.hpp"
+#include "Auto.hpp"
 
 using namespace std;
 
@@ -32,6 +33,7 @@ class Reserva {
     //atributos
     private:
         Lista* animales;
+        Auto* coche;
 
     public:
         //Constructor
@@ -79,6 +81,8 @@ class Reserva {
 
 
         void generar_mapa(Mapa* mapa);
+
+        void rescatar_animales(Mapa* mapa);
 
         ~Reserva();
 };
