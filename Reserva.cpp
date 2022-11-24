@@ -5,6 +5,7 @@
 #include "Reserva.hpp"
 #include "Animal.hpp"
 
+
 //constructor
 Reserva::Reserva() {
   animales = new Lista;
@@ -217,7 +218,7 @@ Animal* crear_animal(string nombre, string edad, string tamano, string especie, 
 
 //pre: -
 //post devuelve un Animal* aleatorio
-Animal* Reserva::generar_animal(){
+Animal* generar_animal(){
     string especies[7] = {"P","G","C","R","O","E","L"};
     string personalidades[4] = {"dormilon","travieso","jugueton","sociable"};
     string tamanos[5] = {"diminuto","pequeño","mediano","grande","gigante"};
@@ -248,7 +249,7 @@ Animal* Reserva::generar_animal(){
 
 }
 
-int* Reserva::generar_posiciones() {
+int* generar_posiciones() {
   int n = 5;
   srand((unsigned)time(NULL));
   int* posiciones = new int[n];
@@ -266,6 +267,24 @@ int* Reserva::generar_posiciones() {
 
   }
     return posiciones;
+}
+
+
+void Reserva::generar_mapa(Mapa* mapa){
+    int n_animales = 5;
+    Animal** animales = new Animal*[n_animales];
+    char* esp= new char[n_animales];
+    int* pos = generar_posiciones();
+
+    srand((unsigned)time(NULL));
+
+    for(int i = 0; i<n_animales; i++){
+      animales[i] = generar_animal();
+      esp[i] = animales[i]->especie[0];
+    }
+
+    mapa->colocar_animales(esp,pos);
+    mapa->imprimir_mapa();
 }
 
 int random_num(int rango){

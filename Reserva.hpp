@@ -22,6 +22,7 @@
 #include "Roedor.hpp"
 #include "Sociable.hpp"
 #include "Travieso.hpp"
+#include "Mapa.hpp"
 
 using namespace std;
 
@@ -76,15 +77,17 @@ class Reserva {
         //post: se le baja la higiene y se le aumenta el hambre a los animales de la lista
         void bajar_higiene_y_crecer_hambre();
 
-        //pre: -
-        //post devuelve un Animal* aleatorio
-        Animal* generar_animal();
 
-        int* generar_posiciones();
+        void generar_mapa(Mapa* mapa);
 
         ~Reserva();
 };
 
+//pre: -
+//post devuelve un Animal* aleatorio
+Animal* generar_animal();
+
+int* generar_posiciones();
 //pre: recibe un string
 //post: si ese string corresponde a una personalidad devuelve un puntero a ese tipo de personalidad, sino devuelve 0
 Personalidad* convertir_personalidad(string p);

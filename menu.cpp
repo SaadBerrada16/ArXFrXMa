@@ -133,11 +133,6 @@ void procesar_opcion(Reserva* reserva, int opcion, Mapa* mapa){
     string hambre = "";
     string higiene = "";
 
-    int n_animales = 5;
-    Animal** animales = new Animal*[n_animales];
-    char* esp= new char[n_animales];
-    int* pos = reserva->generar_posiciones();
-
     int posicion_del_animal = POSICION_INVALIDA;
     // int opcion_rescatar = 0;
     int opcion_cuidar;
@@ -149,16 +144,6 @@ void procesar_opcion(Reserva* reserva, int opcion, Mapa* mapa){
             break;
 
         case RESCATAR_ANIMAL:
-            srand((unsigned)time(NULL));
-
-            for(int i = 0; i<n_animales; i++){
-              animal = reserva->generar_animal();
-              animales[i] = animal;
-              esp[i] = animales[i]->especie[0];
-            }
-            
-            mapa->colocar_animales(esp,pos);
-            mapa->imprimir_mapa();
 
 
 
