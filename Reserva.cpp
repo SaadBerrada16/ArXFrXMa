@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-//#include <cstring>
+#include <cstring>
 #include "Reserva.hpp"
 #include "Animal.hpp"
 
@@ -188,12 +188,13 @@ Personalidad* convertir_personalidad(string p) {
         Jugueton* j = new Jugueton();
         return j;
     } else if (p == "sociable") {
-        Jugueton* j = new Jugueton();
-        return j;
+        Sociable* s = new Sociable();
+        return s;
     } else {
         return 0;
     }
 }
+
 
 Animal* crear_animal(string nombre, string edad, string tamano, string especie, string personalidad) {
     int e = stoi(edad);
@@ -214,6 +215,43 @@ Animal* crear_animal(string nombre, string edad, string tamano, string especie, 
         return new Lagartija(nombre, e, tamano, p);
 }
 
+//pre: -
+//post devuelve un Animal* aleatorio
+Animal* Reserva::generar_animal(){
+    string especies[7] = {"P","G","C","R","O","E","L"};
+    string personalidades[4] = {"dormilon","travieso","jugueton","sociable"};
+    string tamanos[5] = {"diminuto","pequeño","mediano","grande","gigante"};
+    string nombres[20] = {"Rocky", "Tobi", "Teo", "Max", "Jack", "Bruno", "Coco", "Lucas", "Zeus", "Rei", "Maya", "Lola", "Luna", "Cleo", "Mila", "Michi", "Nina", "Bella", "Kiara", "Reina"};
+
+    string especie = especies[random(7)];
+    string personalidad = personalidades[random(4)];
+    string tamano = tamanos[random(5)];
+    string nombre = nombres[random(20)];
+    int edad = 1+random(20); // pq no puede ser un animal de 0 ano de edad
+
+    Personalidad* p = convertir_personalidad(personalidad);
+    if (especie == "P")
+        return new Perro(nombre, edad, tamano, p);
+    else if (especie == "G")
+        return new Gato(nombre, edad, tamano, p);
+    else if (especie == "C")
+        return new Caballo(nombre, edad, tamano, p);
+    else if (especie == "R")
+        return new Roedor(nombre, edad, tamano, p);
+    else if (especie == "O")
+        return new Conejo(nombre, edad, tamano, p);
+    else if (especie == "E")
+        return new Erizo(nombre, edad, tamano, p);
+    else
+        return new Lagartija(nombre, edad, tamano, p);
+
+}
+
+int random(int rango){
+    srand((unsigned)time(NULL));
+    int random = rand() % rango;
+    return random;
+}
 
 // Destructor
 Reserva::~Reserva() {

@@ -76,6 +76,10 @@ class Reserva {
         //post: se le baja la higiene y se le aumenta el hambre a los animales de la lista
         void bajar_higiene_y_crecer_hambre();
 
+        //pre: -
+        //post devuelve un Animal* aleatorio
+        Animal* generar_animal();
+
         ~Reserva();
 };
 
@@ -85,5 +89,11 @@ Personalidad* convertir_personalidad(string p);
 //pre: recibe el nombre, edad, tamaño, especie y personalidad del animal a crear
 //post devuelve un Animal* que corresponde al animal deseado determinado por la especie
 Animal* crear_animal(string nombre, string edad, string tamano, string especie, string personalidad);
+
+
+
+//pre: un rango sea definido
+//post: devuelve un entero aleatorio entre 0 y rango
+int random(int rango);
 
 #endif
