@@ -31,7 +31,7 @@ class Mapa {
         // Método
         void imprimir_mapa();
 
-        // void colocar_animales();
+        void colocar_animales(char* animales, int* pos);
     private:
         int conseguir_peso(int i);
 

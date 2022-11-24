@@ -39,3 +39,10 @@ void Mapa::imprimir_mapa(){
         cout<<"|"<<endl;
     }
 }
+
+void Mapa::colocar_animales(char* animales, int* pos){
+    int n_animales = 5;
+    for(int i = 0; i<n_animales; i++){
+        mapa[pos[i]]= animales[i];
+    }
+}
