@@ -5,6 +5,7 @@
 #include <iostream>
 #include "Animal.hpp"
 #include "lista.hpp"
+#include "diccionarioArbolB.hpp"
 #include "Animal.hpp"
 #include "AnimalLimpio.hpp"
 #include "AnimalSucio.hpp"
@@ -32,7 +33,8 @@ const string PATH_ANIMALES = "animales.csv";
 class Reserva {
     //atributos
     private:
-        Lista* animales;
+        Diccionario<Animal*>* animales;
+        //Lista* animales;
         Auto* coche;
 
     public:

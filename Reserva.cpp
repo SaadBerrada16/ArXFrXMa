@@ -8,8 +8,9 @@
 
 //constructor
 Reserva::Reserva() {
-  animales = new Lista;
-  coche = new Auto;
+    animales = new Diccionario<Animal*>;
+    //animales = new Lista;
+    coche = new Auto;
 }
 
 void Reserva::listar_animales() {
