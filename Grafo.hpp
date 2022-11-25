@@ -12,7 +12,7 @@ class Grafo {
 private:
     int ** matrizDeAdyacencia;
     ListaGrafo * vertices;
-    CaminoMinimo * algoritmoDijkstra;
+    CaminoMinimo * algoritmoCaminoMinimo;
 
 /*MÉTODOS*/
 
@@ -47,6 +47,8 @@ public:
     //pre: el peso es un valor positivo
     //post: Ajusta la matriz de adyacencia con el peso ingresado
     void agregarCamino(string origen, string destino, int peso);
+
+    void usarDijkstra();
 
     ~Grafo();
 };

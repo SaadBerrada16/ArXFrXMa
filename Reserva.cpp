@@ -196,7 +196,8 @@ void Reserva::generar_mapa(Mapa* mapa){
 void Reserva::rescatar_animales(Mapa* mapa){
     mapa -> imprimir_mapa();
     mapa -> actualizar_posiciones();
-    // mapa -> grafo -> caminoMinimo("1" , "10");
+    mapa -> grafo -> usarDijkstra();
+    mapa -> grafo -> caminoMinimo("1" , "10");
     cout << mapa -> pos[0] << endl;
 
 }
