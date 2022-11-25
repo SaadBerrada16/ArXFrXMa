@@ -1,10 +1,10 @@
-#include "Grafo.h"
-#include "Dijkstra.h"
+#include "Grafo.hpp"
+#include "Dijkstra.hpp"
 #include <iostream>
 
 Grafo::Grafo() {
     matrizDeAdyacencia = nullptr;
-    vertices = new Lista_Grafo<Vertice>();
+    vertices = new ListaGrafo();
     algoritmoCaminoMinimo = nullptr;
 }
 
@@ -13,10 +13,10 @@ void Grafo::agregarVertice(string nuevoVertice) {
     vertices -> agregar(nuevoVertice);
 }
 
-void Grafo::mostrarGrafo() {
-    mostrarVertices();
-    mostrarMatrizAdyacencia();
-}
+// void Grafo::mostrarGrafo() {
+//     mostrarVertices();
+//     mostrarMatrizAdyacencia();
+// }
 
 void Grafo::agregarCamino(string origen, string destino, int peso) {
     int posicionOrigen = vertices ->obtenerPosicion(origen);
@@ -93,44 +93,8 @@ Grafo::~Grafo() {
     delete algoritmoCaminoMinimo;
 }
 
-void Grafo::mostrarVertices() {
-    cout << "Lista_Grafo de vértices: [";
-    for(int i = 0; i < vertices -> obtenerCantidadDeElementos(); i++){
-        cout << vertices -> obtenerNombre(i + 1);
-        if(i + 1 != vertices -> obtenerCantidadDeElementos()){
-            cout << ", ";
-        }
-    }
-    cout << "]" << endl;
-}
-
-void Grafo::mostrarMatrizAdyacencia() {
-    cout << "Matriz de adyacencia:" << endl;
-    for(int i = 0; i < vertices -> obtenerCantidadDeElementos(); i++){
-        for(int j = 0; j < vertices -> obtenerCantidadDeElementos() * 2; j++) {
-            if(j == vertices -> obtenerCantidadDeElementos() * 2 - 1){
-                cout << endl;
-            } else if(j % 2 == 0){
-                if(matrizDeAdyacencia[i][j/2] == INFINITO){
-                    cout << "∞";
-                } else {
-                    cout << matrizDeAdyacencia[i][j/2];
-                }
-            } else{
-                cout << "|";
-            }
-        }
-    }
-    cout << endl;
-}
-
 void Grafo::caminoMinimo(int origen, int destino) {
     algoritmoCaminoMinimo -> caminoMinimo(origen, destino);
-}
-
-void Grafo::usarFloyd() {
-    delete algoritmoCaminoMinimo;
-    algoritmoCaminoMinimo = new Floyd(vertices, matrizDeAdyacencia);
 }
 
 void Grafo::usarDijkstra() {

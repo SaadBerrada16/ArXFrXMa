@@ -1,7 +1,7 @@
 #ifndef MAPA_H
 #define MAPA_H
 
-#include "Grafo.h"
+#include "Grafo.hpp"
 using namespace std;
 
 const int M = 5;
@@ -10,13 +10,13 @@ const int C = 1;
 const int T = 2;
 
 const int tipos[64] = {C,P,T,T,T,T,T,T,
-                C,T,T,T,P,P,P,P,
-                C,C,C,C,C,T,M,M,
-                T,T,T,T,C,T,M,M,
-                M,M,M,T,C,T,M,M,
-                T,T,T,T,C,T,M,M,
-                T,P,P,P,C,T,M,M,
-                T,T,T,T,C,C,C,C};
+                       C,T,T,T,P,P,P,P,
+                       C,C,C,C,C,T,M,M,
+                       T,T,T,T,C,T,M,M,
+                       M,M,M,T,C,T,M,M,
+                       T,T,T,T,C,T,M,M,
+                       T,P,P,P,C,T,M,M,
+                       T,T,T,T,C,C,C,C};
 
 
 class Mapa {
@@ -25,6 +25,7 @@ class Mapa {
         Grafo* grafo;
         char* mapa;
         int* pos;
+
     public:
         // Constructor
         Mapa();
@@ -32,9 +33,12 @@ class Mapa {
         // Método
         void imprimir_mapa();
 
+        void imprimir_mapa_referencia();
+
         void colocar_animales(char* animales, int* pos);
 
         void actualizar_posiciones();
+
     protected:
         int conseguir_peso(int i);
 

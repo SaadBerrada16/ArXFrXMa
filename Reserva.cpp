@@ -180,23 +180,25 @@ void Reserva::adoptar_animal(int espacio) {
 void Reserva::generar_mapa(Mapa* mapa){
   int n_animales = 5;
   Animal** animales = new Animal*[n_animales];
-  char* esp= new char[n_animales];
+  char* esp = new char[n_animales];
   int* pos = generar_posiciones();
 
   srand((unsigned)time(NULL));
 
-  for(int i = 0; i<n_animales; i++){
+  for(int i = 0; i < n_animales; i++){
     animales[i] = generar_animal();
-    esp[i] = animales[i]->especie[0];
+    esp[i] = animales[i] -> especie[0];
   }
 
-  mapa->colocar_animales(esp,pos);
-  mapa->imprimir_mapa();
+  mapa -> colocar_animales(esp, pos);
+  mapa -> imprimir_mapa();
 }
 
 void Reserva::rescatar_animales(Mapa* mapa){
-    mapa->actualizar_posiciones();
-    cout<<mapa->pos[0]<<endl;
+    mapa -> imprimir_mapa_referencia();
+    mapa -> imprimir_mapa();
+    mapa -> actualizar_posiciones();
+    cout << mapa -> pos[0] << endl;
 
 }
 
@@ -238,16 +240,16 @@ Animal* crear_animal(string nombre, string edad, string tamano, string especie, 
 }
 
 Animal* generar_animal(){
-    string especies[7] = {"P","G","C","R","O","E","L"};
-    string personalidades[4] = {"dormilon","travieso","jugueton","sociable"};
-    string tamanos[5] = {"diminuto","pequeño","mediano","grande","gigante"};
+    string especies[7] = {"P", "G", "C", "R", "O", "E", "L"};
+    string personalidades[4] = {"dormilon", "travieso", "jugueton", "sociable"};
+    string tamanos[5] = {"diminuto", "pequeño", "mediano", "grande", "gigante"};
     string nombres[20] = {"Rocky", "Tobi", "Teo", "Max", "Jack", "Bruno", "Coco", "Lucas", "Zeus", "Rei", "Maya", "Lola", "Luna", "Cleo", "Mila", "Michi", "Nina", "Bella", "Kiara", "Reina"};
 
     string especie = especies[random_num(7)];
     string personalidad = personalidades[random_num(4)];
     string tamano = tamanos[random_num(5)];
     string nombre = nombres[random_num(20)];
-    int edad = 1+random_num(20); // pq no puede ser un animal de 0 ano de edad
+    int edad = 1 + random_num(20); // pq no puede ser un animal de 0 ano de edad
 
     Personalidad* p = convertir_personalidad(personalidad);
 
@@ -278,8 +280,8 @@ int* generar_posiciones() {
           int rd = 2 + random_num(63);
           posiciones[i] = rd;
           unico = true;
-          for (int k = 0; k<i; k++){
-              if(posiciones[i]==posiciones[k]) unico = false;
+          for (int k = 0; k < i; k++){
+              if(posiciones[i] == posiciones[k]) unico = false;
           }
 
       }

@@ -1,6 +1,6 @@
-#include "Dijkstra.h"
+#include "Dijkstra.hpp"
 
-Dijkstra::Dijkstra(Lista_Grafo<Vertice> *vertices, int **matrizAdyacencia) : CaminoMinimo(vertices, matrizAdyacencia) {
+Dijkstra::Dijkstra(ListaGrafo *vertices, int **matrizAdyacencia) : CaminoMinimo(vertices, matrizAdyacencia) {
     verticesVisitados = new bool[cantidadVertices];
     distancia = new int[cantidadVertices];
     recorrido = new int[cantidadVertices];
@@ -88,39 +88,4 @@ void Dijkstra::mostrarRecorrido(int origen, int destino) {
         }while(origen != destino);
     }
     cout << endl;
-}
-
-void Dijkstra::mostrarIteracion(int iteracion) {
-    cout << endl << "Iteración " << iteracion << endl;
-
-    cout << "Visitados: [";
-    for(int i = 0; i < cantidadVertices; i++){
-        cout << verticesVisitados[i];
-        if(i + 1 != cantidadVertices){
-            cout << ", ";
-        }
-    }
-    cout << "]" << endl;
-
-    cout << "Distancia: [";
-    for(int i = 0; i < cantidadVertices; i++){
-        if(distancia[i] != INFINITO) {
-            cout << distancia[i];
-        } else {
-            cout << "∞";
-        }
-        if(i + 1 != cantidadVertices){
-            cout << ", ";
-        }
-    }
-    cout << "]" << endl;
-
-    cout << "Recorrido: [";
-    for(int i = 0; i < cantidadVertices; i++){
-        cout << vertices -> obtenerNombre(recorrido[i] + 1);
-        if(i + 1 != cantidadVertices){
-            cout << ", ";
-        }
-    }
-    cout << "]" << endl << endl;
 }

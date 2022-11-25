@@ -1,6 +1,6 @@
-#include "CaminoMinimo.h"
+#include "CaminoMinimo.hpp"
 
-CaminoMinimo::CaminoMinimo(Lista_Grafo<Vertice> *vertices, int **matrizAdyacencia) {
+CaminoMinimo::CaminoMinimo(ListaGrafo *vertices, int **matrizAdyacencia) {
     this -> vertices = vertices;
     this -> matrizAdyacencia = matrizAdyacencia;
     cantidadVertices = vertices -> obtenerCantidadDeElementos();
