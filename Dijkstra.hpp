@@ -1,12 +1,19 @@
 #ifndef GRAFOS_DIJKSTRA_H
 #define GRAFOS_DIJKSTRA_H
+#include <string>
+#include "ListaGrafo.hpp"
+#include "Vertice.hpp"
+#include <iostream>
 
+const int INFINITO = 99999999;
 
-#include "CaminoMinimo.hpp"
-
-
-class Dijkstra : public CaminoMinimo{
+class Dijkstra {
 //Atributos
+protected:
+    int ** matrizAdyacencia;
+    ListaGrafo* vertices;
+    int cantidadVertices;
+
 private:
     bool * verticesVisitados;
     int * distancia;
@@ -39,6 +46,10 @@ public:
 
     //post: muestra por pantalla el camino mínimo entre el origen y el destino, detallando su recorrido y peso
     void caminoMinimo(int origen, int destino);
+
+    int * recuperarRecorrido();
+
+    int recuperarCosto(int destino);
 
     ~Dijkstra();
 

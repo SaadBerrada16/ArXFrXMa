@@ -97,6 +97,18 @@ void Grafo::caminoMinimo(int origen, int destino) {
     algoritmoCaminoMinimo -> caminoMinimo(origen, destino);
 }
 
+int * Grafo::recuperarRecorrido2(){
+    int * aux;
+    aux = algoritmoCaminoMinimo -> recuperarRecorrido();
+    return aux;
+}
+
+int Grafo::recuperarCosto2(int destino){
+    int aux;
+    aux = algoritmoCaminoMinimo -> recuperarCosto(destino);
+    return aux;
+}
+
 void Grafo::usarDijkstra() {
     delete algoritmoCaminoMinimo;
     algoritmoCaminoMinimo = new Dijkstra(vertices, matrizDeAdyacencia);

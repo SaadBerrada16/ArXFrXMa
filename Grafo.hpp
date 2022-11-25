@@ -3,8 +3,8 @@
 #include <string>
 #include "ListaGrafo.hpp"
 #include "Vertice.hpp"
+#include "Dijkstra.hpp"
 
-#include "CaminoMinimo.hpp"
 using namespace std;
 
 class Grafo {
@@ -12,7 +12,7 @@ class Grafo {
 private:
     int ** matrizDeAdyacencia;
     ListaGrafo * vertices;
-    CaminoMinimo * algoritmoCaminoMinimo;
+    Dijkstra * algoritmoCaminoMinimo;
 
 /*MÉTODOS*/
 
@@ -47,6 +47,10 @@ public:
     //pre: el peso es un valor positivo
     //post: Ajusta la matriz de adyacencia con el peso ingresado
     void agregarCamino(string origen, string destino, int peso);
+
+    int * recuperarRecorrido2();
+
+    int recuperarCosto2(int destino);
 
     void usarDijkstra();
 

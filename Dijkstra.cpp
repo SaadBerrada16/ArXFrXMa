@@ -1,6 +1,9 @@
 #include "Dijkstra.hpp"
 
-Dijkstra::Dijkstra(ListaGrafo *vertices, int **matrizAdyacencia) : CaminoMinimo(vertices, matrizAdyacencia) {
+Dijkstra::Dijkstra(ListaGrafo *vertices, int **matrizAdyacencia) {
+    this -> vertices = vertices;
+    this -> matrizAdyacencia = matrizAdyacencia;
+    cantidadVertices = vertices -> obtenerCantidadDeElementos();
     verticesVisitados = new bool[cantidadVertices];
     distancia = new int[cantidadVertices];
     recorrido = new int[cantidadVertices];
@@ -27,7 +30,7 @@ void Dijkstra::caminoMinimo(int origen, int destino) {
         verticesRecorridos++;
     }
 
-    mostrarRecorrido(origen, destino);
+    mostrarRecorrido(origen, destino); 
 }
 
 int Dijkstra::verticeMinimaDistancia() {
@@ -51,8 +54,9 @@ void Dijkstra::inicializarVisitados(int origen) {
 }
 
 void Dijkstra::inicializarRecorrido(int origen) {
-    for(int i = 0; i < cantidadVertices; i++)
+    for(int i = 0; i < cantidadVertices; i++){
         recorrido[i] = origen;
+    }
 }
 
 Dijkstra::~Dijkstra() {
@@ -62,12 +66,14 @@ Dijkstra::~Dijkstra() {
 }
 
 void Dijkstra::inicializarDistancia(const int * distanciaOrigen) {
-    for(int i = 0; i < cantidadVertices; i++)
+    for(int i = 0; i < cantidadVertices; i++){
         distancia[i] = distanciaOrigen[i];
+    }
 }
 
 void Dijkstra::actualizarDistancia(int vertice) {
     for(int i = 0; i < cantidadVertices; i++){
+        // cout << "En la iteracion numero " << i << endl;
         if(!verticesVisitados[i] && distancia[vertice] != INFINITO && distancia[i] > matrizAdyacencia[vertice][i] + distancia[vertice]){
             distancia[i] = matrizAdyacencia[vertice][i] + distancia[vertice];
             recorrido[i] = vertice;
@@ -88,4 +94,12 @@ void Dijkstra::mostrarRecorrido(int origen, int destino) {
         }while(origen != destino);
     }
     cout << endl;
+}
+
+int * Dijkstra::recuperarRecorrido(){
+    return recorrido;
+}
+
+int Dijkstra::recuperarCosto(int destino){
+    return distancia[destino];
 }

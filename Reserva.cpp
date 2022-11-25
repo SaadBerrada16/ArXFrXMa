@@ -194,11 +194,20 @@ void Reserva::generar_mapa(Mapa* mapa){
 }
 
 void Reserva::rescatar_animales(Mapa* mapa){
+    int * recorrido = new int[mapa->n * mapa->n];
+    int aux;
     mapa -> imprimir_mapa();
     mapa -> actualizar_posiciones();
     mapa -> grafo -> usarDijkstra();
     mapa -> grafo -> caminoMinimo("1" , "10");
+    aux = mapa -> grafo -> recuperarCosto2(9);
+    cout << "El costo en combustible es: " << aux << endl;
+    mapa -> grafo -> caminoMinimo("15" , "3");
+    aux = mapa -> grafo -> recuperarCosto2(2);
+    cout << "El costo en combustible es: " << aux << endl;
+    mapa -> grafo -> caminoMinimo("3" , "15");
     cout << mapa -> pos[0] << endl;
+    delete recorrido;
 
 }
 
