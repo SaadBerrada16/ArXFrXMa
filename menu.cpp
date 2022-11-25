@@ -2,6 +2,7 @@
 #include "menu.hpp"
 #include "Animal.hpp"
 
+
 using namespace std;
 
 void mostrar_menu(){
@@ -122,7 +123,7 @@ void procesar_menu_individual(Reserva* reserva, int posicion_del_animal){
     }
 }
 
-void procesar_opcion(Reserva* reserva, int opcion){
+void procesar_opcion(Reserva* reserva, int opcion, Mapa* mapa){
     Animal* animal = nullptr;
     string nombre = "";
     string edad = "";
@@ -133,7 +134,7 @@ void procesar_opcion(Reserva* reserva, int opcion){
     string higiene = "";
 
     int posicion_del_animal = POSICION_INVALIDA;
-    int opcion_rescatar = 0;
+    // int opcion_rescatar = 0;
     int opcion_cuidar;
     reserva->bajar_higiene_y_crecer_hambre();
 
@@ -143,24 +144,25 @@ void procesar_opcion(Reserva* reserva, int opcion){
             break;
 
         case RESCATAR_ANIMAL:
-            nombre = pedir_nombre();
-            while(reserva->buscar_animal(nombre) != 0 && opcion_rescatar == INGRESAR_NOMBRE) {
-                mostrar_menu_rescatar();
-                opcion_rescatar = pedir_opcion();
-                validar_opcion_rescatar(opcion_rescatar);
-                if (opcion_rescatar == INGRESAR_NOMBRE) {
-                    nombre = pedir_nombre();
-                }
-            }
-            if (opcion_rescatar == INGRESAR_NOMBRE) {
-                edad = pedir_edad();
-                tamano = pedir_tamano();
-                especie = pedir_especie();
-                personalidad = pedir_personalidad();
-                Animal* animal = crear_animal(nombre, edad, tamano, especie, personalidad);
-                reserva->agregar_animal(animal);
-                cout << endl << "Animal guardado correctamente" << endl << endl;
-            }
+            reserva->rescatar_animales(mapa);
+
+
+          cout<<"OK"<<endl;
+            // animal = reserva->generar_animal();
+            // nombre = animal->nombre;
+            // while(reserva->buscar_animal(nombre) != 0 && opcion_rescatar == INGRESAR_NOMBRE) {
+            //     mostrar_menu_rescatar();
+            //     opcion_rescatar = pedir_opcion();
+            //     validar_opcion_rescatar(opcion_rescatar);
+            //     if (opcion_rescatar == INGRESAR_NOMBRE) {
+            //         nombre = pedir_nombre();
+            //     }
+            // }
+            // if (opcion_rescatar == INGRESAR_NOMBRE) {
+            //     animal->nombre = nombre;
+            //     reserva->agregar_animal(animal);
+            //     cout << endl << "Animal guardado correctamente" << endl << endl;
+            // }
             break;
 
         case BUSCAR_ANIMAL:

@@ -22,6 +22,8 @@
 #include "Roedor.hpp"
 #include "Sociable.hpp"
 #include "Travieso.hpp"
+#include "Mapa.hpp"
+#include "Auto.hpp"
 
 using namespace std;
 
@@ -31,6 +33,7 @@ class Reserva {
     //atributos
     private:
         Lista* animales;
+        Auto* coche;
 
     public:
         //Constructor
@@ -76,14 +79,30 @@ class Reserva {
         //post: se le baja la higiene y se le aumenta el hambre a los animales de la lista
         void bajar_higiene_y_crecer_hambre();
 
+
+        void generar_mapa(Mapa* mapa);
+
+        void rescatar_animales(Mapa* mapa);
+
         ~Reserva();
 };
 
+//pre: -
+//post devuelve un Animal* aleatorio
+Animal* generar_animal();
+
+int* generar_posiciones();
 //pre: recibe un string
 //post: si ese string corresponde a una personalidad devuelve un puntero a ese tipo de personalidad, sino devuelve 0
 Personalidad* convertir_personalidad(string p);
 //pre: recibe el nombre, edad, tamaño, especie y personalidad del animal a crear
 //post devuelve un Animal* que corresponde al animal deseado determinado por la especie
 Animal* crear_animal(string nombre, string edad, string tamano, string especie, string personalidad);
+
+
+
+//pre: un rango sea definido
+//post: devuelve un entero aleatorio entre 0 y rango
+int random_num(int rango);
 
 #endif

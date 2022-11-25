@@ -22,9 +22,9 @@ class Animal {
 
         virtual void comer() = 0;
 
-        // pre: -
-        // pos: devuelve un vector de 5 posiciones entre 1 y 63
-        int* generar_posiciones();
+        // // pre: -
+        // // pos: devuelve un vector de 5 posiciones entre 1 y 63
+        // int* generar_posiciones();
 
         // pre: -
         // pos: aumenta el hambre del animal
