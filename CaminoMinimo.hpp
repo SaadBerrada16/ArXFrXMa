@@ -1,7 +1,7 @@
 #ifndef GRAFOS_CAMINOMINIMO_H
 #define GRAFOS_CAMINOMINIMO_H
 #include <string>
-#include "Lista.hpp"
+#include "ListaGrafo.hpp"
 #include "Vertice.hpp"
 #include <iostream>
 

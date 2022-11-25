@@ -5,18 +5,13 @@
 Grafo::Grafo() {
     matrizDeAdyacencia = nullptr;
     vertices = new ListaGrafo();
-    algoritmoCaminoMinimo = nullptr;
+    algoritmoDijkstra = new Dijkstra(vertices, matrizDeAdyacencia);
 }
 
 void Grafo::agregarVertice(string nuevoVertice) {
     agrandarMatrizDeAdyacencia();
     vertices -> agregar(nuevoVertice);
 }
-
-// void Grafo::mostrarGrafo() {
-//     mostrarVertices();
-//     mostrarMatrizAdyacencia();
-// }
 
 void Grafo::agregarCamino(string origen, string destino, int peso) {
     int posicionOrigen = vertices ->obtenerPosicion(origen);
@@ -45,7 +40,7 @@ void Grafo::caminoMinimo(string origen, string destino) {
         cout << "El vertice " << destino << " no existe en el grafo" << endl;
     }
 
-    caminoMinimo(posicionOrigen, posicionDestino);
+    algoritmoDijkstra -> caminoMinimo(posicionOrigen, posicionDestino);
 }
 
 void Grafo::agrandarMatrizDeAdyacencia() {
@@ -90,14 +85,5 @@ Grafo::~Grafo() {
     liberarMatrizAdyacencia();
     matrizDeAdyacencia = nullptr;
     delete vertices;
-    delete algoritmoCaminoMinimo;
-}
-
-void Grafo::caminoMinimo(int origen, int destino) {
-    algoritmoCaminoMinimo -> caminoMinimo(origen, destino);
-}
-
-void Grafo::usarDijkstra() {
-    delete algoritmoCaminoMinimo;
-    algoritmoCaminoMinimo = new Dijkstra(vertices, matrizDeAdyacencia);
+    delete algoritmoDijkstra;
 }

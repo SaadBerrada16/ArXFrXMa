@@ -1,7 +1,7 @@
 #ifndef GRAFOS_GRAFO_H
 #define GRAFOS_GRAFO_H
 #include <string>
-#include "Lista.hpp"
+#include "ListaGrafo.hpp"
 #include "Vertice.hpp"
 
 #include "CaminoMinimo.hpp"
@@ -12,7 +12,7 @@ class Grafo {
 private:
     int ** matrizDeAdyacencia;
     ListaGrafo * vertices;
-    CaminoMinimo * algoritmoCaminoMinimo;
+    CaminoMinimo * algoritmoDijkstra;
 
 /*MÉTODOS*/
 
@@ -47,9 +47,6 @@ public:
     //pre: el peso es un valor positivo
     //post: Ajusta la matriz de adyacencia con el peso ingresado
     void agregarCamino(string origen, string destino, int peso);
-
-    //post: selecciona el algortimo de Dijkstra para calcular el camino mínimo
-    void usarDijkstra();
 
     ~Grafo();
 };
