@@ -25,6 +25,7 @@ class Mapa {
         Grafo* grafo;
         char* mapa;
         int* pos;
+        int costo;
 
     public:
         // Constructor
@@ -32,8 +33,6 @@ class Mapa {
 
         // Método
         void imprimir_mapa();
-
-        void imprimir_mapa_referencia();
 
         void colocar_animales(char* animales, int* pos);
 

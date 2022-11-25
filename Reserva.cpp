@@ -178,12 +178,12 @@ void Reserva::adoptar_animal(int espacio) {
 }
 
 void Reserva::generar_mapa(Mapa* mapa){
+  srand((unsigned)time(NULL));
+
   int n_animales = 5;
   Animal** animales = new Animal*[n_animales];
   char* esp = new char[n_animales];
   int* pos = generar_posiciones();
-
-  srand((unsigned)time(NULL));
 
   for(int i = 0; i < n_animales; i++){
     animales[i] = generar_animal();
@@ -191,13 +191,12 @@ void Reserva::generar_mapa(Mapa* mapa){
   }
 
   mapa -> colocar_animales(esp, pos);
-  mapa -> imprimir_mapa();
 }
 
 void Reserva::rescatar_animales(Mapa* mapa){
-    mapa -> imprimir_mapa_referencia();
     mapa -> imprimir_mapa();
     mapa -> actualizar_posiciones();
+    // mapa -> grafo -> caminoMinimo("1" , "10");
     cout << mapa -> pos[0] << endl;
 
 }

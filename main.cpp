@@ -13,7 +13,7 @@ int main() {
     int opcion = 0;
 
     reserva->cargar_animales();
-    //reserva->generar_mapa(mapa);
+    reserva->generar_mapa(mapa);
 
     mostrar_menu();
     opcion = pedir_opcion();

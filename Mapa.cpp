@@ -6,6 +6,7 @@ Mapa::Mapa() {
     mapa = new char[n * n];
     mapa[0] = 'A';
     pos = new int[5];
+    costo = 0;
 
     //mapa de char
     for(int i = 1; i < n * n; i++){
@@ -32,16 +33,6 @@ int Mapa::conseguir_peso(int i){
     return tipos[i-1];
 }
 
-void Mapa::imprimir_mapa_referencia(){
-    for (int i = 0; i < n; i++){
-        for(int j = 0; j < n; j++){
-            if((i * 8 + j) < 10 && ((i * 8 + j) % 8 != 0)) cout << " | " << i * 8 + j << " ";
-            else cout << "| " << i * 8 + j << " ";
-        }
-        cout << "|" <<endl;
-    }
-}
-
 void Mapa::imprimir_mapa(){
   for (int i = 0; i < n; i++){
         for(int j = 0; j < n; j++){
@@ -63,7 +54,7 @@ void Mapa::actualizar_posiciones(){
     int j = 0;
     for(int i = 1; i < n * n; i++){
         if(mapa[i] != '.'){
-            pos[j] = i;
+            pos[j] = i+1;
             j++;
         }
     }
