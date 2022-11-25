@@ -53,7 +53,7 @@ void Mapa::actualizar_posiciones(){
     int j = 0;
     for(int i =1; i<n*n; i++){
         if(mapa[i]!='.'){
-            pos[j] = i;
+            pos[j] = i+1;
             j++;
         }
     }
