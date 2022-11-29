@@ -1,5 +1,5 @@
-#ifndef NODO_H_INCLUDED
-#define NODO_H_INCLUDED
+#ifndef NODO_ARBOL_INCLUDED
+#define NODO_ARBOL_INCLUDED
 
 #include <iostream>
 #include <string.h>
@@ -30,7 +30,9 @@ class Nodo {
 
         void mostrarNodo();
 
-        Tipo eliminar(string clave);     
+        Tipo eliminar(string clave);
+
+        void llenar(Tipo* vector, int& actual);     
 
         ~Nodo();
 };
@@ -224,6 +226,22 @@ Tipo Nodo<Tipo>::eliminar(string clave) {
     return vias[i]->eliminar(clave);
 }
 
+template <typename Tipo>
+void Nodo<Tipo>::llenar(Tipo* vector, int& posicion_actual) {
+    int i = 0;
+    while (claves[i] != "") {
+        if (!eliminado[i]) {
+            vector[posicion_actual] = datos[i];
+            posicion_actual += 1;
+        }
+        i += 1;
+    }
+    for (int i = 0; i < M+1; i++) {
+        if (vias[i] != NULL)
+            vias[i]->llenar(vector, posicion_actual);
+    }
+}  
+
 
 template <typename Tipo>
 Nodo<Tipo>::~Nodo() {
@@ -233,4 +251,4 @@ Nodo<Tipo>::~Nodo() {
     }
 }
 
-#endif // NODO_H_INCLUDED
+#endif // NODO_ARBOL_INCLUDED
