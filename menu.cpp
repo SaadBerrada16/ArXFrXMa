@@ -13,7 +13,8 @@ void mostrar_menu(){
     << '\t' << "3. Buscar animal" << endl
     << '\t' << "4. Cuidar animales" << endl
     << '\t' << "5. Adoptar animal" << endl
-    << '\t' << "6. Guardar y salir" << endl;
+    << '\t' << "6. Cargar combustible" << endl
+    << '\t' << "7. Guardar y salir" << endl;
 }
 
 void mostrar_menu_rescatar(){
@@ -27,9 +28,7 @@ void mostrar_menu_cuidar(){
     cout << endl << endl << endl;
     cout << "MENU" << endl
     << '\t' << "1. Elegir individualmente" << endl
-    << '\t' << "2. Alimentar a todos" << endl
-    << '\t' << "3. Bañar a todos" << endl
-    << '\t' << "4. Regresar al inicio" << endl;
+    << '\t' << "2. Regresar al inicio" << endl;
 }
 
 void mostrar_menu_cuidar_individualmente(){
@@ -94,7 +93,7 @@ int cargar_y_validar_opcion_menu_individual(){
     return opcion;
 }
 
-void procesar_menu_individual(Reserva* reserva, int posicion_del_animal){
+/*void procesar_menu_individual(Reserva* reserva, int posicion_del_animal){
     int opcion;
     Animal* animal_actual = reserva->elegir_animal(posicion_del_animal);
 
@@ -121,7 +120,7 @@ void procesar_menu_individual(Reserva* reserva, int posicion_del_animal){
                 return;
         }
     }
-}
+}*/
 
 void procesar_opcion(Reserva* reserva, int opcion, Mapa* mapa){
     Animal* animal = nullptr;
@@ -133,7 +132,7 @@ void procesar_opcion(Reserva* reserva, int opcion, Mapa* mapa){
     string hambre = "";
     string higiene = "";
 
-    int posicion_del_animal = POSICION_INVALIDA;
+    //int posicion_del_animal = POSICION_INVALIDA;
     // int opcion_rescatar = 0;
     int opcion_cuidar;
     reserva->bajar_higiene_y_crecer_hambre();
@@ -184,14 +183,8 @@ void procesar_opcion(Reserva* reserva, int opcion, Mapa* mapa){
             validar_opcion_cuidar(opcion_cuidar);
             switch (opcion_cuidar) {
             case ELEGIR_INDIVIDUALMENTE:
-                posicion_del_animal = 1;
-                procesar_menu_individual(reserva, posicion_del_animal);
-                break;
-            case ALIMENTAR_TODOS:
-                reserva->alimentar_animales();
-                break;
-            case BANAR_TODOS:
-                reserva->banar_animales();
+                //posicion_del_animal = 1;
+                //procesar_menu_individual(reserva, posicion_del_animal);
                 break;
             case REGRESAR_INICIO:
                 break;
