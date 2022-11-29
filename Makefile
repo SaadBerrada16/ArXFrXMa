@@ -6,9 +6,7 @@ LDFLAGS=
 
 EXEC=main
 
-SRC=./nodo.cpp  				\
-	./NodoGrafo.cpp  			\
-	./lista.cpp  				\
+SRC=./NodoGrafo.cpp  			\
 	./ListaGrafo.cpp  			\
 	./Mapa.cpp  				\
 	./CaminoMinimo.cpp  		\

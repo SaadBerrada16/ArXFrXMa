@@ -3,8 +3,6 @@
 
 
 #include <iostream>
-#include "Animal.hpp"
-#include "lista.hpp"
 #include "diccionarioArbolB.hpp"
 #include "Animal.hpp"
 #include "AnimalLimpio.hpp"
@@ -16,8 +14,6 @@
 #include "Gato.hpp"
 #include "Jugueton.hpp"
 #include "Lagartija.hpp"
-#include "lista.hpp"
-#include "nodo.hpp"
 #include "Perro.hpp"
 #include "Personalidad.hpp"
 #include "Roedor.hpp"

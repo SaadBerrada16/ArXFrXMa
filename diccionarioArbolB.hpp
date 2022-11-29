@@ -4,8 +4,8 @@
 #include "nodoArbol.hpp"
 using namespace std;
 
-#define M 3
-#define medio (M-1)/2
+#define N 3
+#define medio (N-1)/2
 
 template <typename Tipo>
 class Diccionario {
@@ -21,6 +21,8 @@ class Diccionario {
 
         bool consultar(string clave);
 
+        Tipo consulta(int posicion);
+
         Tipo obtener(string clave);
 
         void mostrarArbol();
@@ -32,6 +34,8 @@ class Diccionario {
         bool hay_siguiente(); 
     
         Tipo siguiente();
+
+        int obtener_cantidad();
 
         ~Diccionario();   
 };
@@ -54,6 +58,11 @@ template <typename Tipo>
 bool Diccionario<Tipo>::consultar(string clave) {
     return raiz->contieneClave(clave);
 }
+template <typename Tipo>
+Tipo consulta(int posicion) {
+    
+}
+
 
 template <typename Tipo>
 Tipo Diccionario<Tipo>::obtener(string clave){
@@ -97,6 +106,11 @@ Diccionario<Tipo>::~Diccionario() {
     delete raiz;
     if (vector != NULL)
         delete [] vector;
+}
+
+template <typename Tipo>
+int Diccionario<Tipo>::obtener_cantidad() {
+    return cantidad;
 }
 
 #endif

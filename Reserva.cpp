@@ -23,7 +23,7 @@ void Reserva::listar_animales() {
 }
 
 void Reserva::agregar_animal(Animal* animal) {
-	animales->alta(animal, 1);
+	animales->insertar(animal->nombre, animal);
 }
 
 Animal* Reserva::buscar_animal(string nombre) {
@@ -39,18 +39,18 @@ Animal* Reserva::buscar_animal(string nombre) {
 	return 0;
 }
 
-Animal* Reserva::elegir_animal(int posicion_animal_actual){
+/*Animal* Reserva::elegir_animal(int posicion_animal_actual){
 	Animal* animal_deseado = animales->consulta(posicion_animal_actual);
 	if(animal_deseado == 0) return 0;
 	return animal_deseado;
-}
+}*/
 
 int Reserva::obtener_cantidad_de_animales(){
 	return animales->obtener_cantidad();
 }
 
 void Reserva::banar_animales(){
-	Dato animal_actual;
+	Animal* animal_actual;
 	animales->iniciar();
 	while(animales->hay_siguiente()){
 		animal_actual = animales->siguiente();
@@ -59,7 +59,7 @@ void Reserva::banar_animales(){
 }
 
 void Reserva::alimentar_animales(){
-	Dato animal_actual;
+	Animal* animal_actual;
 	animales->iniciar();
 	while(animales->hay_siguiente()){
 		animal_actual = animales->siguiente();
@@ -85,7 +85,7 @@ void Reserva::cargar_animales() {
         getline(sanimal, tamano, ',');
         getline(sanimal, especie, ',');
         getline(sanimal, personalidad, ',');
-        animales->alta(crear_animal(nombre, edad, tamano, especie, personalidad), 1);
+        animales->insertar(nombre, crear_animal(nombre, edad, tamano, especie, personalidad));
     }
 
     archivo.close();
@@ -106,7 +106,7 @@ void Reserva::guardar_animales() {
 }
 
 void Reserva::bajar_higiene_y_crecer_hambre(){
-	Dato animal_actual;
+	Animal* animal_actual;
 	animales->iniciar();
 	while (animales->hay_siguiente()){
 		animal_actual = animales->siguiente();
@@ -166,7 +166,7 @@ void Reserva::adoptar_animal(int espacio) {
           			Animal* a = animales->siguiente();
           			if(nombre_animal == a->nombre){
             			delete a;
-            			animales->baja(i+1);
+            			animales->eliminar(nombre_animal);
             			cout << "Felicitaciones " << nombre_animal << " forma ahora parte de tu familia !" << endl;
             			existe_nombre=true;
           			}
@@ -298,7 +298,7 @@ int random_num(int rango){
 
 // Destructor
 Reserva::~Reserva() {
-  	Dato animal_actual;
+  	Animal * animal_actual;
   	animales->iniciar();
   	while (animales->hay_siguiente()){
     	animal_actual = animales->siguiente();

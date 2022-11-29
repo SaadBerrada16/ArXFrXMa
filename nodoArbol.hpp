@@ -5,18 +5,18 @@
 #include <string.h>
 using namespace std;
 
-#define M 3
-#define medio (M-1)/2
+#define N 3
+#define medio (N-1)/2
 
 template <typename Tipo>
 class Nodo {
     private:
-        bool eliminado[M];
-        string claves[M];
-        Tipo datos[M];
+        bool eliminado[N];
+        string claves[N];
+        Tipo datos[N];
         bool esHoja;
         Nodo<Tipo>* antecesor;
-        Nodo<Tipo>* vias[M+1];
+        Nodo<Tipo>* vias[N+1];
         Nodo<Tipo>* dividirNodo();
     public:
         Nodo();
@@ -40,22 +40,22 @@ class Nodo {
 template <typename Tipo>
 Nodo<Tipo>::Nodo() {
     antecesor = NULL;
-    for (int i = 0; i < M; i++) {
+    for (int i = 0; i < N; i++) {
         claves[i] = "";
         vias[i] = NULL;
     } 
-    vias[M] = NULL;
+    vias[N] = NULL;
 }
 
 template <typename Tipo>
 Nodo<Tipo>::Nodo(bool eh) {
     esHoja = eh;
     antecesor = NULL;
-    for (int i = 0; i < M; i++) {
+    for (int i = 0; i < N; i++) {
         claves[i] = "";
         vias[i] = NULL;
     } 
-    vias[M] = NULL;
+    vias[N] = NULL;
 }
 
 template <typename Tipo>
@@ -82,7 +82,7 @@ Nodo<Tipo>* Nodo<Tipo>::dividirNodo() {
     if (!nodo_hijo_izquierda->esHoja)
         nodo_hijo_izquierda->vias[medio]->antecesor = nodo_hijo_izquierda;
 
-    for (int i = medio + 1; i < M; i++) {
+    for (int i = medio + 1; i < N; i++) {
         int j = i - medio - 1;
         nodo_hijo_derecha->claves[j] = claves[i];
         nodo_hijo_derecha->datos[j] = datos[i];
@@ -91,24 +91,24 @@ Nodo<Tipo>* Nodo<Tipo>::dividirNodo() {
         if (!nodo_hijo_derecha->esHoja)
             nodo_hijo_derecha->vias[j]->antecesor = nodo_hijo_derecha;
     }
-    nodo_hijo_derecha->vias[M - 1 - medio - 1 + 1] = vias[M];
+    nodo_hijo_derecha->vias[N - 1 - medio - 1 + 1] = vias[N];
     if (!nodo_hijo_derecha->esHoja)
-        nodo_hijo_derecha->vias[M - 1 - medio - 1 + 1]->antecesor = nodo_hijo_derecha;
+        nodo_hijo_derecha->vias[N - 1 - medio - 1 + 1]->antecesor = nodo_hijo_derecha;
 
     //Ponemos las vias a NULL porque este nodo lo vamos a borrar y sera reemplazado por el nodo_hijo_izquierda y nodo_hijo_derecha. 
     //Si no ponemos las vias a NULL, cuando lo boremos se va a borrar de manera recursiva hasta sus hojas
-    for (int i = 0; i < M; i++) {
+    for (int i = 0; i < N; i++) {
         claves[i] = "";
         vias[i] = NULL;
     }
-    vias[M] = NULL;
+    vias[N] = NULL;
     
     //Subir la clave al antecesor
     if (antecesor != NULL) {//si nuestro nodo tiene padre subimos y ordenamos la clave y cambiamos sus vias
         int i = 0;
         while (antecesor->claves[i] != "" && clave > antecesor->claves[i])
             i++;
-        for (int j = M-1; j > i; j--) {
+        for (int j = N-1; j > i; j--) {
             antecesor->claves[j] = antecesor->claves[j-1];
             antecesor->datos[j] = antecesor->datos[j-1];
             antecesor->eliminado[j] = antecesor->eliminado[j-1];
@@ -124,7 +124,7 @@ Nodo<Tipo>* Nodo<Tipo>::dividirNodo() {
         nodo_hijo_izquierda->antecesor = antecesor;
         nodo_hijo_derecha->antecesor = antecesor;
 
-        if (antecesor->claves[M-1] != "") {
+        if (antecesor->claves[N-1] != "") {
             Nodo* n = antecesor->dividirNodo();
             if (n != NULL) 
                 delete n;
@@ -152,7 +152,7 @@ void Nodo<Tipo>::insertar(string clave, Tipo dato) {
     while (claves[i] != "" && clave > claves[i])
        i++;
     if (esHoja) {
-        for (int j = M-1; j > i; j--) {
+        for (int j = N-1; j > i; j--) {
             claves[j] = claves[j-1];
             datos[j] = datos[j-1];
             eliminado[j] = eliminado[j-1];
@@ -160,7 +160,7 @@ void Nodo<Tipo>::insertar(string clave, Tipo dato) {
         claves[i] = clave;
         datos[i] = dato;
         eliminado[i] = false;
-        if (claves[M-1] != "") {
+        if (claves[N-1] != "") {
             Nodo<Tipo>* n = this->dividirNodo();
             if (n != NULL) 
                 delete n;
@@ -200,12 +200,12 @@ Tipo Nodo<Tipo>::obtenerDato(string clave) {
 
 template <typename Tipo>
 void Nodo<Tipo>::mostrarNodo() {
-    for (int i = 0; i < M; i++) {
+    for (int i = 0; i < N; i++) {
         cout << claves[i] << ",";
     }
     cout << endl;
     
-    for (int i = 0; i < M+1; i++) {
+    for (int i = 0; i < N+1; i++) {
         if (vias[i] != NULL)
             vias[i]->mostrarNodo();
     }
@@ -236,7 +236,7 @@ void Nodo<Tipo>::llenar(Tipo* vector, int& posicion_actual) {
         }
         i += 1;
     }
-    for (int i = 0; i < M+1; i++) {
+    for (int i = 0; i < N+1; i++) {
         if (vias[i] != NULL)
             vias[i]->llenar(vector, posicion_actual);
     }
@@ -245,7 +245,7 @@ void Nodo<Tipo>::llenar(Tipo* vector, int& posicion_actual) {
 
 template <typename Tipo>
 Nodo<Tipo>::~Nodo() {
-    for (int i = 0; i < M+1; i++) {
+    for (int i = 0; i < N+1; i++) {
         if (vias[i] != NULL)
             delete vias[i];
     }
