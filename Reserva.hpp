@@ -31,11 +31,14 @@ class Reserva {
     private:
         Diccionario<Animal*>* animales;
         Auto* coche;
+        int animales_escapados;
 
     public:
         //Constructor
         //crea una reserva con una puntero a una lista
         Reserva();
+
+        void cuanto_escapados();
 
         void iniciar();
 
@@ -58,9 +61,6 @@ class Reserva {
         //post: añade un Animal* a la lista
         void agregar_animal(Animal* animal);
 
-        //pre: existe la reserva y recibe el numero de la list a buscar
-        //post: devuelve el Animal* en la posicion elegida si es que existe, sino devuelve 0
-        Animal* elegir_animal(int posicion_actual);
         //pre: existe la reserva
         //post: baña todos los animales en la lista
         void banar_animales();
@@ -82,10 +82,13 @@ class Reserva {
         //post: se le baja la higiene y se le aumenta el hambre a los animales de la lista
         void bajar_higiene_y_crecer_hambre();
 
-
         void generar_mapa(Mapa* mapa);
 
         void rescatar_animales(Mapa* mapa);
+
+        void se_escapan();
+
+        bool partida_terminada();
 
         ~Reserva();
 };

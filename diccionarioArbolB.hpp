@@ -21,8 +21,6 @@ class Diccionario {
 
         bool consultar(string clave);
 
-        Tipo consulta(int posicion);
-
         Tipo obtener(string clave);
 
         void mostrarArbol();
@@ -58,11 +56,6 @@ template <typename Tipo>
 bool Diccionario<Tipo>::consultar(string clave) {
     return raiz->contieneClave(clave);
 }
-template <typename Tipo>
-Tipo consulta(int posicion) {
-    
-}
-
 
 template <typename Tipo>
 Tipo Diccionario<Tipo>::obtener(string clave){

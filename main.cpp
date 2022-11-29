@@ -19,9 +19,9 @@ int main() {
     opcion = pedir_opcion();
     validar_opcion_elegida(opcion);
 
-    while(opcion != SALIR){
+    while(opcion != SALIR && !(reserva->partida_terminada())){
         procesar_opcion(reserva, opcion, mapa);
-
+        reserva->cuanto_escapados();
         mostrar_menu();
         opcion = pedir_opcion();
         validar_opcion_elegida(opcion);

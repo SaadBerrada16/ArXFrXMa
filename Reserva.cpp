@@ -5,12 +5,31 @@
 #include "Reserva.hpp"
 #include "Animal.hpp"
 
-
 //constructor
 Reserva::Reserva() {
     animales = new Diccionario<Animal*>;
-    //animales = new Lista;
     coche = new Auto;
+    animales_escapados = 0;
+}
+
+void Reserva::cuanto_escapados() {
+    cout << animales_escapados << endl;
+}
+
+void Reserva::iniciar() {
+	animales->iniciar();
+}
+
+bool Reserva::hay_siguiente() {
+	return animales->hay_siguiente();
+}
+
+Animal* Reserva::siguiente() {
+	return animales->siguiente();
+}
+
+int Reserva::obtener_cantidad_de_animales(){
+	return animales->obtener_cantidad();
 }
 
 void Reserva::listar_animales() {
@@ -20,10 +39,6 @@ void Reserva::listar_animales() {
 		animal_actual = animales->siguiente();
     	animal_actual->mostrar_animal();
   	}
-}
-
-void Reserva::agregar_animal(Animal* animal) {
-	animales->insertar(animal->nombre, animal);
 }
 
 Animal* Reserva::buscar_animal(string nombre) {
@@ -39,27 +54,8 @@ Animal* Reserva::buscar_animal(string nombre) {
 	return 0;
 }
 
-void Reserva::iniciar() {
-	animales->iniciar();
-}
-
-bool Reserva::hay_siguiente() {
-	return animales->hay_siguiente();
-}
-
-Animal* Reserva::siguiente() {
-	return animales->siguiente();
-}
-
-/*Animal* Reserva::elegir_animal(int posicion_animal_actual){
-	Animal* animal_deseado = animales->consulta(posicion_animal_actual);
-	if(animal_deseado == 0) return 0;
-	return animal_deseado;
-}*/
-
-
-int Reserva::obtener_cantidad_de_animales(){
-	return animales->obtener_cantidad();
+void Reserva::agregar_animal(Animal* animal) {
+	animales->insertar(animal->nombre, animal);
 }
 
 void Reserva::banar_animales(){
@@ -80,30 +76,6 @@ void Reserva::alimentar_animales(){
 	}
 }
 
-void Reserva::cargar_animales() {
-    fstream archivo;
-    archivo.open(PATH_ANIMALES.c_str(), fstream::in);
-
-    string nombre;
-    string edad;
-    string tamano;
-    string especie;
-    string personalidad;
-
-    string linea;
-    while (getline(archivo, linea,'\n')) {
-        stringstream sanimal(linea);
-        getline(sanimal, nombre, ',');
-        getline(sanimal, edad, ',');
-        getline(sanimal, tamano, ',');
-        getline(sanimal, especie, ',');
-        getline(sanimal, personalidad, ',');
-        animales->insertar(nombre, crear_animal(nombre, edad, tamano, especie, personalidad));
-    }
-
-    archivo.close();
-}
-
 void Reserva::guardar_animales() {
     remove(PATH_ANIMALES.c_str());
     string nombre_archivo = "animales.csv";
@@ -116,16 +88,6 @@ void Reserva::guardar_animales() {
         if (animales->hay_siguiente())
             archivo << endl;
     }
-}
-
-void Reserva::bajar_higiene_y_crecer_hambre(){
-	Animal* animal_actual;
-	animales->iniciar();
-	while (animales->hay_siguiente()){
-		animal_actual = animales->siguiente();
-		animal_actual->ensuciar();
-		animal_actual->crecer_hambre();
-	}
 }
 
 void mostrar_adoptar(int &cant, Animal* a){
@@ -191,6 +153,40 @@ void Reserva::adoptar_animal(int espacio) {
   	}
 }
 
+void Reserva::cargar_animales() {
+    fstream archivo;
+    archivo.open(PATH_ANIMALES.c_str(), fstream::in);
+
+    string nombre;
+    string edad;
+    string tamano;
+    string especie;
+    string personalidad;
+
+    string linea;
+    while (getline(archivo, linea,'\n')) {
+        stringstream sanimal(linea);
+        getline(sanimal, nombre, ',');
+        getline(sanimal, edad, ',');
+        getline(sanimal, tamano, ',');
+        getline(sanimal, especie, ',');
+        getline(sanimal, personalidad, ',');
+        animales->insertar(nombre, crear_animal(nombre, edad, tamano, especie, personalidad));
+    }
+
+    archivo.close();
+}
+
+void Reserva::bajar_higiene_y_crecer_hambre(){
+	Animal* animal_actual;
+	animales->iniciar();
+	while (animales->hay_siguiente()){
+		animal_actual = animales->siguiente();
+		animal_actual->ensuciar();
+		animal_actual->crecer_hambre();
+	}
+}
+
 void Reserva::generar_mapa(Mapa* mapa){
   srand((unsigned)time(NULL));
 
@@ -215,41 +211,41 @@ void Reserva::rescatar_animales(Mapa* mapa){
 
 }
 
-Personalidad* convertir_personalidad(string p) {
-    if (p == "dormilon") {
-        Dormilon* d = new Dormilon();
-        return d;
-    } else if (p == "travieso") {
-        Travieso* t = new Travieso();
-        return t;
-    } else if (p == "jugueton") {
-        Jugueton* j = new Jugueton();
-        return j;
-    } else if (p == "sociable") {
-        Sociable* s = new Sociable();
-        return s;
-    } else {
-        return 0;
-    }
+void Reserva::se_escapan(){
+    Animal* animal_actual;
+	animales->iniciar();
+	while (animales->hay_siguiente()){
+		animal_actual = animales->siguiente();
+		if (animal_actual->higiene == 0){
+            //animales->eliminar(animal_actual->nombre);
+            cout << "Soy " << animal_actual->nombre << " el " << animal_actual->especie << ", me escapo porque huelo re mal" << endl;
+            animales_escapados++;
+        }
+        else if (animal_actual->hambre == 100){
+            //animales->eliminar(animal_actual->nombre);
+            cout << "Soy " << animal_actual->nombre << " el " << animal_actual->especie << ", me escapo porque tengo re hambre" << endl;
+            animales_escapados++;
+        }
+	}
 }
 
-Animal* crear_animal(string nombre, string edad, string tamano, string especie, string personalidad) {
-    int e = stoi(edad);
-    Personalidad* p = convertir_personalidad(personalidad);
-    if (especie == "perro" || especie == "P")
-        return new Perro(nombre, e, tamano, p);
-    else if (especie == "gato" || especie == "G")
-        return new Gato(nombre, e, tamano, p);
-    else if (especie == "caballo" || especie == "C")
-        return new Caballo(nombre, e, tamano, p);
-    else if (especie == "roedor" || especie == "R")
-        return new Roedor(nombre, e, tamano, p);
-    else if (especie == "conejo" || especie == "O")
-        return new Conejo(nombre, e, tamano, p);
-    else if (especie == "erizo" || especie == "E")
-        return new Erizo(nombre, e, tamano, p);
-    else
-        return new Lagartija(nombre, e, tamano, p);
+bool Reserva::partida_terminada(){
+    if (animales_escapados >= 3){
+        cout << "Más de 3 animales se escapan, entonces la reserva es clausurada y la partida terminada" << endl;
+        return true;
+    }
+    return false;
+}
+
+// Destructor
+Reserva::~Reserva() {
+  	Animal * animal_actual;
+  	animales->iniciar();
+  	while (animales->hay_siguiente()){
+    	animal_actual = animales->siguiente();
+    	delete animal_actual;
+  	}
+  	delete animales;
 }
 
 Animal* generar_animal(){
@@ -303,19 +299,45 @@ int* generar_posiciones() {
     return posiciones;
 }
 
+Personalidad* convertir_personalidad(string p) {
+    if (p == "dormilon") {
+        Dormilon* d = new Dormilon();
+        return d;
+    } else if (p == "travieso") {
+        Travieso* t = new Travieso();
+        return t;
+    } else if (p == "jugueton") {
+        Jugueton* j = new Jugueton();
+        return j;
+    } else if (p == "sociable") {
+        Sociable* s = new Sociable();
+        return s;
+    } else {
+        return 0;
+    }
+}
+
+Animal* crear_animal(string nombre, string edad, string tamano, string especie, string personalidad) {
+    int e = stoi(edad);
+    Personalidad* p = convertir_personalidad(personalidad);
+    if (especie == "perro" || especie == "P")
+        return new Perro(nombre, e, tamano, p);
+    else if (especie == "gato" || especie == "G")
+        return new Gato(nombre, e, tamano, p);
+    else if (especie == "caballo" || especie == "C")
+        return new Caballo(nombre, e, tamano, p);
+    else if (especie == "roedor" || especie == "R")
+        return new Roedor(nombre, e, tamano, p);
+    else if (especie == "conejo" || especie == "O")
+        return new Conejo(nombre, e, tamano, p);
+    else if (especie == "erizo" || especie == "E")
+        return new Erizo(nombre, e, tamano, p);
+    else
+        return new Lagartija(nombre, e, tamano, p);
+}
+
 int random_num(int rango){
     // srand((unsigned)time(NULL));
     int random = rand() % rango;
     return random;
-}
-
-// Destructor
-Reserva::~Reserva() {
-  	Animal * animal_actual;
-  	animales->iniciar();
-  	while (animales->hay_siguiente()){
-    	animal_actual = animales->siguiente();
-    	delete animal_actual;
-  	}
-  	delete animales;
 }

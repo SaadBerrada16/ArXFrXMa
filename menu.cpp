@@ -100,11 +100,8 @@ void procesar_menu_individual(Reserva* reserva){
         animal_actual = reserva->siguiente();
     }
     else return;
-
     animal_actual->mostrar_animal();
-
     opcion = cargar_y_validar_opcion_menu_individual();
-
     while(opcion != VOLVER){
         switch(opcion){
             case BANAR:
@@ -138,6 +135,7 @@ void procesar_opcion(Reserva* reserva, int opcion, Mapa* mapa){
     // int opcion_rescatar = 0;
     int opcion_cuidar;
     reserva->bajar_higiene_y_crecer_hambre();
+    reserva->se_escapan();
 
     switch (opcion) {
         case LISTAR_ANIMALES:
