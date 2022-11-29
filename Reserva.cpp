@@ -39,11 +39,24 @@ Animal* Reserva::buscar_animal(string nombre) {
 	return 0;
 }
 
+void Reserva::iniciar() {
+	animales->iniciar();
+}
+
+bool Reserva::hay_siguiente() {
+	return animales->hay_siguiente();
+}
+
+Animal* Reserva::siguiente() {
+	return animales->siguiente();
+}
+
 /*Animal* Reserva::elegir_animal(int posicion_animal_actual){
 	Animal* animal_deseado = animales->consulta(posicion_animal_actual);
 	if(animal_deseado == 0) return 0;
 	return animal_deseado;
 }*/
+
 
 int Reserva::obtener_cantidad_de_animales(){
 	return animales->obtener_cantidad();
