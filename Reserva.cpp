@@ -178,36 +178,63 @@ void Reserva::adoptar_animal(int espacio) {
 }
 
 void Reserva::generar_mapa(Mapa* mapa){
-  srand((unsigned)time(NULL));
+    srand((unsigned)time(NULL));
 
-  int n_animales = 5;
-  Animal** animales = new Animal*[n_animales];
-  char* esp = new char[n_animales];
-  int* pos = generar_posiciones();
+    int n_animales = 5;
+    mapa -> animales = new Animal*[n_animales];
+    char* esp = new char[n_animales];
+    mapa -> pos = generar_posiciones();
 
-  for(int i = 0; i < n_animales; i++){
-    animales[i] = generar_animal();
-    esp[i] = animales[i] -> especie[0];
-  }
+    for(int i = 0; i < n_animales; i++){
+        mapa -> animales[i] = generar_animal();
+        esp[i] = mapa -> animales[i] -> especie[0];
+    }
 
-  mapa -> colocar_animales(esp, pos);
+
+    mapa -> colocar_animales(esp, n_animales);
 }
 
 void Reserva::rescatar_animales(Mapa* mapa){
-    int * recorrido = new int[mapa->n * mapa->n];
-    int aux;
+    // int * recorrido = new int[mapa->n * mapa->n];
+    // int aux;
+    // mapa -> imprimir_mapa();
+    // mapa -> actualizar_posiciones();
+    // mapa -> grafo -> usarDijkstra();
+    // mapa -> grafo -> caminoMinimo("1" , "10");
+    // aux = mapa -> grafo -> recuperarCosto2(9);
+    // cout << "El costo en combustible es: " << aux << endl;
+    // mapa -> grafo -> caminoMinimo("15" , "3");
+    // aux = mapa -> grafo -> recuperarCosto2(2);
+    // cout << "El costo en combustible es: " << aux << endl;
+    // mapa -> grafo -> caminoMinimo("3" , "15");
+    // cout << mapa -> pos[0] << endl;
+    // delete recorrido;
+
+    string aux;
+    int costo;
     mapa -> imprimir_mapa();
-    mapa -> actualizar_posiciones();
+    // mapa -> actualizar_posiciones();
+    //para mapa -> pos[0]
+    int i = 0;
     mapa -> grafo -> usarDijkstra();
-    mapa -> grafo -> caminoMinimo("1" , "10");
-    aux = mapa -> grafo -> recuperarCosto2(9);
-    cout << "El costo en combustible es: " << aux << endl;
-    mapa -> grafo -> caminoMinimo("15" , "3");
-    aux = mapa -> grafo -> recuperarCosto2(2);
-    cout << "El costo en combustible es: " << aux << endl;
-    mapa -> grafo -> caminoMinimo("3" , "15");
-    cout << mapa -> pos[0] << endl;
-    delete recorrido;
+    aux = to_string(mapa -> pos[0]);
+    cout << "El " << (i + 1) << "° animal que se puede rescatar está en la posición " << mapa -> pos[i] << endl;
+    mapa -> grafo -> caminoMinimo("1" , aux);
+    costo = mapa -> grafo -> recuperarCosto2((mapa -> pos[0]-1));
+    cout << "El costo en combustible es: " << costo << endl;
+    // algo no ando como tendria
+    // chequear que el auto tiene suficiente combustible
+    // bool comb_OK = coche -> combustible_suficiente(costo);
+
+    // si el combustible está OK y si vamos a bucar el animal
+    coche -> bajar_combustible(costo);
+    cout << coche -> combustible << endl;
+
+    agregar_animal(mapa -> animales[i]);
+
+
+
+
 
 }
 
@@ -300,7 +327,6 @@ int* generar_posiciones() {
 }
 
 int random_num(int rango){
-    // srand((unsigned)time(NULL));
     int random = rand() % rango;
     return random;
 }

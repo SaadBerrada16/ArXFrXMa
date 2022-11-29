@@ -42,10 +42,9 @@ void Mapa::imprimir_mapa(){
     }
 }
 
-void Mapa::colocar_animales(char* animales, int* pos){
-    int n_animales = 5;
+void Mapa::colocar_animales(char* animales, int n_animales){
     for(int i = 0; i < n_animales; i++){
-        mapa[pos[i]] = animales[i];
+        mapa[pos[i]-1] = animales[i];
     }
 }
 
