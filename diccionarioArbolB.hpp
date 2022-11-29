@@ -14,6 +14,7 @@ class Diccionario {
         Tipo* vector;
     public:
         int cantidad;
+        int nueva_cantidad;
         int posicion_actual;
         Diccionario();
 
@@ -25,7 +26,7 @@ class Diccionario {
 
         void mostrarArbol();
 
-        Tipo eliminar(string clave);
+        void eliminar(string clave);
 
         void iniciar();
 
@@ -43,13 +44,14 @@ Diccionario<Tipo>::Diccionario() {
     raiz = new Nodo<Tipo>(true);
     vector = NULL;
     cantidad = 0;
+    nueva_cantidad = 0;
     posicion_actual = 0;
 }
 
 template <typename Tipo>
 void Diccionario<Tipo>::insertar(string clave, Tipo dato) {
     raiz->insertar(clave, dato);
-    cantidad += 1;
+    nueva_cantidad += 1;
 }
 
 template <typename Tipo>
@@ -68,16 +70,17 @@ void Diccionario<Tipo>::mostrarArbol() {
 }
 
 template <typename Tipo>
-Tipo Diccionario<Tipo>::eliminar(string clave) {
-    cantidad -= 1;
-    return raiz->eliminar(clave);
+void Diccionario<Tipo>::eliminar(string clave) {
+    nueva_cantidad -= 1;
+    raiz->eliminar(clave);
 }
 
 template <typename Tipo>
 void Diccionario<Tipo>::iniciar() {
     if (vector != NULL) 
         delete [] vector;
-    posicion_actual = 0; 
+    posicion_actual = 0;
+    cantidad = nueva_cantidad; 
     vector = new Tipo[cantidad];
     raiz->llenar(vector, posicion_actual);
     posicion_actual = 0;

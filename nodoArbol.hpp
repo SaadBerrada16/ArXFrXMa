@@ -30,7 +30,7 @@ class Nodo {
 
         void mostrarNodo();
 
-        Tipo eliminar(string clave);
+        void eliminar(string clave);
 
         void llenar(Tipo* vector, int& actual);     
 
@@ -214,16 +214,16 @@ void Nodo<Tipo>::mostrarNodo() {
 
 
 template <typename Tipo>
-Tipo Nodo<Tipo>::eliminar(string clave) {
+void Nodo<Tipo>::eliminar(string clave) {
     int  i = 0;
     while (claves[i] != "" && clave >= claves[i]) {
         if (clave == claves[i]) {
             eliminado[i] = true;
-            return datos[i];
+            return; //datos[i];
         }
         i++;
     }
-    return vias[i]->eliminar(clave);
+    vias[i]->eliminar(clave);
 }
 
 template <typename Tipo>
@@ -236,7 +236,7 @@ void Nodo<Tipo>::llenar(Tipo* vector, int& posicion_actual) {
         }
         i += 1;
     }
-    for (int i = 0; i < N+1; i++) {
+    for (int i = 0; i < N; i++) {
         if (vias[i] != NULL)
             vias[i]->llenar(vector, posicion_actual);
     }
