@@ -7,24 +7,32 @@ LDFLAGS=
 EXEC=main
 
 SRC=./nodo.cpp  				\
-		./lista.cpp  				\
-		./Personalidad.cpp  \
-		./Dormilon.cpp 			\
-		./Jugueton.cpp   		\
-		./Sociable.cpp 			\
-		./Travieso.cpp    	\
-		./Animal.cpp 				\
-    ./Perro.cpp   			\
-		./Gato.cpp 					\
-    ./Caballo.cpp    		\
-		./Roedor.cpp 				\
-		./Conejo.cpp 				\
-		./Erizo.cpp    			\
-		./Lagartija.cpp 		\
-		./AnimalLimpio.cpp 	\
-		./AnimalSucio.cpp 	\
-		./Reserva.cpp				\
-    ./menu.cpp    			\
+	./NodoGrafo.cpp  			\
+	./lista.cpp  				\
+	./ListaGrafo.cpp  			\
+	./Mapa.cpp  				\
+	./CaminoMinimo.cpp  		\
+	./Dijkstra.cpp  			\
+	./Grafo.cpp					\
+	./Vertice.cpp  				\
+	./Personalidad.cpp 			\
+	./Dormilon.cpp 				\
+	./Jugueton.cpp   			\
+	./Sociable.cpp 				\
+	./Travieso.cpp    			\
+	./Animal.cpp 				\
+    ./Perro.cpp   				\
+	./Gato.cpp 					\
+    ./Caballo.cpp    			\
+	./Roedor.cpp 				\
+	./Conejo.cpp 				\
+	./Erizo.cpp    				\
+	./Lagartija.cpp 			\
+	./AnimalLimpio.cpp 			\
+	./AnimalSucio.cpp 			\
+	./Auto.cpp 					\
+	./Reserva.cpp				\
+    ./menu.cpp    				\
     ./main.cpp
 
 OBJ= $(SRC:.cpp=.o)
@@ -40,8 +48,8 @@ main: $(OBJ)
 .PHONY: clean mrproper
 
 clean:
-	find main -exec rm {} \;
 	find *.o  -exec rm {} \;
+	find main -exec rm {} \;
 
 mrproper: clean
 	rm $(EXEC)
