@@ -93,11 +93,13 @@ int cargar_y_validar_opcion_menu_individual(){
     return opcion;
 }
 
-/*void procesar_menu_individual(Reserva* reserva, int posicion_del_animal){
+void procesar_menu_individual(Reserva* reserva){
     int opcion;
-    Animal* animal_actual = reserva->elegir_animal(posicion_del_animal);
-
-    if(animal_actual == 0) return;
+    Animal* animal_actual;
+    if (reserva->hay_siguiente()){
+        animal_actual = reserva->siguiente();
+    }
+    else return;
 
     animal_actual->mostrar_animal();
 
@@ -116,11 +118,11 @@ int cargar_y_validar_opcion_menu_individual(){
                 opcion = cargar_y_validar_opcion_menu_individual();
                 break;
             case SALTEAR:
-                procesar_menu_individual(reserva, posicion_del_animal + 1);
+                procesar_menu_individual(reserva);
                 return;
         }
     }
-}*/
+}
 
 void procesar_opcion(Reserva* reserva, int opcion, Mapa* mapa){
     Animal* animal = nullptr;
@@ -183,8 +185,8 @@ void procesar_opcion(Reserva* reserva, int opcion, Mapa* mapa){
             validar_opcion_cuidar(opcion_cuidar);
             switch (opcion_cuidar) {
             case ELEGIR_INDIVIDUALMENTE:
-                //posicion_del_animal = 1;
-                //procesar_menu_individual(reserva, posicion_del_animal);
+                reserva->iniciar();
+                procesar_menu_individual(reserva);
                 break;
             case REGRESAR_INICIO:
                 break;

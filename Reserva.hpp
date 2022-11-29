@@ -30,7 +30,6 @@ class Reserva {
     //atributos
     private:
         Diccionario<Animal*>* animales;
-        //Lista* animales;
         Auto* coche;
 
     public:
@@ -38,6 +37,12 @@ class Reserva {
         //crea una reserva con una puntero a una lista
         Reserva();
 
+        void iniciar();
+
+        bool hay_siguiente();
+
+        Animal* siguiente();
+    
         //pre: existe la reserva
         //post: devuelve la cantidad de elementos que contiene la lista
         int obtener_cantidad_de_animales();
