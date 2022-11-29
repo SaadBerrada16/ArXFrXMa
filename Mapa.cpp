@@ -34,12 +34,15 @@ int Mapa::conseguir_peso(int i){
 }
 
 void Mapa::imprimir_mapa(){
+  cout << "\n###  MAPA DE LA RESERVA  ###\n" << endl;
   for (int i = 0; i < n; i++){
         for(int j = 0; j < n; j++){
             cout << "| "<< mapa[i*8+j] << " ";
         }
         cout << "|" <<endl;
     }
+
+    cout << "\n\n" << endl;
 }
 
 void Mapa::colocar_animales(char* animales, int n_animales){

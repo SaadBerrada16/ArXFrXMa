@@ -145,24 +145,6 @@ void procesar_opcion(Reserva* reserva, int opcion, Mapa* mapa){
 
         case RESCATAR_ANIMAL:
             reserva->rescatar_animales(mapa);
-
-
-          cout<<"OK"<<endl;
-            // animal = reserva->generar_animal();
-            // nombre = animal->nombre;
-            // while(reserva->buscar_animal(nombre) != 0 && opcion_rescatar == INGRESAR_NOMBRE) {
-            //     mostrar_menu_rescatar();
-            //     opcion_rescatar = pedir_opcion();
-            //     validar_opcion_rescatar(opcion_rescatar);
-            //     if (opcion_rescatar == INGRESAR_NOMBRE) {
-            //         nombre = pedir_nombre();
-            //     }
-            // }
-            // if (opcion_rescatar == INGRESAR_NOMBRE) {
-            //     animal->nombre = nombre;
-            //     reserva->agregar_animal(animal);
-            //     cout << endl << "Animal guardado correctamente" << endl << endl;
-            // }
             break;
 
         case BUSCAR_ANIMAL:

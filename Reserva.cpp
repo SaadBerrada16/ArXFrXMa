@@ -195,47 +195,56 @@ void Reserva::generar_mapa(Mapa* mapa){
 }
 
 void Reserva::rescatar_animales(Mapa* mapa){
-    // int * recorrido = new int[mapa->n * mapa->n];
-    // int aux;
-    // mapa -> imprimir_mapa();
-    // mapa -> actualizar_posiciones();
-    // mapa -> grafo -> usarDijkstra();
-    // mapa -> grafo -> caminoMinimo("1" , "10");
-    // aux = mapa -> grafo -> recuperarCosto2(9);
-    // cout << "El costo en combustible es: " << aux << endl;
-    // mapa -> grafo -> caminoMinimo("15" , "3");
-    // aux = mapa -> grafo -> recuperarCosto2(2);
-    // cout << "El costo en combustible es: " << aux << endl;
-    // mapa -> grafo -> caminoMinimo("3" , "15");
-    // cout << mapa -> pos[0] << endl;
-    // delete recorrido;
-
+    int n_animales = 5;
     string aux;
-    int costo;
+    int* costo = new int[n_animales];
+    int n_animales_a_rescatar = 0;
+
     mapa -> imprimir_mapa();
-    // mapa -> actualizar_posiciones();
-    //para mapa -> pos[0]
-    int i = 0;
     mapa -> grafo -> usarDijkstra();
-    aux = to_string(mapa -> pos[0]);
-    cout << "El " << (i + 1) << "° animal que se puede rescatar está en la posición " << mapa -> pos[i] << endl;
-    mapa -> grafo -> caminoMinimo("1" , aux);
-    costo = mapa -> grafo -> recuperarCosto2((mapa -> pos[0]-1));
-    cout << "El costo en combustible es: " << costo << endl;
-    // algo no ando como tendria
-    // chequear que el auto tiene suficiente combustible
-    // bool comb_OK = coche -> combustible_suficiente(costo);
 
-    // si el combustible está OK y si vamos a bucar el animal
-    coche -> bajar_combustible(costo);
-    cout << coche -> combustible << endl;
+    for (int i = 0; i<5; i++){
+        if (mapa -> pos[i] != 0){
+            string destino = to_string(mapa -> pos[i]);
+            mapa -> grafo -> caminoMinimo("1" , destino);
+            costo[i] = mapa -> grafo -> recuperarCosto2((mapa -> pos[i]-1));
 
-    agregar_animal(mapa -> animales[i]);
+            if (coche -> combustible_suficiente(costo[i])){
+              cout << "Con el combustible que ténes podes rescatar el animal que está en la posición " << mapa -> pos[i] << endl << endl;
+              n_animales_a_rescatar++;
+            }
+        }
+    }
 
+    if(n_animales_a_rescatar!=0){
+        // (?) Indica la posicion de cual animal quéres rescatar
+        int posicion_animal_a_rescatar = 0;
+        string cancelar;
+        cout << "Ingrese la posicion de cual animal quéres rescatar o '0' si no quéres rescatar a un animal: "<< endl;
+        while(!(cin >> posicion_animal_a_rescatar)){
+            cout << "Error: Ingrese un numero" << endl;
+            cin.clear();
+            cin.ignore();
+        }
 
-
-
-
+        // recorrido de la tabla de posicion
+        if(posicion_animal_a_rescatar != 0){
+            for (int i = 0; i<n_animales; i++){
+                if(mapa -> pos[i] == posicion_animal_a_rescatar){
+                    agregar_animal(mapa -> animales[i]);
+                    coche -> bajar_combustible(costo[i]);
+                    mapa -> mapa[mapa -> pos[i] - 1] = '.';
+                    mapa -> pos[i] = 0;
+                    cout << "\n\n Rescataste a: " << endl;
+                    mapa -> animales[i] -> mostrar_animal();
+                }
+            }
+        } else {
+          cout <<  "Salvaje cancelado." << endl;
+        }
+    } else {
+        cout << "No hay animales que podés rescatar" << endl;
+    }
 }
 
 Personalidad* convertir_personalidad(string p) {
