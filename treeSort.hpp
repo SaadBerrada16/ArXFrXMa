@@ -1,6 +1,6 @@
 #pragma once
 
-#include "BST.h"
+#include "diccionarioArbolB.hpp"
 
 class TreeSort {
 public:
