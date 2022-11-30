@@ -218,12 +218,12 @@ void Reserva::se_escapan(){
 		animal_actual = animales->siguiente();
 		if (animal_actual->higiene == 0){
             animales->eliminar(animal_actual->nombre);
-            cout << "Soy " << animal_actual->nombre << " el " << animal_actual->especie << ", me escapo porque huelo re mal" << endl;
+            cout << endl << "Soy " << animal_actual->nombre << " el " << animal_actual->especie << ", me escapo porque huelo re mal" << endl;
             animales_escapados++;
         }
         else if (animal_actual->hambre == 100){
             animales->eliminar(animal_actual->nombre);
-            cout << "Soy " << animal_actual->nombre << " el " << animal_actual->especie << ", me escapo porque tengo re hambre" << endl;
+            cout << endl << "Soy " << animal_actual->nombre << " el " << animal_actual->especie << ", me escapo porque tengo re hambre" << endl;
             animales_escapados++;
         }
 	}
