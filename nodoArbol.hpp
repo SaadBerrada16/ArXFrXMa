@@ -11,15 +11,31 @@ using namespace std;
 template <typename Tipo>
 class Nodo {
     private:
+        // vector que indica los datos eleminados
         bool eliminado[N];
+        // vector con los claves
         string claves[N];
+        // vector con los datos
         Tipo datos[N];
+        // indica si el nodo es una hoja
         bool esHoja;
+        // pointer hacia el nodo arriba 
         Nodo<Tipo>* antecesor;
+        // vector de pointer hacia los hijos del nodo
         Nodo<Tipo>* vias[N+1];
+
+        // pre: el nodo debe estar lleno, con N datos y N+1 vias
+        // pos: reequilibra el arbol construyendo dos nodos y subiendo el dato al centro de este nodo, al final este nodo es destruido
         Nodo<Tipo>* dividirNodo();
     public:
+        // Constructor
+        // pre: -
+        // pos: inicializa el nodo sin nada 
         Nodo();
+
+        // Constructor
+        // pre: -
+        // pos: inicializa el nodo como un nodo hoja
         Nodo(bool eh);
 
         void insertar(string clave, Tipo dato);
@@ -32,6 +48,8 @@ class Nodo {
 
         void eliminar(string clave);
 
+        // pre: -
+        // pos: llena el vector con los datos de este nodo antes de pasar a los otros nodos
         void llenar(Tipo* vector, int& actual);     
 
         ~Nodo();
