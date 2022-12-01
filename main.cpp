@@ -20,7 +20,6 @@ int main() {
     while(opcion != SALIR){
         procesar_opcion(reserva, opcion, mapa);
         if (!reserva->partida_terminada()){
-            reserva->cuanto_escapados();
             mostrar_menu();
             opcion = pedir_opcion();
             validar_opcion_elegida(opcion);

@@ -38,8 +38,6 @@ class Reserva {
         //crea una reserva con una puntero a una lista
         Reserva();
 
-        void cuanto_escapados();
-
         void iniciar();
 
         bool hay_siguiente();

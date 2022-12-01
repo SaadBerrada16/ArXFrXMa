@@ -12,10 +12,6 @@ Reserva::Reserva() {
     animales_escapados = 0;
 }
 
-void Reserva::cuanto_escapados() {
-    cout << animales_escapados << endl;
-}
-
 void Reserva::iniciar() {
 	animales->iniciar();
 }
