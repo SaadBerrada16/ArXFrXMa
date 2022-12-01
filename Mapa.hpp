@@ -28,6 +28,7 @@ class Mapa {
         int* pos;
         int costo;
         Animal** animales;
+        int cantidad_animales_mapa;
 
     public:
         // Constructor

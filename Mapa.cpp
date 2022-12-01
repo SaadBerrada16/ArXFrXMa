@@ -7,6 +7,7 @@ Mapa::Mapa() {
     mapa[0] = 'A';
     //pos = new int[5];
     costo = 0;
+    cantidad_animales_mapa = 5;
 
     //mapa de char
     for(int i = 1; i < n * n; i++){

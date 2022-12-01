@@ -260,6 +260,12 @@ void Reserva::aumentar_combustible(){
 // }
 
 void Reserva::rescatar_animales(Mapa* mapa){
+
+    if(mapa->cantidad_animales_mapa == 0){
+        cout << "No hay mas animales para rescatar" << endl;
+        return;
+    }
+
     int n_animales = 5;
     int* costo = new int[n_animales];
     int n_animales_a_rescatar = 0;
@@ -315,6 +321,7 @@ void Reserva::rescatar_animales(Mapa* mapa){
                     cout << "\n\n Rescataste a: " << endl;
                     mapa -> animales[i] -> mostrar_animal();
                     mapa -> animales[i] = nullptr;
+                    mapa -> cantidad_animales_mapa--;
                 }
             }
         } else {
