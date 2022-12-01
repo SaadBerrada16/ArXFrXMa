@@ -10,67 +10,52 @@ Dijkstra::Dijkstra(ListaGrafo *vertices, int **matriz_adyacencia) {
 }
 
 void Dijkstra::camino_minimo(int origen, int destino) {
-    inicializar_visitados(origen);
-    inicializar_distancia(matriz_adyacencia[origen]);
-    inicializar_recorrido(origen);
+    inicializar_parametros(origen, matriz_adyacencia[origen]);
 
-    int minimo_vertice;
-
-    bool destinado_arribado = origen == destino;
+    int vertice_minimo;
+    bool llego_a_destino = origen == destino;
     int vertices_recorridos = 1;
-    while(!destinado_arribado){
-        minimo_vertice = vertice_minima_distancia();
-        destinado_arribado = minimo_vertice == destino;
 
-        if(!destinado_arribado){
-            vertices_visitados[minimo_vertice] = true;
-            actualizar_distancia(minimo_vertice);
-        }
+    while(!llego_a_destino){
+        vertice_minimo = vertice_minima_distancia();
         vertices_recorridos++;
+        if( vertice_minimo == destino ) llego_a_destino = true;
+        else {
+            vertices_visitados[vertice_minimo] = true;
+            actualizar_distancia(vertice_minimo);
+        }
     }
+}
+
+void Dijkstra::inicializar_parametros(int origen, const int * distancia_origen){
+    //inicializa los vertices_visitados en false menos el del origen
+    for(int i = 0; i < cantidad_vertices; i++) vertices_visitados[i] = false;
+    vertices_visitados[origen] = true;
+    
+    //inicializa el vector distancia igual a la distancia al origen
+    for(int i = 0; i < cantidad_vertices; i++) distancia[i] = distancia_origen[i];
+
+    //inicializa el vector recorrido igual al origen
+    for(int i = 0; i < cantidad_vertices; i++) recorrido[i] = origen;  
+
 }
 
 int Dijkstra::vertice_minima_distancia() {
     int minima_distancia = INFINITO;
-    int minimo_vertice;
+    int vertice_minimo;
 
     for(int i = 0; i < cantidad_vertices; i++){
         if(!vertices_visitados[i] && distancia[i] <= minima_distancia){
             minima_distancia = distancia[i];
-            minimo_vertice = i;
+            vertice_minimo = i;
         }
     }
 
-    return minimo_vertice;
-}
-
-void Dijkstra::inicializar_visitados(int origen) {
-    for(int i = 0; i < cantidad_vertices; i++)
-        vertices_visitados[i] = false;
-    vertices_visitados[origen] = true;
-}
-
-void Dijkstra::inicializar_recorrido(int origen) {
-    for(int i = 0; i < cantidad_vertices; i++){
-        recorrido[i] = origen;
-    }
-}
-
-Dijkstra::~Dijkstra() {
-    delete[] vertices_visitados;
-    delete[] distancia;
-    delete[] recorrido;
-}
-
-void Dijkstra::inicializar_distancia(const int * distanciaOrigen) {
-    for(int i = 0; i < cantidad_vertices; i++){
-        distancia[i] = distanciaOrigen[i];
-    }
+    return vertice_minimo;
 }
 
 void Dijkstra::actualizar_distancia(int vertice) {
     for(int i = 0; i < cantidad_vertices; i++){
-        // cout << "En la iteracion numero " << i << endl;
         if(!vertices_visitados[i] && distancia[vertice] != INFINITO && distancia[i] > matriz_adyacencia[vertice][i] + distancia[vertice]){
             distancia[i] = matriz_adyacencia[vertice][i] + distancia[vertice];
             recorrido[i] = vertice;
@@ -84,4 +69,10 @@ int * Dijkstra::recuperar_recorrido(){
 
 int Dijkstra::recuperar_costo(int destino){
     return distancia[destino];
+}
+
+Dijkstra::~Dijkstra() {
+    delete[] vertices_visitados;
+    delete[] distancia;
+    delete[] recorrido;
 }

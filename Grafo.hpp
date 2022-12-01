@@ -12,7 +12,7 @@ class Grafo {
 private:
     int ** matriz_de_adyacencia;
     ListaGrafo * vertices;
-    Dijkstra * algoritmo_camino_minimo;
+    Dijkstra * algoritmo_dijkstra;
 
 /*MÉTODOS*/
 
@@ -48,11 +48,16 @@ public:
     //post: Ajusta la matriz de adyacencia con el peso ingresado
     void agregar_camino(string origen, string destino, int peso);
 
+    //pre: camino minimo actualizado entre el origen y destino deseados
+    //post: devuelve el vector de recorrido
     int * recuperar_recorrido();
 
+    //pre: camino minimo actualizado entre el origen y destino deseados
+    //post: devuelve el costo del camino minimo entre el origen y destino
     int recuperar_costo(int destino);
 
-    void usar_dijkstra();
+    //post: crea un objeto de la clase Dijkstra usando los vertices y matriz de adyacencia del Grafo
+    void crear_dijkstra();
 
     ~Grafo();
 };

@@ -234,31 +234,6 @@ void Reserva::aumentar_combustible(){
     coche -> aumentar_combustible();
 }
 
-
-// void Reserva::generar_mapa(Mapa* mapa){
-//   srand((unsigned)time(NULL));
-
-//   int n_animales = 5;
-//   Animal** animales = new Animal*[n_animales];
-//   char* esp = new char[n_animales];
-//   int* pos = generar_posiciones();
-
-//   for(int i = 0; i < n_animales; i++){
-//     animales[i] = generar_animal();
-//     esp[i] = animales[i] -> especie[0];
-//   }
-
-//   mapa -> colocar_animales(esp, pos);
-// }
-
-// void Reserva::rescatar_animales(Mapa* mapa){
-//     mapa -> imprimir_mapa();
-//     mapa -> actualizar_posiciones();
-//     // mapa -> grafo -> caminoMinimo("1" , "10");
-//     cout << mapa -> pos[0] << endl;
-
-// }
-
 void Reserva::rescatar_animales(Mapa* mapa){
 
     if(mapa->cantidad_animales_mapa == 0){
@@ -271,7 +246,7 @@ void Reserva::rescatar_animales(Mapa* mapa){
     int n_animales_a_rescatar = 0;
 
     mapa -> imprimir_mapa();
-    mapa -> grafo -> usar_dijkstra();
+    mapa -> grafo -> crear_dijkstra();
 
     for (int i = 0; i < n_animales; i++){
         if (mapa -> pos[i] != 0){

@@ -5,18 +5,13 @@
 Grafo::Grafo() {
     matriz_de_adyacencia = nullptr;
     vertices = new ListaGrafo();
-    algoritmo_camino_minimo = nullptr;
+    algoritmo_dijkstra = nullptr;
 }
 
 void Grafo::agregar_vertice(string nuevo_vertice) {
     agrandar_matriz_de_adyacencia();
     vertices -> agregar(nuevo_vertice);
 }
-
-// void Grafo::mostrarGrafo() {
-//     mostrarVertices();
-//     mostrarMatrizAdyacencia();
-// }
 
 void Grafo::agregar_camino(string origen, string destino, int peso) {
     int posicion_origen = vertices ->obtener_posicion(origen);
@@ -90,26 +85,26 @@ Grafo::~Grafo() {
     liberar_matriz_adyacencia();
     matriz_de_adyacencia = nullptr;
     delete vertices;
-    delete algoritmo_camino_minimo;
+    delete algoritmo_dijkstra;
 }
 
 void Grafo::camino_minimo(int origen, int destino) {
-    algoritmo_camino_minimo -> camino_minimo(origen, destino);
+    algoritmo_dijkstra -> camino_minimo(origen, destino);
 }
 
 int * Grafo::recuperar_recorrido(){
     int * aux;
-    aux = algoritmo_camino_minimo -> recuperar_recorrido();
+    aux = algoritmo_dijkstra -> recuperar_recorrido();
     return aux;
 }
 
 int Grafo::recuperar_costo(int destino){
     int aux;
-    aux = algoritmo_camino_minimo -> recuperar_costo(destino);
+    aux = algoritmo_dijkstra -> recuperar_costo(destino);
     return aux;
 }
 
-void Grafo::usar_dijkstra() {
-    delete algoritmo_camino_minimo;
-    algoritmo_camino_minimo = new Dijkstra(vertices, matriz_de_adyacencia);
+void Grafo::crear_dijkstra() {
+    delete algoritmo_dijkstra;
+    algoritmo_dijkstra = new Dijkstra(vertices, matriz_de_adyacencia);
 }

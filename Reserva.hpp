@@ -35,7 +35,7 @@ class Reserva {
 
     public:
         //Constructor
-        //crea una reserva con una puntero a una lista
+        //crea una reserva con una puntero a un diccionario
         Reserva();
 
         void iniciar();
@@ -45,7 +45,7 @@ class Reserva {
         Animal* siguiente();
     
         //pre: existe la reserva
-        //post: devuelve la cantidad de elementos que contiene la lista
+        //post: devuelve la cantidad de elementos que contiene el diccionario
         int obtener_cantidad_de_animales();
 
         //pre: existe la reserva y si contiene elementos son del tipo Animal*
@@ -55,43 +55,58 @@ class Reserva {
         //pre: existe la reserva y recibe un nombre para buscar
         //post: si existe el animal devuelve un puntero a este animal, sino devuelve 0
         Animal* buscar_animal(string nombre);
+
         //pre: existe la reserva y recibe una Animal*
-        //post: añade un Animal* a la lista
+        //post: añade un Animal* al diccionario
         void agregar_animal(Animal* animal);
 
         //pre: existe la reserva
-        //post: baña todos los animales en la lista
+        //post: baña todos los animales en el diccionario
         void banar_animales();
+
         //pre: existe la reserva
-        //post: alimenta todos los animales en la lista
+        //post: alimenta todos los animales en el diccionario
         void alimentar_animales();
+
         //pre: existe la reserva y recibe el espacio que posee el usuario para saber que tipo de animal puede adoptar
-        //post: se remueve de la lista el Animal* que corresponde al animal adoptado
+        //post: se remueve del diccionario el Animal* que corresponde al animal adoptado
         void adoptar_animal(int espacio);
 
+        //pre: existe la reserva y recibe el nivel de combustible a cargar
+        //pos: añade combustible al auto
         void cargar_combustible(int combustible);
 
         //pre: existe la reserva y un archivo en la misma carpeta que se llama animales.csv
-        //post: guarda en el archivo animales.csv los animales contenidos en la lista
+        //post: guarda en el archivo animales.csv los animales contenidos en el diccionario
         void guardar_animales();
+        
         //pre: existe la reserva
-        //post: añade a la lista punteros a los animales guardados en el archivo animales.csv
+        //post: añade al diccionario punteros a los animales guardados en el archivo animales.csv
         void cargar_animales();
 
         //pre: existe la reserva
-        //post: se le baja la higiene y se le aumenta el hambre a los animales de la lista
+        //post: se le baja la higiene y se le aumenta el hambre a los animales del diccionario
         void bajar_higiene_y_crecer_hambre();
 
+        // pre: existe la reserva y recibe el mapa a ser generado
+        // post: añade animales en el mapa en distintas posiciones 
         void generar_mapa(Mapa* mapa);
 
+        // pre: existe la reserva y el mapa fue generado
+        // pos: si quedan animales en el mapa son rescatados y añadidos a la reserva
         void rescatar_animales(Mapa* mapa);
 
+        
         void se_escapan();
 
         bool partida_terminada();
 
+        // pre: existe la reserva y el auto
+        // pos: imprime la cantidad de combustible actual
         void imprimir_combustible();
 
+        // pre: existe la reserva y el auto
+        // pos: aumenta la cantidad de combustible del auto cada vez que se usa una accion del menu
         void aumentar_combustible();
 
         ~Reserva();

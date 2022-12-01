@@ -80,17 +80,6 @@ void Mapa::colocar_animales(char* animales, int n_animales){
 }
 
 
-void Mapa::actualizar_posiciones(){
-    int j = 0;
-    for(int i = 1; i < n * n; i++){
-        if(mapa[i] != '.'){
-            pos[j] = i + 1;
-            j++;
-        }
-    }
-}
-
-
 Mapa::~Mapa(){
     delete grafo;
 

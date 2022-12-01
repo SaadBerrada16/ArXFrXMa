@@ -35,17 +35,24 @@ class Mapa {
         Mapa();
 
         // Método
+        // pre: existe el mapa
+        // pos: imprime el mapa
         void imprimir_mapa();
 
+        // pre: existe el mapa, los animales y auto en sus posiciones correspondientes del mapa, y un camino minimo con el algoritmo de Dijkstra
+        // pos: imprime el recorrido minimo que realiza el auto para ir de la posicion de inicio a la de destino
         void imprimir_mapa_recorrido(string inicio, string destino, int* recorrido, char inicial_animal, char* mapa);
 
+        // pre: existe el mapa y animales generados aleatoriamente
+        // pos : se colocan los animales en el mapa en posiciones aleatorias
         void colocar_animales(char* animales, int n_animales);
-
-        void actualizar_posiciones();
 
         ~Mapa();
 
     protected:
+
+        // pre: existe un vector con un peso correspondiente a cada posicion del mapa (Montaña, Camino, Precipicio, Tierra)   
+        // pos: devuelve el peso de la posicion deseada del mapa
         int conseguir_peso(int i);
 
 
