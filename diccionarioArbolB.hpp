@@ -11,10 +11,10 @@ template <typename Tipo>
 class Diccionario {
     private:
         Nodo<Tipo>* raiz;
-    public:
-        int cantidad;
         int nueva_cantidad;
+        int cantidad;
         int posicion_actual;
+    public:
         Tipo* vector;
 
         Diccionario();

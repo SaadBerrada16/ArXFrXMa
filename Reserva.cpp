@@ -80,10 +80,9 @@ void mostrar_adoptar(int &cant, Animal* a){
 
 void Reserva::adoptar_animal(int espacio) {
   	string nombre_animal = "nombre_animal";
-    ordenar_animales();
     
     int posicion = 0;
-    Animal** vector = new Animal*[animales->cantidad];
+    Animal** vector = new Animal*[animales->obtener_cantidad()];
     TreeSort* arbol = new TreeSort();
     
     
@@ -97,31 +96,31 @@ void Reserva::adoptar_animal(int espacio) {
 
       	    if(a->tamano == "diminuto") {
                 vector[posicion] = a;
-                posicion++;
+                posicion += 1;
             }
 
       	    if(espacio > 2){
         	    if(a->tamano == "pequeño") {
                     vector[posicion] = a;
-                    posicion++;
+                    posicion += 1;
                 }
 
         	    if(espacio > 10){
           		    if(a->tamano == "mediano") {
                         vector[posicion] = a;
-                        posicion++;
+                        posicion += 1;
                     }
 
           		    if(espacio > 20){
             		    if(a->tamano == "grande") {
                             vector[posicion] = a;
-                            posicion++;
+                            posicion += 1;
                         }
 
             		    if(espacio > 50){
               			    if(a->tamano == "gigante") {
                                 vector[posicion] = a;
-                                posicion++;
+                                posicion += 1;
                             }
             		    }   
           		    }
@@ -130,7 +129,7 @@ void Reserva::adoptar_animal(int espacio) {
         }
 
         arbol->sort(vector, posicion);
-        for (int i = posicion - 1; i > 0; i --) {
+        for (int i = posicion - 1; i >= 0; i --) {
             vector[i]->mostrar_animal();
         }
 
@@ -160,6 +159,8 @@ void Reserva::adoptar_animal(int espacio) {
       		cout << "No tenemos ningun animale que pueden entrar en su espacio disponible." << endl;
     	}
   	}
+
+    delete [] vector;
 }
 
 void Reserva::guardar_animales() {
@@ -174,10 +175,6 @@ void Reserva::guardar_animales() {
         if (animales->hay_siguiente())
             archivo << endl;
     }
-}
-
-void Reserva::ordenar_animales(){
-    
 }
 
 void Reserva::cargar_animales() {
@@ -273,6 +270,7 @@ Reserva::~Reserva() {
     	delete animal_actual;
   	}
   	delete animales;
+    delete coche;
 }
 
 Animal* generar_animal(){
