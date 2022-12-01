@@ -10,49 +10,49 @@ using namespace std;
 class Grafo {
 /*ATRIBUTOS*/
 private:
-    int ** matrizDeAdyacencia;
+    int ** matriz_de_adyacencia;
     ListaGrafo * vertices;
-    Dijkstra * algoritmoCaminoMinimo;
+    Dijkstra * algoritmo_camino_minimo;
 
 /*MÉTODOS*/
 
     //pre: tienen que existir tanto el origen como el destino. Ademas se deben haber calculado las matrices de Floyd
     //post: muestra el camino minimo entre el origen y el destino
-    void caminoMinimo(int origen, int destino);
+    void camino_minimo(int origen, int destino);
 
     //post: agranda dinamicamente la matriz de adyacencia
-    void agrandarMatrizDeAdyacencia();
+    void agrandar_matriz_de_adyacencia();
 
     //pre: la matriz que se le envie ya debe tener memoria reservada
     //post: copia la matriz de adyacencia en la nueva matriz
-    void copiarMatrizAdyacente(int** nuevaAdyacente);
+    void copiar_matriz_adyacente(int** nueva_adyacente);
 
     //post inicializa un nuevo vertice en la matriz de adyacencia con un valor de infinito
-    void inicializarNuevoVertice(int** nuevaAdyacente);
+    void inicializar_nuevo_vertice(int** nueva_adyacente);
 
     //post libera la memoria de la matriz de adyacencia
-    void liberarMatrizAdyacencia();
+    void liberar_matriz_adyacencia();
 
 public:
 
     Grafo();
     //pre: No hay vertices repetidos en nombre
     //post: agrega un nuevo vertice al grafo
-    void agregarVertice(string nuevoVertice);
+    void agregar_vertice(string nuevo_vertice);
 
     //pre: se debe tener un algortimo para calcular el camino mínimo previamente elegido
     //post: muestra por terminal el camino mínimo desde un origen a un destino
-    void caminoMinimo(string origen, string destino);
+    void camino_minimo(string origen, string destino);
 
     //pre: el peso es un valor positivo
     //post: Ajusta la matriz de adyacencia con el peso ingresado
-    void agregarCamino(string origen, string destino, int peso);
+    void agregar_camino(string origen, string destino, int peso);
 
-    int * recuperarRecorrido2();
+    int * recuperar_recorrido();
 
-    int recuperarCosto2(int destino);
+    int recuperar_costo(int destino);
 
-    void usarDijkstra();
+    void usar_dijkstra();
 
     ~Grafo();
 };

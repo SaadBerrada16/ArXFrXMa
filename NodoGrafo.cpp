@@ -6,17 +6,17 @@ NodoGrafo::NodoGrafo(string nombre) {
     siguiente = nullptr;
 }
 
-NodoGrafo *NodoGrafo::obtenerSiguiente() {
+NodoGrafo *NodoGrafo::obtener_siguiente() {
     return siguiente;
 }
 
 
-string NodoGrafo::obtenerNombre() {
-    return elemento -> obtenerNombre();
+string NodoGrafo::obtener_nombre() {
+    return elemento -> obtener_nombre();
 }
 
 
-void NodoGrafo::asignarSiguiente(NodoGrafo *siguiente) {
+void NodoGrafo::asignar_siguiente(NodoGrafo *siguiente) {
     this -> siguiente = siguiente;
 }
 

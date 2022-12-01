@@ -29,6 +29,7 @@ int main() {
 
     reserva->guardar_animales();
 
+    delete mapa;
     delete reserva;
 
     return 0;

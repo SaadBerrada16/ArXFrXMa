@@ -7,28 +7,28 @@ Auto::Auto() {
 
 void Auto::cargar_combustible(int litros) {
     combustible = combustible + litros;
-    if (combustible>=100){
+    if (combustible >= 100){
         combustible = 100;
     }
 }
 
-void Auto::cargar_combustible() {
+void Auto::aumentar_combustible() {
   combustible = combustible + 5;
-  if (combustible>=100){
+  if (combustible >= 100){
     combustible = 100;
   }
 }
 
 void Auto::bajar_combustible(int litros) {
     combustible = combustible - litros;
-    if (combustible<=0){
+    if (combustible <= 0){
         combustible = 0;
     }
 }
 
 bool Auto::combustible_suficiente(int costo){
     bool combustible_suficiente = false;
-    if(combustible>=costo)
+    if(combustible >= costo)
         combustible_suficiente = true;
 
     return combustible_suficiente;

@@ -21,7 +21,7 @@ class Auto {
 
         // pre: que existe el auto y que se pide al usuario cuanto quiere cargar
         // pos: aumenta el combustible de 5 litros
-        void cargar_combustible();
+        void aumentar_combustible();
 
         // pre: que existe el auto y que se pide al usuario cuanto quiere cargar
         // pos: aumenta el combustible de x litros
@@ -30,6 +30,7 @@ class Auto {
         // pre: que existe el auto y que indique un costo por un destino
         // pos: devuelve si si o no hay suficiente combustible
         bool combustible_suficiente(int costo);
+
 };
 
 #endif

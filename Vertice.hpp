@@ -15,7 +15,7 @@ public:
     Vertice(string nombre);
 
     //post: obtiene el nombre del vertice
-    string obtenerNombre();
+    string obtener_nombre();
 
     ~Vertice();
 };

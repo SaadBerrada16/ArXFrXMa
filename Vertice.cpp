@@ -4,7 +4,7 @@ Vertice::Vertice(string nombre) {
     this -> nombre = nombre;
 }
 
-string Vertice::obtenerNombre() {
+string Vertice::obtener_nombre() {
     return nombre;
 }
 

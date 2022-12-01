@@ -36,9 +36,13 @@ class Mapa {
         // Método
         void imprimir_mapa();
 
+        void imprimir_mapa_recorrido(string inicio, string destino, int* recorrido, char inicial_animal, char* mapa);
+
         void colocar_animales(char* animales, int n_animales);
 
         void actualizar_posiciones();
+
+        ~Mapa();
 
     protected:
         int conseguir_peso(int i);

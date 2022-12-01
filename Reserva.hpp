@@ -68,6 +68,9 @@ class Reserva {
         //post: se remueve de la lista el Animal* que corresponde al animal adoptado
         void adoptar_animal(int espacio);
 
+
+        void cargar_combustible(int combustible);
+
         //pre: existe la reserva y un archivo en la misma carpeta que se llama animales.csv
         //post: guarda en el archivo animales.csv los animales contenidos en la lista
         void guardar_animales();
@@ -79,6 +82,9 @@ class Reserva {
         //post: se le baja la higiene y se le aumenta el hambre a los animales de la lista
         void bajar_higiene_y_crecer_hambre();
 
+        void imprimir_combustible();
+
+        void aumentar_combustible();
 
         void generar_mapa(Mapa* mapa);
 
