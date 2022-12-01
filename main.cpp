@@ -2,8 +2,6 @@
 #include "menu.hpp"
 #include "Reserva.hpp"
 
-
-
 using namespace std;
 
 int main() {
@@ -21,11 +19,13 @@ int main() {
 
     while(opcion != SALIR){
         procesar_opcion(reserva, opcion, mapa);
-        reserva->cuanto_escapados();
-        mostrar_menu();
-        opcion = pedir_opcion();
-        validar_opcion_elegida(opcion);
-        if (reserva->partida_terminada()){
+        if (!reserva->partida_terminada()){
+            reserva->cuanto_escapados();
+            mostrar_menu();
+            opcion = pedir_opcion();
+            validar_opcion_elegida(opcion);
+        }
+        else{
             break;
         }
     }

@@ -1,7 +1,6 @@
-#pragma once
-
 #include "diccionarioArbolB.hpp"
 
+template <typename Tipo>
 class TreeSort {
 public:
     void sort(std::vector<int>& vector);

@@ -1,7 +1,6 @@
 #ifndef RESERVA_H
 #define RESERVA_H
 
-
 #include <iostream>
 #include "diccionarioArbolB.hpp"
 #include "Animal.hpp"
@@ -21,6 +20,7 @@
 #include "Travieso.hpp"
 #include "Mapa.hpp"
 #include "Auto.hpp"
+//#include "treeSort.hpp"
 
 using namespace std;
 
@@ -70,6 +70,8 @@ class Reserva {
         //pre: existe la reserva y recibe el espacio que posee el usuario para saber que tipo de animal puede adoptar
         //post: se remueve de la lista el Animal* que corresponde al animal adoptado
         void adoptar_animal(int espacio);
+
+        void ordenar_animales();
 
         //pre: existe la reserva y un archivo en la misma carpeta que se llama animales.csv
         //post: guarda en el archivo animales.csv los animales contenidos en la lista

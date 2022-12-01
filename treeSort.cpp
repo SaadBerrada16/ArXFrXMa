@@ -1,4 +1,4 @@
-#include "treeSort.h"
+#include "treeSort.hpp"
 
 TreeSort::TreeSort() {
     bst = new BST<int>();

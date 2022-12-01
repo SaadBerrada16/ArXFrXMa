@@ -76,20 +76,6 @@ void Reserva::alimentar_animales(){
 	}
 }
 
-void Reserva::guardar_animales() {
-    remove(PATH_ANIMALES.c_str());
-    string nombre_archivo = "animales.csv";
-    fstream archivo;
-    archivo.open(nombre_archivo, ios::out | ios::app);
-    animales->iniciar();
-    while (animales->hay_siguiente()) {
-        Animal* a = animales->siguiente();
-        archivo <<  a->nombre << "," << a->edad << "," << a->tamano << "," << a->especie.substr(0, 1) << "," << a->personalidad->get_nombre();
-        if (animales->hay_siguiente())
-            archivo << endl;
-    }
-}
-
 void mostrar_adoptar(int &cant, Animal* a){
 	a->mostrar_animal();
 	cant++;
@@ -99,6 +85,7 @@ void mostrar_adoptar(int &cant, Animal* a){
 void Reserva::adoptar_animal(int espacio) {
   	int cantidad_animal_adoptable = 0;
   	string nombre_animal = "nombre_animal";
+    ordenar_animales();
   	animales->iniciar();
 
   	if(espacio == 0){
@@ -151,6 +138,24 @@ void Reserva::adoptar_animal(int espacio) {
       		cout << "No tenemos ningun animale que pueden entrar en su espacio disponible." << endl;
     	}
   	}
+}
+
+void Reserva::guardar_animales() {
+    remove(PATH_ANIMALES.c_str());
+    string nombre_archivo = "animales.csv";
+    fstream archivo;
+    archivo.open(nombre_archivo, ios::out | ios::app);
+    animales->iniciar();
+    while (animales->hay_siguiente()) {
+        Animal* a = animales->siguiente();
+        archivo <<  a->nombre << "," << a->edad << "," << a->tamano << "," << a->especie.substr(0, 1) << "," << a->personalidad->get_nombre();
+        if (animales->hay_siguiente())
+            archivo << endl;
+    }
+}
+
+void Reserva::ordenar_animales(){
+    
 }
 
 void Reserva::cargar_animales() {
@@ -231,7 +236,7 @@ void Reserva::se_escapan(){
 
 bool Reserva::partida_terminada(){
     if (animales_escapados >= 3){
-        cout << "Más de 3 animales se escapan, entonces la reserva es clausurada y la partida terminada" << endl;
+        cout << endl << "Más de 3 animales se escapan, entonces la reserva es clausurada y la partida terminada" << endl;
         return true;
     }
     return false;
