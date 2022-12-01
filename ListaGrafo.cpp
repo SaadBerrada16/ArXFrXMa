@@ -1,71 +1,71 @@
 #include "ListaGrafo.hpp"
 
 ListaGrafo::ListaGrafo(){
-    cantidadDeElementos = 0;
+    cantidad_de_elementos = 0;
     ultimo = nullptr;
     primero =  nullptr;
 }
 
 
-int ListaGrafo::obtenerCantidadDeElementos(){
-    return cantidadDeElementos;
+int ListaGrafo::obtener_cantidad_de_elementos(){
+    return cantidad_de_elementos;
 }
 
 
-int ListaGrafo::obtenerPosicion(string nombre) {
-    bool elementoEncontrado = false;
+int ListaGrafo::obtener_posicion(string nombre) {
+    bool elemento_encontrado = false;
     int i = 0;
     NodoGrafo* auxiliar = primero;
 
-    while(!elementoEncontrado && i < cantidadDeElementos){
-        if(auxiliar -> obtenerNombre() == nombre){
-            elementoEncontrado = true;
+    while(!elemento_encontrado && i < cantidad_de_elementos){
+        if(auxiliar -> obtener_nombre() == nombre){
+            elemento_encontrado = true;
         }
         i++;
-        auxiliar = auxiliar -> obtenerSiguiente();
+        auxiliar = auxiliar -> obtener_siguiente();
     }
 
-    if(!elementoEncontrado){
+    if(!elemento_encontrado){
         return POSICION_NO_ENCONTRADA;
     }
     return i - 1;
 }
 
 
-void ListaGrafo::agregar(string nuevoElemento) {
-    NodoGrafo* nuevoNodo = new NodoGrafo(nuevoElemento);
+void ListaGrafo::agregar(string nuevo_elemento) {
+    NodoGrafo* nuevo_nodo = new NodoGrafo(nuevo_elemento);
     if(primero == nullptr){
-        primero = nuevoNodo;
+        primero = nuevo_nodo;
         ultimo = primero;
     } else {
-        ultimo -> asignarSiguiente(nuevoNodo);
-        ultimo = nuevoNodo;
+        ultimo -> asignar_siguiente(nuevo_nodo);
+        ultimo = nuevo_nodo;
     }
-    cantidadDeElementos++;
+    cantidad_de_elementos++;
 }
 
 
 ListaGrafo::~ListaGrafo() {
     NodoGrafo* siguiente;
     while(primero != nullptr){
-        siguiente = primero -> obtenerSiguiente();
+        siguiente = primero -> obtener_siguiente();
         delete primero;
         primero = siguiente;
     }
 }
 
 
-string ListaGrafo::obtenerNombre(int posicion) {
+string ListaGrafo::obtener_nombre(int posicion) {
     int i = 0;
     NodoGrafo* auxiliar = primero;
 
-    if(posicion > cantidadDeElementos){
+    if(posicion > cantidad_de_elementos){
         return NOMBRE_NO_ENCONTRADO;
     }
 
     while(i != posicion - 1){
-        auxiliar = auxiliar -> obtenerSiguiente();
+        auxiliar = auxiliar -> obtener_siguiente();
         i++;
     }
-    return auxiliar -> obtenerNombre();
+    return auxiliar -> obtener_nombre();
 }

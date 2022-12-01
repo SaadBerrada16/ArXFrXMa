@@ -17,13 +17,13 @@ public:
     NodoGrafo(string nombre);
 
     //post: devuelve el nodo siguiente.
-    NodoGrafo* obtenerSiguiente();
+    NodoGrafo* obtener_siguiente();
 
     //post: devuelve el nombre del nodo
-    string obtenerNombre();
+    string obtener_nombre();
 
     //post: le asigna como siguiente el nodo recibido
-    void asignarSiguiente(NodoGrafo* siguiente);
+    void asignar_siguiente(NodoGrafo* siguiente);
 
     ~NodoGrafo();
 };

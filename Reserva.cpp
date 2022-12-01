@@ -211,28 +211,119 @@ void Reserva::bajar_higiene_y_crecer_hambre(){
 	}
 }
 
+
 void Reserva::generar_mapa(Mapa* mapa){
-  srand((unsigned)time(NULL));
+    srand((unsigned)time(NULL));
 
-  int n_animales = 5;
-  Animal** animales = new Animal*[n_animales];
-  char* esp = new char[n_animales];
-  int* pos = generar_posiciones();
+    int n_animales = 5;
+    mapa -> animales = new Animal*[n_animales];
+    char* esp = new char[n_animales];
+    mapa -> pos = generar_posiciones();
 
-  for(int i = 0; i < n_animales; i++){
-    animales[i] = generar_animal();
-    esp[i] = animales[i] -> especie[0];
-  }
+    for(int i = 0; i < n_animales; i++){
+        mapa -> animales[i] = generar_animal();
+        esp[i] = mapa -> animales[i] -> especie[0];
+    }
 
-  mapa -> colocar_animales(esp, pos);
+
+    mapa -> colocar_animales(esp, n_animales);
+    delete [] esp;
 }
 
-void Reserva::rescatar_animales(Mapa* mapa){
-    mapa -> imprimir_mapa();
-    mapa -> actualizar_posiciones();
-    // mapa -> grafo -> caminoMinimo("1" , "10");
-    cout << mapa -> pos[0] << endl;
+void Reserva::aumentar_combustible(){
+    coche -> aumentar_combustible();
+}
 
+
+// void Reserva::generar_mapa(Mapa* mapa){
+//   srand((unsigned)time(NULL));
+
+//   int n_animales = 5;
+//   Animal** animales = new Animal*[n_animales];
+//   char* esp = new char[n_animales];
+//   int* pos = generar_posiciones();
+
+//   for(int i = 0; i < n_animales; i++){
+//     animales[i] = generar_animal();
+//     esp[i] = animales[i] -> especie[0];
+//   }
+
+//   mapa -> colocar_animales(esp, pos);
+// }
+
+// void Reserva::rescatar_animales(Mapa* mapa){
+//     mapa -> imprimir_mapa();
+//     mapa -> actualizar_posiciones();
+//     // mapa -> grafo -> caminoMinimo("1" , "10");
+//     cout << mapa -> pos[0] << endl;
+
+// }
+
+void Reserva::rescatar_animales(Mapa* mapa){
+    int n_animales = 5;
+    int* costo = new int[n_animales];
+    int n_animales_a_rescatar = 0;
+
+    mapa -> imprimir_mapa();
+    mapa -> grafo -> usar_dijkstra();
+
+    for (int i = 0; i < n_animales; i++){
+        if (mapa -> pos[i] != 0){
+            char* mapa_camino_minimo = new char[mapa -> n * mapa -> n];
+            string destino = to_string(mapa -> pos[i]);
+            mapa -> grafo -> camino_minimo("1" , destino);
+            costo[i] = mapa -> grafo -> recuperar_costo((mapa -> pos[i]-1));
+            int * recorrido = mapa -> grafo -> recuperar_recorrido();
+            mapa -> imprimir_mapa_recorrido("1", destino, recorrido, mapa -> mapa[stoi(destino)-1] , mapa_camino_minimo);
+            if (coche -> combustible_suficiente(costo[i])){
+              cout << "Con el combustible que tienes puedes rescatar el animal que está en la posición " << mapa -> pos[i] << " y se gastaria " << costo[i] << " de combustible" << endl << endl;
+              n_animales_a_rescatar++;
+            }
+            delete [] mapa_camino_minimo;
+        }
+    }
+
+    if(n_animales_a_rescatar != 0){
+        // (?) Indica la posicion de cual animal quéres rescatar
+        int posicion_animal_a_rescatar = 0;
+        string cancelar;
+        cout << "Ingrese la posicion de cual animal quéres rescatar o '0' si no quéres rescatar a un animal: "<< endl;
+        while(!(cin >> posicion_animal_a_rescatar)){
+            cout << "Error: Ingrese un numero" << endl;
+            cin.clear();
+            cin.ignore();
+        }
+
+        // recorrido de la tabla de posicion
+        if(posicion_animal_a_rescatar != 0){
+            for (int i = 0; i < n_animales; i++){
+                string nombre;
+                if(mapa -> pos[i] == posicion_animal_a_rescatar){
+                    cout << endl << "Ingrese un nombre para otorgarle al animal rescatado: ";
+                    cin >> nombre;
+                    while(buscar_animal(nombre) != 0 ){
+                        cout << "Ingrese otro nombre que no exista en la reserva: " << endl;
+                        cin.clear();
+                        cin.ignore();
+                        cin >> nombre;
+                    }
+                    mapa -> animales[i] -> nombre = nombre;
+                    agregar_animal(mapa -> animales[i]);
+                    coche -> bajar_combustible(costo[i]);
+                    mapa -> mapa[mapa -> pos[i] - 1] = '.';
+                    mapa -> pos[i] = 0;
+                    cout << "\n\n Rescataste a: " << endl;
+                    mapa -> animales[i] -> mostrar_animal();
+                    mapa -> animales[i] = nullptr;
+                }
+            }
+        } else {
+          cout <<  "Salvaje cancelado." << endl;
+        }
+    } else {
+        cout << "No hay animales que puedas rescatar con el combustible actual" << endl;
+    }
+    delete [] costo;
 }
 
 void Reserva::se_escapan(){
@@ -277,12 +368,12 @@ Animal* generar_animal(){
     string especies[7] = {"P", "G", "C", "R", "O", "E", "L"};
     string personalidades[4] = {"dormilon", "travieso", "jugueton", "sociable"};
     string tamanos[5] = {"diminuto", "pequeño", "mediano", "grande", "gigante"};
-    string nombres[20] = {"Rocky", "Tobi", "Teo", "Max", "Jack", "Bruno", "Coco", "Lucas", "Zeus", "Rei", "Maya", "Lola", "Luna", "Cleo", "Mila", "Michi", "Nina", "Bella", "Kiara", "Reina"};
+    string nombres[1] = {"Nombre Temporal"};
 
     string especie = especies[random_num(7)];
     string personalidad = personalidades[random_num(4)];
     string tamano = tamanos[random_num(5)];
-    string nombre = nombres[random_num(20)];
+    string nombre = nombres[random_num(1)];
     int edad = 1 + random_num(20); // pq no puede ser un animal de 0 ano de edad
 
     Personalidad* p = convertir_personalidad(personalidad);
@@ -365,4 +456,12 @@ int random_num(int rango){
     // srand((unsigned)time(NULL));
     int random = rand() % rango;
     return random;
+}
+
+void Reserva::imprimir_combustible(){
+    cout << "El nivel de combustible actual es: " << coche -> combustible << "/100" << endl;
+}
+
+void Reserva::cargar_combustible(int combustible){
+    coche -> cargar_combustible(combustible);
 }

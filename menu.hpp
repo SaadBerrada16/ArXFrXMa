@@ -87,6 +87,8 @@ string pedir_personalidad();
 // pos: devuelve el espacio disponible que el usuario ingrese en el terminal
 int pedir_espacio_disponible();
 
+int pedir_combustible();
+
 // pre: que el usuario ingresó un edad
 // pos: chequea si el edad ingresado esta valido
 bool es_edad_valido(int edad);
@@ -102,6 +104,8 @@ bool es_especie_valido(string especie);
 // pre: que el usuario ingresó una personalidad
 // pos: chequea si la personalidad ingresada esta valida
 bool es_personalidad_valido(string personalidad);
+
+bool es_combustible_valido(int combustible);
 
 
 #endif

@@ -136,6 +136,7 @@ void procesar_opcion(Reserva* reserva, int opcion, Mapa* mapa){
     int opcion_cuidar;
     reserva->bajar_higiene_y_crecer_hambre();
     reserva->se_escapan();
+    reserva -> aumentar_combustible();
 
     switch (opcion) {
         case LISTAR_ANIMALES:
@@ -144,24 +145,6 @@ void procesar_opcion(Reserva* reserva, int opcion, Mapa* mapa){
 
         case RESCATAR_ANIMAL:
             reserva->rescatar_animales(mapa);
-
-
-          cout<<"OK"<<endl;
-            // animal = reserva->generar_animal();
-            // nombre = animal->nombre;
-            // while(reserva->buscar_animal(nombre) != 0 && opcion_rescatar == INGRESAR_NOMBRE) {
-            //     mostrar_menu_rescatar();
-            //     opcion_rescatar = pedir_opcion();
-            //     validar_opcion_rescatar(opcion_rescatar);
-            //     if (opcion_rescatar == INGRESAR_NOMBRE) {
-            //         nombre = pedir_nombre();
-            //     }
-            // }
-            // if (opcion_rescatar == INGRESAR_NOMBRE) {
-            //     animal->nombre = nombre;
-            //     reserva->agregar_animal(animal);
-            //     cout << endl << "Animal guardado correctamente" << endl << endl;
-            // }
             break;
 
         case BUSCAR_ANIMAL:
@@ -191,11 +174,34 @@ void procesar_opcion(Reserva* reserva, int opcion, Mapa* mapa){
           }
           break;
 
-        case ADOPTAR_ANIMAL:
+        case ADOPTAR_ANIMAL: {
             int espacio = pedir_espacio_disponible();
             reserva->adoptar_animal(espacio);
             break;
+            }
+
+        case CARGAR_COMBUSTIBLE:
+            reserva -> imprimir_combustible();
+            int combustible = pedir_combustible();
+            reserva -> cargar_combustible(combustible);
+            reserva -> imprimir_combustible();
+            break;
     }
+}
+
+int pedir_combustible(){
+    int combustible;
+    cout << "Ingrese la cantidad de combustible que desea cargar (no puede cargar mas de 100): ";
+    while(!(cin >> combustible)){
+        cout << "Error: Ingrese un numero: " << endl;
+        cin.clear();
+        cin.ignore();
+    }
+    while(!es_combustible_valido(combustible)){
+        cout << "La cantidad de combustible no es vàlida, elegir entre 0 y 100, por favor ingrese otro valor: ";
+        cin >> combustible;
+    }
+    return combustible;
 }
 
 string pedir_nombre(){
@@ -267,6 +273,11 @@ int pedir_espacio_disponible(){
         cin.ignore();
     }
     return espacio;
+}
+
+bool es_combustible_valido(int combustible){
+    if((0 <= combustible) && (combustible <= 100) ) return true;
+    return false;
 }
 
 bool es_edad_valido(int edad){

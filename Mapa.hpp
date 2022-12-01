@@ -2,6 +2,7 @@
 #define MAPA_H
 
 #include "Grafo.hpp"
+#include "Animal.hpp"
 using namespace std;
 
 const int M = 5;
@@ -26,6 +27,7 @@ class Mapa {
         char* mapa;
         int* pos;
         int costo;
+        Animal** animales;
 
     public:
         // Constructor
@@ -34,9 +36,13 @@ class Mapa {
         // Método
         void imprimir_mapa();
 
-        void colocar_animales(char* animales, int* pos);
+        void imprimir_mapa_recorrido(string inicio, string destino, int* recorrido, char inicial_animal, char* mapa);
+
+        void colocar_animales(char* animales, int n_animales);
 
         void actualizar_posiciones();
+
+        ~Mapa();
 
     protected:
         int conseguir_peso(int i);
