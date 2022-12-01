@@ -1,7 +1,7 @@
 #include "treeSort.hpp"
 
 TreeSort::TreeSort() {
-    bst = new BST<int>();
+    bst = new BST();
 }
 
 TreeSort::~TreeSort() {
@@ -10,23 +10,9 @@ TreeSort::~TreeSort() {
 
 // COMPLEXITY
 // O(n * log(n))
-void TreeSort::sort(std::vector<int>& vector) {
-    addElementsToBST(vector);
-
-    // COMPLEXITY
-    // O(n)
-    bst->save_in_order(vector);
-}
-
-// COMPLEXITY
-// O(log(n))
-void TreeSort::addElementsToBST(const std::vector<int>& vector) {
-    for(auto v : vector) {
-        bst->insert(v);
+void TreeSort::sort(Animal** vector, int cantidad) {
+    for (int i = 0; i < cantidad; i++) {
+        bst->insert(vector[i]);
     }
-}
-
-void TreeSort::printAlgorithmInfo() const {
-    std::cout << "Treesort" << std::endl;
-    std::cout << "Complexity: O(n*log(n))" << std::endl;
+    bst->save_in_order(vector);
 }

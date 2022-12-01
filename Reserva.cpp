@@ -79,37 +79,62 @@ void mostrar_adoptar(int &cant, Animal* a){
 }
 
 void Reserva::adoptar_animal(int espacio) {
-  	int cantidad_animal_adoptable = 0;
   	string nombre_animal = "nombre_animal";
     ordenar_animales();
-  	animales->iniciar();
-
+    
+    int posicion = 0;
+    Animal** vector = new Animal*[animales->cantidad];
+    TreeSort* arbol = new TreeSort();
+    
+    
+    animales->iniciar();
   	if(espacio == 0){
     	cout << "No se puede adoptar un animal, espacio no suficiente" << endl;
-  	} else {
-      while (animales->hay_siguiente()) {
-        Animal* a = animales->siguiente();
+  	} 
+    else {
+        while (animales->hay_siguiente()) {
+            Animal* a = animales->siguiente();
 
-      	if(a->tamano == "diminuto")  mostrar_adoptar(cantidad_animal_adoptable, a);
+      	    if(a->tamano == "diminuto") {
+                vector[posicion] = a;
+                posicion++;
+            }
 
-      	if(espacio > 2){
-        	if(a->tamano == "pequeño") mostrar_adoptar(cantidad_animal_adoptable, a);
+      	    if(espacio > 2){
+        	    if(a->tamano == "pequeño") {
+                    vector[posicion] = a;
+                    posicion++;
+                }
 
-        	if(espacio > 10){
-          		if(a->tamano == "mediano") mostrar_adoptar(cantidad_animal_adoptable, a);
+        	    if(espacio > 10){
+          		    if(a->tamano == "mediano") {
+                        vector[posicion] = a;
+                        posicion++;
+                    }
 
-          		if(espacio > 20){
-            		if(a->tamano == "grande") mostrar_adoptar(cantidad_animal_adoptable, a);
+          		    if(espacio > 20){
+            		    if(a->tamano == "grande") {
+                            vector[posicion] = a;
+                            posicion++;
+                        }
 
-            		if(espacio > 50){
-              			if(a->tamano == "gigante") mostrar_adoptar(cantidad_animal_adoptable, a);
-            		}
-          		}
-        	}
-      	}
-    }
+            		    if(espacio > 50){
+              			    if(a->tamano == "gigante") {
+                                vector[posicion] = a;
+                                posicion++;
+                            }
+            		    }   
+          		    }
+        	    }
+      	    }
+        }
 
-    	if(cantidad_animal_adoptable!=0){
+        arbol->sort(vector, posicion);
+        for (int i = posicion - 1; i > 0; i --) {
+            vector[i]->mostrar_animal();
+        }
+
+    	if(posicion!=0){
       		bool existe_nombre = false;
       		while(!existe_nombre){
       		cout << "Ingrese el nombre del Animal que quéres adoptar o 'CANCELAR' si quéres cancelar la adopcion: ";
@@ -130,7 +155,8 @@ void Reserva::adoptar_animal(int espacio) {
           			}
         		}
       		}
-    	} else {
+    	} 
+        else {
       		cout << "No tenemos ningun animale que pueden entrar en su espacio disponible." << endl;
     	}
   	}

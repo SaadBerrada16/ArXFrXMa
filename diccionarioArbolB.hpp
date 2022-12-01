@@ -11,11 +11,12 @@ template <typename Tipo>
 class Diccionario {
     private:
         Nodo<Tipo>* raiz;
-        Tipo* vector;
     public:
         int cantidad;
         int nueva_cantidad;
         int posicion_actual;
+        Tipo* vector;
+
         Diccionario();
 
         void insertar(string clave, Tipo dato);

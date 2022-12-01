@@ -1,14 +1,13 @@
+#include "BST.hpp"
 #include "diccionarioArbolB.hpp"
 
-template <typename Tipo>
 class TreeSort {
 public:
-    void sort(std::vector<int>& vector);
+    void sort(Animal** vector, int cantidad);
     void printAlgorithmInfo() const;
     TreeSort();
     ~TreeSort();
 
 private:
-    BST<int>* bst;
-    void addElementsToBST(const std::vector<int>& vector);
+    BST* bst;
 };
