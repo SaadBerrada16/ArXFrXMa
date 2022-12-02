@@ -147,7 +147,6 @@ void Reserva::adoptar_animal(int espacio) {
         		for(int i = 0; i < animales -> obtener_cantidad(); i++){
           			Animal* a = animales -> siguiente();
           			if(nombre_animal == a->nombre){
-            			delete a;
             			animales -> eliminar(nombre_animal);
             			cout << "Felicitaciones " << nombre_animal << " forma ahora parte de tu familia !" << endl;
             			existe_nombre = true;
@@ -160,6 +159,7 @@ void Reserva::adoptar_animal(int espacio) {
     	}
   	}
 
+    delete arbol;
     delete [] vector;
 }
 
