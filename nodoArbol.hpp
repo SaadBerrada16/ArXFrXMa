@@ -26,7 +26,7 @@ class Nodo {
 
         // pre: el nodo debe estar lleno, con N datos y N+1 vias
         // pos: reequilibra el arbol construyendo dos nodos y subiendo el dato al centro de este nodo, al final este nodo es destruido
-        Nodo<Tipo>* dividirNodo();
+        Nodo<Tipo>* dividir_nodo();
     public:
         // Constructor
         // pre: -
@@ -40,11 +40,11 @@ class Nodo {
 
         void insertar(string clave, Tipo dato);
 
-        bool contieneClave(string clave);
+        bool contiene_clave(string clave);
 
-        Tipo obtenerDato(string clave);
+        Tipo obtener_dato(string clave);
 
-        void mostrarNodo();
+        void mostrar_nodo();
 
         void eliminar(string clave);
 
@@ -79,7 +79,7 @@ Nodo<Tipo>::Nodo(bool eh) {
 }
 
 template <typename Tipo>
-Nodo<Tipo>* Nodo<Tipo>::dividirNodo() {
+Nodo<Tipo>* Nodo<Tipo>::dividir_nodo() {
     string clave = claves[medio];
     Tipo dato = datos[medio];
     bool bool_eliminado = eliminado[medio];
@@ -145,7 +145,7 @@ Nodo<Tipo>* Nodo<Tipo>::dividirNodo() {
         nodo_hijo_derecha->antecesor = antecesor;
 
         if (antecesor->claves[N-1] != "") {
-            Nodo* n = antecesor->dividirNodo();
+            Nodo* n = antecesor->dividir_nodo();
             if (n != NULL) 
                 delete n;
         }
@@ -181,7 +181,7 @@ void Nodo<Tipo>::insertar(string clave, Tipo dato) {
         datos[i] = dato;
         eliminado[i] = false;
         if (claves[N-1] != "") {
-            Nodo<Tipo>* n = this->dividirNodo();
+            Nodo<Tipo>* n = this->dividir_nodo();
             if (n != NULL) 
                 delete n;
         }
@@ -192,7 +192,7 @@ void Nodo<Tipo>::insertar(string clave, Tipo dato) {
 }
 
 template <typename Tipo>
-bool Nodo<Tipo>::contieneClave(string clave) {
+bool Nodo<Tipo>::contiene_clave(string clave) {
     int  i = 0;
     while (claves[i] != "" && clave >= claves[i]) {
         if (clave == claves[i] && !eliminado[i])
@@ -203,23 +203,23 @@ bool Nodo<Tipo>::contieneClave(string clave) {
     if (vias[i] == NULL)
         return false;
     else 
-        return vias[i]->contieneClave(clave);
+        return vias[i]->contiene_clave(clave);
 }
 
 template <typename Tipo>
-Tipo Nodo<Tipo>::obtenerDato(string clave) {
+Tipo Nodo<Tipo>::obtener_dato(string clave) {
     int  i = 0;
     while (claves[i] != "" && clave >= claves[i]) {
         if (clave == claves[i])
             return datos[i];
         i++;
     }
-    return vias[i]->obtenerDato(clave);
+    return vias[i]->obtener_dato(clave);
 }
 
 
 template <typename Tipo>
-void Nodo<Tipo>::mostrarNodo() {
+void Nodo<Tipo>::mostrar_nodo() {
     for (int i = 0; i < N; i++) {
         cout << claves[i] << ",";
     }
@@ -227,7 +227,7 @@ void Nodo<Tipo>::mostrarNodo() {
     
     for (int i = 0; i < N+1; i++) {
         if (vias[i] != NULL)
-            vias[i]->mostrarNodo();
+            vias[i]->mostrar_nodo();
     }
     
 }

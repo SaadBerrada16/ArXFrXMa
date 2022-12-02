@@ -42,7 +42,7 @@ class Diccionario {
 
         // pre: -
         // pos: mostra el arbol, sirve mas para comprobar que el abol se contruyó bien
-        void mostrarArbol();
+        void mostrar_arbol();
 
         // pre: la clave debe existir
         // pos: pone un flag en el arbol para indicar que el dato asociado a esta clave fue eliminado y que no lo necesitamos mas si queremos recorrer el arbol 
@@ -103,8 +103,8 @@ Tipo Diccionario<Tipo>::obtener(string clave){
 }
 
 template <typename Tipo>
-void Diccionario<Tipo>::mostrarArbol() {
-    raiz->mostrarNodo();
+void Diccionario<Tipo>::mostrar_arbol() {
+    raiz->mostrar_nodo();
 }
 
 template <typename Tipo>
