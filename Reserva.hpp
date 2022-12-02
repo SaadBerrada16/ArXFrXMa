@@ -153,6 +153,9 @@ Animal* crear_animal(string nombre, string edad, string tamano, string especie, 
 //pos: imprime el recorrido minimo a caada animal, guarda su costo en el vector costo y aumenta la cantidad de animales rescatables si hay suficiente combustible
 void buscar_camino_minimo_animales(Mapa* mapa, Auto* coche, int* costo, int n_animales , int &numero_animales_rescatables);
 
+void buscar_animales_adoptables(Diccionario<Animal*> * animales, Animal** vector, int &posicion, int espacio);
+
+void adoptar_un_animal(Diccionario<Animal*> * animales);
 
 //pre: un rango sea definido
 //post: devuelve un entero aleatorio entre 0 y rango

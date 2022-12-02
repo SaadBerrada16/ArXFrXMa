@@ -78,8 +78,69 @@ void mostrar_adoptar(int &cant, Animal* a){
 	cout << "\n\n" << endl;
 }
 
+void buscar_animales_adoptables(Diccionario<Animal*> * animales, Animal** vector, int &posicion, int espacio){
+    while (animales -> hay_siguiente()) {
+        Animal* a = animales -> siguiente();
+
+        if(a -> tamano == "diminuto") {
+            vector[posicion] = a;
+            posicion += 1;
+        }
+
+        if(espacio > 2){
+            if(a -> tamano == "pequeño") {
+                vector[posicion] = a;
+                posicion += 1;
+            }
+
+            if(espacio > 10){
+                if(a -> tamano == "mediano") {
+                    vector[posicion] = a;
+                    posicion += 1;
+                }
+
+                if(espacio > 20){
+                    if(a -> tamano == "grande") {
+                        vector[posicion] = a;
+                        posicion += 1;
+                    }
+
+                    if(espacio > 50){
+                        if(a -> tamano == "gigante") {
+                            vector[posicion] = a;
+                            posicion += 1;
+                        }
+                    }   
+                }
+            }
+        }
+    }
+}
+
+void adoptar_un_animal(Diccionario<Animal*> * animales){
+    string nombre_animal = "nombre_animal";
+    bool existe_nombre = false;
+    while(!existe_nombre){
+    cout << endl <<"Ingrese el nombre del Animal que quéres adoptar o 'CANCELAR' si quéres cancelar la adopcion: ";
+    cin >> nombre_animal;
+        if(nombre_animal == "CANCELAR"){
+            existe_nombre = true;
+            cout << "\nAdopcion cancelada." << endl;
+        }
+
+    animales->iniciar();
+        for(int i = 0; i < animales -> obtener_cantidad(); i++){
+            Animal* a = animales -> siguiente();
+            if(nombre_animal == a->nombre){
+                animales -> eliminar(nombre_animal);
+                cout << "Felicitaciones " << nombre_animal << " forma ahora parte de tu familia !" << endl;
+                existe_nombre = true;
+            }
+        }
+    }
+}
+
 void Reserva::adoptar_animal(int espacio) {
-  	string nombre_animal = "nombre_animal";
     
     int posicion = 0;
     Animal** vector = new Animal*[animales -> obtener_cantidad()];
@@ -89,75 +150,26 @@ void Reserva::adoptar_animal(int espacio) {
     animales -> iniciar();
   	if(espacio == 0){
     	cout << "No se puede adoptar un animal, espacio no suficiente" << endl;
+        delete arbol;
+        delete [] vector;
+        return;
   	} 
-    else {
-        while (animales -> hay_siguiente()) {
-            Animal* a = animales -> siguiente();
 
-      	    if(a -> tamano == "diminuto") {
-                vector[posicion] = a;
-                posicion += 1;
-            }
+    buscar_animales_adoptables(animales, vector, posicion, espacio);
 
-      	    if(espacio > 2){
-        	    if(a -> tamano == "pequeño") {
-                    vector[posicion] = a;
-                    posicion += 1;
-                }
+    arbol -> ordenar(vector, posicion);
+    for (int i = posicion - 1; i >= 0; i --) {
+        vector[i] -> mostrar_animal();
+    }
 
-        	    if(espacio > 10){
-          		    if(a -> tamano == "mediano") {
-                        vector[posicion] = a;
-                        posicion += 1;
-                    }
+    if(posicion == 0) {
+        cout << "No tenemos ningun animal que pueden entrar en su espacio disponible." << endl;
+        delete arbol;
+        delete [] vector;
+        return;
+    }
 
-          		    if(espacio > 20){
-            		    if(a -> tamano == "grande") {
-                            vector[posicion] = a;
-                            posicion += 1;
-                        }
-
-            		    if(espacio > 50){
-              			    if(a -> tamano == "gigante") {
-                                vector[posicion] = a;
-                                posicion += 1;
-                            }
-            		    }   
-          		    }
-        	    }
-      	    }
-        }
-
-        arbol -> ordenar(vector, posicion);
-        for (int i = posicion - 1; i >= 0; i --) {
-            vector[i] -> mostrar_animal();
-        }
-
-    	if(posicion != 0){
-      		bool existe_nombre = false;
-      		while(!existe_nombre){
-      		cout << "Ingrese el nombre del Animal que quéres adoptar o 'CANCELAR' si quéres cancelar la adopcion: ";
-      		cin >> nombre_animal;
-        		if(nombre_animal == "CANCELAR"){
-          			existe_nombre = true;
-          			cout << "\nAdopcion cancelada." << endl;
-        		}
-
-            animales->iniciar();
-        		for(int i = 0; i < animales -> obtener_cantidad(); i++){
-          			Animal* a = animales -> siguiente();
-          			if(nombre_animal == a->nombre){
-            			animales -> eliminar(nombre_animal);
-            			cout << "Felicitaciones " << nombre_animal << " forma ahora parte de tu familia !" << endl;
-            			existe_nombre = true;
-          			}
-        		}
-      		}
-    	} 
-        else {
-      		cout << "No tenemos ningun animal que pueden entrar en su espacio disponible." << endl;
-    	}
-  	}
+    adoptar_un_animal(animales);
 
     delete arbol;
     delete [] vector;
