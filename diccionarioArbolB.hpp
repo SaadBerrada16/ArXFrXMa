@@ -23,7 +23,7 @@ class Diccionario {
 
         // Constructor
         // pre: -
-        // pos: construye una Diccionario con un nodo raiz sin dato adentro
+        // pos: construye un Diccionario con un nodo raiz sin dato adentro
         Diccionario();
 
         // pre: -
@@ -42,7 +42,7 @@ class Diccionario {
         // pos: mostra el arbol, sirve mas para comprobar que el abol se contruyó bien
         void mostrarArbol();
 
-        // pre: la clacve debe existir
+        // pre: la clave debe existir
         // pos: pone un flag en el arbol para indicar que el dato asociado a esta clave fue eliminado y que no lo necesitamos mas si queremos recorrer el arbol 
         void eliminar(string clave);
 

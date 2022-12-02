@@ -9,37 +9,43 @@
 class BST
 {
 private:
-    // attributes
+    // atributos
     BSTNode* root;
 
-    // methods
+    //métodos
     BSTNode* insert(BSTNode* node, Animal* data);
     void print_in_order(BSTNode * node);
     void save_in_order(BSTNode * node, Animal** vector, int& i);
     void delete_all(BSTNode* node);
 
 public:
-    //methods
+    //métodos
 
-    // Creates an empty tree
+    // Constructor
+    // Crea un árbol binario de busqueda vacío.
     BST();
 
-     // Adds a new node to the actual BST. If its the tree is empty
-     // the node inserted will be the root
+    // pre: -
+    // pos: Añade un nuevo nodo al BST actual. Si el árbol está vacío, el nodo insertado será la raíz.
     void insert(Animal* data);
 
-    // Prints all the data stored in the BST, sorted from the
-    // smallest value to the greatest value.
+    // pre: -
+    // pos: Imprime todos los datos almacenados en el BST, ordenados del menor al mayor valor.
     void print_in_order();
 
-    // Saves to the vector the data stored in the BST, sorted from the
-    // smallest value to the greatest value.
+    // pre: -
+    // pos: Guarda en el vector los datos almacenados en el BST, ordenados del menor al mayor valor.
     void save_in_order(Animal** vector);
 
+    // pre: -
+    // pos: Informa si el árbol está vacío.
     bool empty();
 
-    // Deletes all the nodes in the BST
+    // pre: -
+    // pos: Elimina todos los nodos del BST.
     void delete_all();
+
+    // Destructor
     ~BST();
 
 };

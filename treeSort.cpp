@@ -4,10 +4,6 @@ TreeSort::TreeSort() {
     bst = new BST();
 }
 
-TreeSort::~TreeSort() {
-    delete bst;
-}
-
 // COMPLEXITY
 // O(n * log(n))
 void TreeSort::sort(Animal** vector, int cantidad) {
@@ -15,4 +11,8 @@ void TreeSort::sort(Animal** vector, int cantidad) {
         bst->insert(vector[i]);
     }
     bst->save_in_order(vector);
+}
+
+TreeSort::~TreeSort() {
+    delete bst;
 }

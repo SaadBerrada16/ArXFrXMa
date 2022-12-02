@@ -33,15 +33,22 @@ class Reserva {
         Auto* coche;
         int animales_escapados;
 
+    //métodos
     public:
-        //Constructor
-        //crea una reserva con una puntero a un diccionario
+        // Constructor
+        // Crea una reserva con una puntero a un diccionario
         Reserva();
 
+        // pre: existe la reserva
+        // pos: llena el atributo vector del diccionario con los datos no eliminados del arbol. Permite recorrer el arbol.
         void iniciar();
 
+        // pre: haber llenado el vector con iniciar
+        // pos: True si hay algun dato mas en el vector, False si llegamos al final del vector
         bool hay_siguiente();
 
+        // pre: hay_siguiente() es True
+        // pos: devuelve el dato y mueve la posicion al siguiente
         Animal* siguiente();
     
         //pre: existe la reserva
@@ -96,9 +103,12 @@ class Reserva {
         // pos: si quedan animales en el mapa son rescatados y añadidos a la reserva
         void rescatar_animales(Mapa* mapa);
 
-        
+        // pre: existe la reserva
+        // pos: si animales llegan a 0 de higiene o 100 de hambre se eliminan de la reserva
         void se_escapan();
 
+        // pre: existe la reserva
+        // pos: si mas de 3 animales se escapan la reserva se cierra y la partida se termina
         bool partida_terminada();
 
         // pre: existe la reserva y el auto
@@ -109,22 +119,25 @@ class Reserva {
         // pos: aumenta la cantidad de combustible del auto cada vez que se usa una accion del menu
         void aumentar_combustible();
 
+        // Destructor
         ~Reserva();
 };
+
+// funciones que sirven a la clase Reserva
 
 //pre: -
 //post devuelve un Animal* aleatorio
 Animal* generar_animal();
 
 int* generar_posiciones();
+
 //pre: recibe un string
 //post: si ese string corresponde a una personalidad devuelve un puntero a ese tipo de personalidad, sino devuelve 0
 Personalidad* convertir_personalidad(string p);
+
 //pre: recibe el nombre, edad, tamaño, especie y personalidad del animal a crear
 //post devuelve un Animal* que corresponde al animal deseado determinado por la especie
 Animal* crear_animal(string nombre, string edad, string tamano, string especie, string personalidad);
-
-
 
 //pre: un rango sea definido
 //post: devuelve un entero aleatorio entre 0 y rango
