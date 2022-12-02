@@ -13,36 +13,36 @@ Reserva::Reserva() {
 }
 
 void Reserva::iniciar() {
-	animales->iniciar();
+	animales -> iniciar();
 }
 
 bool Reserva::hay_siguiente() {
-	return animales->hay_siguiente();
+	return animales -> hay_siguiente();
 }
 
 Animal* Reserva::siguiente() {
-	return animales->siguiente();
+	return animales -> siguiente();
 }
 
 int Reserva::obtener_cantidad_de_animales(){
-	return animales->obtener_cantidad();
+	return animales -> obtener_cantidad();
 }
 
 void Reserva::listar_animales() {
 	Animal* animal_actual;
-	animales->iniciar();
-	while (animales->hay_siguiente()) {
-		animal_actual = animales->siguiente();
-    	animal_actual->mostrar_animal();
+	animales -> iniciar();
+	while (animales -> hay_siguiente()) {
+		animal_actual = animales -> siguiente();
+    	animal_actual -> mostrar_animal();
   	}
 }
 
 Animal* Reserva::buscar_animal(string nombre) {
 	string nombre_actual;
 	Animal* animal;
-	animales->iniciar();
-	while (animales->hay_siguiente()) {
-		animal = animales->siguiente();
+	animales -> iniciar();
+	while (animales -> hay_siguiente()) {
+		animal = animales -> siguiente();
 		nombre_actual = animal->nombre;
 		if (nombre_actual == nombre)
 		return animal;
@@ -51,74 +51,74 @@ Animal* Reserva::buscar_animal(string nombre) {
 }
 
 void Reserva::agregar_animal(Animal* animal) {
-	animales->insertar(animal->nombre, animal);
+	animales -> insertar(animal->nombre, animal);
 }
 
 void Reserva::banar_animales(){
 	Animal* animal_actual;
-	animales->iniciar();
-	while(animales->hay_siguiente()){
-		animal_actual = animales->siguiente();
-		animal_actual->duchar();
+	animales -> iniciar();
+	while(animales -> hay_siguiente()){
+		animal_actual = animales -> siguiente();
+		animal_actual -> duchar();
 		}
 }
 
 void Reserva::alimentar_animales(){
 	Animal* animal_actual;
-	animales->iniciar();
-	while(animales->hay_siguiente()){
-		animal_actual = animales->siguiente();
-		animal_actual->comer();
+	animales -> iniciar();
+	while(animales -> hay_siguiente()){
+		animal_actual = animales -> siguiente();
+		animal_actual -> comer();
 	}
 }
 
 void mostrar_adoptar(int &cant, Animal* a){
-	a->mostrar_animal();
+	a -> mostrar_animal();
 	cant++;
-	cout<<"\n\n"<<endl;
+	cout << "\n\n" << endl;
 }
 
 void Reserva::adoptar_animal(int espacio) {
   	string nombre_animal = "nombre_animal";
     
     int posicion = 0;
-    Animal** vector = new Animal*[animales->obtener_cantidad()];
+    Animal** vector = new Animal*[animales -> obtener_cantidad()];
     TreeSort* arbol = new TreeSort();
     
     
-    animales->iniciar();
+    animales -> iniciar();
   	if(espacio == 0){
     	cout << "No se puede adoptar un animal, espacio no suficiente" << endl;
   	} 
     else {
-        while (animales->hay_siguiente()) {
-            Animal* a = animales->siguiente();
+        while (animales -> hay_siguiente()) {
+            Animal* a = animales -> siguiente();
 
-      	    if(a->tamano == "diminuto") {
+      	    if(a -> tamano == "diminuto") {
                 vector[posicion] = a;
                 posicion += 1;
             }
 
       	    if(espacio > 2){
-        	    if(a->tamano == "pequeño") {
+        	    if(a -> tamano == "pequeño") {
                     vector[posicion] = a;
                     posicion += 1;
                 }
 
         	    if(espacio > 10){
-          		    if(a->tamano == "mediano") {
+          		    if(a -> tamano == "mediano") {
                         vector[posicion] = a;
                         posicion += 1;
                     }
 
           		    if(espacio > 20){
-            		    if(a->tamano == "grande") {
+            		    if(a -> tamano == "grande") {
                             vector[posicion] = a;
                             posicion += 1;
                         }
 
             		    if(espacio > 50){
-              			    if(a->tamano == "gigante") {
+              			    if(a -> tamano == "gigante") {
                                 vector[posicion] = a;
                                 posicion += 1;
                             }
@@ -128,35 +128,35 @@ void Reserva::adoptar_animal(int espacio) {
       	    }
         }
 
-        arbol->sort(vector, posicion);
+        arbol -> sort(vector, posicion);
         for (int i = posicion - 1; i >= 0; i --) {
-            vector[i]->mostrar_animal();
+            vector[i] -> mostrar_animal();
         }
 
-    	if(posicion!=0){
+    	if(posicion != 0){
       		bool existe_nombre = false;
       		while(!existe_nombre){
       		cout << "Ingrese el nombre del Animal que quéres adoptar o 'CANCELAR' si quéres cancelar la adopcion: ";
       		cin >> nombre_animal;
-        		if(nombre_animal=="CANCELAR"){
-          			existe_nombre=true;
-          			cout<<"\nAdopcion cancelada."<<endl;
+        		if(nombre_animal == "CANCELAR"){
+          			existe_nombre = true;
+          			cout << "\nAdopcion cancelada." << endl;
         		}
 
             animales->iniciar();
-        		for(int i = 0; i < animales->obtener_cantidad(); i++){
-          			Animal* a = animales->siguiente();
+        		for(int i = 0; i < animales -> obtener_cantidad(); i++){
+          			Animal* a = animales -> siguiente();
           			if(nombre_animal == a->nombre){
             			delete a;
-            			animales->eliminar(nombre_animal);
+            			animales -> eliminar(nombre_animal);
             			cout << "Felicitaciones " << nombre_animal << " forma ahora parte de tu familia !" << endl;
-            			existe_nombre=true;
+            			existe_nombre = true;
           			}
         		}
       		}
     	} 
         else {
-      		cout << "No tenemos ningun animale que pueden entrar en su espacio disponible." << endl;
+      		cout << "No tenemos ningun animal que pueden entrar en su espacio disponible." << endl;
     	}
   	}
 
@@ -168,11 +168,11 @@ void Reserva::guardar_animales() {
     string nombre_archivo = "animales.csv";
     fstream archivo;
     archivo.open(nombre_archivo, ios::out | ios::app);
-    animales->iniciar();
-    while (animales->hay_siguiente()) {
-        Animal* a = animales->siguiente();
-        archivo <<  a->nombre << "," << a->edad << "," << a->tamano << "," << a->especie.substr(0, 1) << "," << a->personalidad->get_nombre();
-        if (animales->hay_siguiente())
+    animales -> iniciar();
+    while (animales -> hay_siguiente()) {
+        Animal* a = animales -> siguiente();
+        archivo <<  a->nombre << "," << a->edad << "," << a->tamano << "," << a -> especie.substr(0, 1) << "," << a -> personalidad -> get_nombre();
+        if (animales -> hay_siguiente())
             archivo << endl;
     }
 }
@@ -203,11 +203,11 @@ void Reserva::cargar_animales() {
 
 void Reserva::bajar_higiene_y_crecer_hambre(){
 	Animal* animal_actual;
-	animales->iniciar();
-	while (animales->hay_siguiente()){
-		animal_actual = animales->siguiente();
-		animal_actual->ensuciar();
-		animal_actual->crecer_hambre();
+	animales -> iniciar();
+	while (animales -> hay_siguiente()){
+		animal_actual = animales -> siguiente();
+		animal_actual -> ensuciar();
+		animal_actual -> crecer_hambre();
 	}
 }
 
@@ -234,6 +234,83 @@ void Reserva::aumentar_combustible(){
     coche -> aumentar_combustible();
 }
 
+void buscar_camino_minimo_animales(Mapa* mapa, Auto* coche, int* costo, int n_animales, int &numero_animales_rescatables){
+    for (int i = 0; i < n_animales; i++){
+        if (mapa -> pos[i] != 0){
+            char* mapa_camino_minimo = new char[mapa -> n * mapa -> n];
+            string destino = to_string(mapa -> pos[i]);
+            
+            mapa -> grafo -> camino_minimo("1" , destino);
+            
+            costo[i] = mapa -> grafo -> recuperar_costo((mapa -> pos[i]-1));
+            
+            int * recorrido = mapa -> grafo -> recuperar_recorrido();
+            
+            mapa -> imprimir_mapa_recorrido("1", destino, recorrido, mapa -> mapa[stoi(destino) - 1] , mapa_camino_minimo);
+            
+            if (coche -> combustible_suficiente(costo[i])){
+              cout << "Con el combustible que tienes puedes rescatar el animal que está en la posición " << mapa -> pos[i] << " y se gastaria " << costo[i] << " de combustible" << endl << endl;
+              numero_animales_rescatables++;
+            } else {
+                cout << "No puedes rescatar al animal en la posicion " << mapa -> pos[i] << " con el combustible actual" << endl;
+            }
+            
+            delete [] mapa_camino_minimo;
+        }
+    }
+}
+
+int pedir_posicion_mapa(){
+    int posicion;
+    cout << "Ingrese la posicion de cual animal quéres rescatar o '0' si no quéres rescatar a un animal: " << endl;
+    while(!(cin >> posicion)){
+        cout << "Error: Ingrese un numero" << endl;
+        cin.clear();
+        cin.ignore();
+    }
+    return posicion;
+}
+
+void Reserva::rescatar_un_animal(Mapa* mapa, int n_animales, int* costo){
+    int posicion_animal_a_rescatar = 0;
+    posicion_animal_a_rescatar = pedir_posicion_mapa();
+
+    if (posicion_animal_a_rescatar == 0 ){
+        cout <<  "Salvaje cancelado." << endl;
+        return;
+    }
+
+    // recorrido de la tabla de posicion
+    for (int i = 0; i < n_animales; i++){
+        string nombre;
+        if(mapa -> pos[i] == posicion_animal_a_rescatar){
+            cout << endl << "Ingrese un nombre para otorgarle al animal rescatado: ";
+            cin >> nombre;
+            while(buscar_animal(nombre) != 0 ){
+                cout << "Ingrese otro nombre que no exista en la reserva: " << endl;
+                cin.clear();
+                cin.ignore();
+                cin >> nombre;
+            }
+            mapa -> animales[i] -> nombre = nombre;
+            agregar_animal(mapa -> animales[i]);
+            coche -> bajar_combustible(costo[i]);
+            mapa -> mapa[mapa -> pos[i] - 1] = '.';
+            mapa -> pos[i] = 0;
+            cout << "\n\n Rescataste a: " << endl;
+            mapa -> animales[i] -> mostrar_animal();
+            mapa -> animales[i] = nullptr;
+            mapa -> cantidad_animales_mapa--;
+            return;
+        }
+    }
+    
+    //Si ingresan una posicion del mapa en la que no hay un animal
+    cout << "No hay ningun animal en esa posicion" << endl;
+    rescatar_un_animal(mapa, n_animales, costo);
+}
+
+
 void Reserva::rescatar_animales(Mapa* mapa){
 
     if(mapa->cantidad_animales_mapa == 0){
@@ -243,70 +320,21 @@ void Reserva::rescatar_animales(Mapa* mapa){
 
     int n_animales = 5;
     int* costo = new int[n_animales];
-    int n_animales_a_rescatar = 0;
+    int numero_animales_rescatables = 0;
 
     mapa -> imprimir_mapa();
     mapa -> grafo -> crear_dijkstra();
 
-    for (int i = 0; i < n_animales; i++){
-        if (mapa -> pos[i] != 0){
-            char* mapa_camino_minimo = new char[mapa -> n * mapa -> n];
-            string destino = to_string(mapa -> pos[i]);
-            mapa -> grafo -> camino_minimo("1" , destino);
-            costo[i] = mapa -> grafo -> recuperar_costo((mapa -> pos[i]-1));
-            int * recorrido = mapa -> grafo -> recuperar_recorrido();
-            mapa -> imprimir_mapa_recorrido("1", destino, recorrido, mapa -> mapa[stoi(destino)-1] , mapa_camino_minimo);
-            if (coche -> combustible_suficiente(costo[i])){
-              cout << "Con el combustible que tienes puedes rescatar el animal que está en la posición " << mapa -> pos[i] << " y se gastaria " << costo[i] << " de combustible" << endl << endl;
-              n_animales_a_rescatar++;
-            }
-            delete [] mapa_camino_minimo;
-        }
-    }
-
-    if(n_animales_a_rescatar != 0){
-        // (?) Indica la posicion de cual animal quéres rescatar
-        int posicion_animal_a_rescatar = 0;
-        string cancelar;
-        cout << "Ingrese la posicion de cual animal quéres rescatar o '0' si no quéres rescatar a un animal: "<< endl;
-        while(!(cin >> posicion_animal_a_rescatar)){
-            cout << "Error: Ingrese un numero" << endl;
-            cin.clear();
-            cin.ignore();
-        }
-
-        // recorrido de la tabla de posicion
-        if(posicion_animal_a_rescatar != 0){
-            for (int i = 0; i < n_animales; i++){
-                string nombre;
-                if(mapa -> pos[i] == posicion_animal_a_rescatar){
-                    cout << endl << "Ingrese un nombre para otorgarle al animal rescatado: ";
-                    cin >> nombre;
-                    while(buscar_animal(nombre) != 0 ){
-                        cout << "Ingrese otro nombre que no exista en la reserva: " << endl;
-                        cin.clear();
-                        cin.ignore();
-                        cin >> nombre;
-                    }
-                    mapa -> animales[i] -> nombre = nombre;
-                    agregar_animal(mapa -> animales[i]);
-                    coche -> bajar_combustible(costo[i]);
-                    mapa -> mapa[mapa -> pos[i] - 1] = '.';
-                    mapa -> pos[i] = 0;
-                    cout << "\n\n Rescataste a: " << endl;
-                    mapa -> animales[i] -> mostrar_animal();
-                    mapa -> animales[i] = nullptr;
-                    mapa -> cantidad_animales_mapa--;
-                }
-            }
-        } else {
-          cout <<  "Salvaje cancelado." << endl;
-        }
-    } else {
+    buscar_camino_minimo_animales(mapa, coche, costo, n_animales , numero_animales_rescatables);
+    if(numero_animales_rescatables == 0) {
         cout << "No hay animales que puedas rescatar con el combustible actual" << endl;
+        return;
     }
+    rescatar_un_animal(mapa, n_animales, costo);
+
     delete [] costo;
 }
+
 
 void Reserva::se_escapan(){
     Animal* animal_actual;
