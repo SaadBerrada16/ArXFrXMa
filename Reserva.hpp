@@ -103,6 +103,10 @@ class Reserva {
         // pos: si quedan animales en el mapa son rescatados y añadidos a la reserva
         void rescatar_animales(Mapa* mapa);
 
+        // pre: existe la reserva, mapa, cantidad de animales, vector de costo de combustible y la cantidad de animales rescatables es mayor a 0
+        // pos: se añade un animal rescatado a la reserva
+        void rescatar_un_animal(Mapa* mapa, int n_animales, int* costo);
+
         // pre: existe la reserva
         // pos: si animales llegan a 0 de higiene o 100 de hambre se eliminan de la reserva
         void se_escapan();
@@ -129,6 +133,12 @@ class Reserva {
 //post devuelve un Animal* aleatorio
 Animal* generar_animal();
 
+//pre: -
+//post: devuelve la posicion del mapa donde el usuario desea desplazarse
+int pedir_posicion_mapa();
+
+//pre: recibe un vector posiciones
+//post: devuelve un vector con las posiciones donde se van a encontrar los animales en el mapa
 int* generar_posiciones();
 
 //pre: recibe un string
@@ -138,6 +148,11 @@ Personalidad* convertir_personalidad(string p);
 //pre: recibe el nombre, edad, tamaño, especie y personalidad del animal a crear
 //post devuelve un Animal* que corresponde al animal deseado determinado por la especie
 Animal* crear_animal(string nombre, string edad, string tamano, string especie, string personalidad);
+
+//pre: existe un mapa, auto, un vector de costo de combustible por animal y la cantidad de animales rescatables
+//pos: imprime el recorrido minimo a caada animal, guarda su costo en el vector costo y aumenta la cantidad de animales rescatables si hay suficiente combustible
+void buscar_camino_minimo_animales(Mapa* mapa, Auto* coche, int* costo, int n_animales , int &numero_animales_rescatables);
+
 
 //pre: un rango sea definido
 //post: devuelve un entero aleatorio entre 0 y rango
