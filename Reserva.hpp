@@ -20,7 +20,7 @@
 #include "Travieso.hpp"
 #include "Mapa.hpp"
 #include "Auto.hpp"
-#include "treeSort.hpp"
+#include "ArbolBusqueda.hpp"
 
 using namespace std;
 

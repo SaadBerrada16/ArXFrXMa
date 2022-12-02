@@ -1,18 +1,18 @@
-#include "BST.hpp"
+#include "ABB.hpp"
 #include "diccionarioArbolB.hpp"
 
-class TreeSort {
+class ArbolBusqueda {
 private:
-    BST* bst;
+    ABB* abb;
 public:
     // Constructor
     // Crea un árbol binario de busqueda vacío
-    TreeSort();
+    ArbolBusqueda();
 
     // pre: existe el arbol 
     // pos: ordena los elementos del vector de animales según su edad en el árbol
-    void sort(Animal** vector, int cantidad);
+    void ordenar(Animal** vector, int cantidad);
 
     // Destructor
-    ~TreeSort();
+    ~ArbolBusqueda();
 };

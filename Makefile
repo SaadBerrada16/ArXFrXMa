@@ -8,9 +8,9 @@ EXEC=main
 
 SRC=./NodoGrafo.cpp  			\
 	./ListaGrafo.cpp  			\
-	./BSTNode.cpp				\
-	./BST.cpp					\
-	./treeSort.cpp				\
+	./ABBNodo.cpp				\
+	./ABB.cpp					\
+	./ArbolBusqueda.cpp			\
 	./Mapa.cpp  				\
 	./Dijkstra.cpp  			\
 	./Grafo.cpp					\

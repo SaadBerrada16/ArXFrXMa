@@ -83,7 +83,7 @@ void Reserva::adoptar_animal(int espacio) {
     
     int posicion = 0;
     Animal** vector = new Animal*[animales -> obtener_cantidad()];
-    TreeSort* arbol = new TreeSort();
+    ArbolBusqueda* arbol = new ArbolBusqueda();
     
     
     animales -> iniciar();
@@ -128,7 +128,7 @@ void Reserva::adoptar_animal(int espacio) {
       	    }
         }
 
-        arbol -> sort(vector, posicion);
+        arbol -> ordenar(vector, posicion);
         for (int i = posicion - 1; i >= 0; i --) {
             vector[i] -> mostrar_animal();
         }
