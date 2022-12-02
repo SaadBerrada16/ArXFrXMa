@@ -96,22 +96,22 @@ int cargar_y_validar_opcion_menu_individual(){
 void procesar_menu_individual(Reserva* reserva){
     int opcion;
     Animal* animal_actual;
-    if (reserva->hay_siguiente()){
-        animal_actual = reserva->siguiente();
+    if (reserva -> hay_siguiente()){
+        animal_actual = reserva -> siguiente();
     }
     else return;
-    animal_actual->mostrar_animal();
+    animal_actual -> mostrar_animal();
     opcion = cargar_y_validar_opcion_menu_individual();
     while(opcion != VOLVER){
         switch(opcion){
             case BANAR:
-                animal_actual->duchar();
-                animal_actual->mostrar_animal();
+                animal_actual -> duchar();
+                animal_actual -> mostrar_animal();
                 opcion = cargar_y_validar_opcion_menu_individual();
                 break;
             case ALIMENTAR:
-                animal_actual->comer();
-                animal_actual->mostrar_animal();
+                animal_actual -> comer();
+                animal_actual -> mostrar_animal();
                 opcion = cargar_y_validar_opcion_menu_individual();
                 break;
             case SALTEAR:
@@ -134,13 +134,13 @@ void procesar_opcion(Reserva* reserva, int opcion, Mapa* mapa){
     //int posicion_del_animal = POSICION_INVALIDA;
     // int opcion_rescatar = 0;
     int opcion_cuidar;
-    reserva->bajar_higiene_y_crecer_hambre();
-    reserva->se_escapan();
+    reserva -> bajar_higiene_y_crecer_hambre();
+    reserva -> se_escapan();
     reserva -> aumentar_combustible();
 
     switch (opcion) {
         case LISTAR_ANIMALES:
-            reserva->listar_animales();
+            reserva -> listar_animales();
             break;
 
         case RESCATAR_ANIMAL:
@@ -149,7 +149,7 @@ void procesar_opcion(Reserva* reserva, int opcion, Mapa* mapa){
 
         case BUSCAR_ANIMAL:
             nombre = pedir_nombre();
-            animal = reserva->buscar_animal(nombre);
+            animal = reserva -> buscar_animal(nombre);
             if(animal == 0){
                 cout << "No existe el animal" << endl;
                 break;
@@ -158,7 +158,7 @@ void procesar_opcion(Reserva* reserva, int opcion, Mapa* mapa){
             break;
 
         case CUIDAR_ANIMAL:
-            if(reserva->obtener_cantidad_de_animales() == 0){
+            if(reserva -> obtener_cantidad_de_animales() == 0){
                 cout << "No hay animales para cuidar" << endl;
             }
             mostrar_menu_cuidar();
@@ -166,7 +166,7 @@ void procesar_opcion(Reserva* reserva, int opcion, Mapa* mapa){
             validar_opcion_cuidar(opcion_cuidar);
             switch (opcion_cuidar) {
             case ELEGIR_INDIVIDUALMENTE:
-                reserva->iniciar();
+                reserva -> iniciar();
                 procesar_menu_individual(reserva);
                 break;
             case REGRESAR_INICIO:
@@ -176,7 +176,7 @@ void procesar_opcion(Reserva* reserva, int opcion, Mapa* mapa){
 
         case ADOPTAR_ANIMAL: {
             int espacio = pedir_espacio_disponible();
-            reserva->adoptar_animal(espacio);
+            reserva -> adoptar_animal(espacio);
             break;
             }
 
