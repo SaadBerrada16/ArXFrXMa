@@ -17,6 +17,8 @@ class Diccionario {
         int cantidad;
         //posicion donde estamos en el vector 
         int posicion_actual;
+        //cantidad de animales en el arbol eleminados y los que no
+        int cantidad_total;
     public:
         //vector que usaremos para recorrer el arbol en O(n)
         Tipo* vector;
@@ -50,9 +52,13 @@ class Diccionario {
         // pos: llena el atributo vector con los datos no eliminados del arbol. Permite recorrer el arbol.
         void iniciar();
 
+        void iniciar_para_borrar();
+
         // pre: haber llenado el vector con iniciar
         // pos: True si hay algun dato mas en el vector, False si llegamos al final del vector
-        bool hay_siguiente(); 
+        bool hay_siguiente();
+
+        bool hay_siguiente_para_borrar();  
     
         // pre: hay_siguiente() es True
         // pos: devuelve el dato y mueve la posicion al siguiente
@@ -76,12 +82,14 @@ Diccionario<Tipo>::Diccionario() {
     cantidad = 0;
     nueva_cantidad = 0;
     posicion_actual = 0;
+    cantidad_total = 0;
 }
 
 template <typename Tipo>
 void Diccionario<Tipo>::insertar(string clave, Tipo dato) {
     raiz->insertar(clave, dato);
     nueva_cantidad += 1;
+    cantidad_total += 1;
 }
 
 template <typename Tipo>
@@ -117,8 +125,23 @@ void Diccionario<Tipo>::iniciar() {
 }
 
 template <typename Tipo>
+void Diccionario<Tipo>::iniciar_para_borrar() {
+    if (vector != NULL) 
+        delete [] vector;
+    posicion_actual = 0; 
+    vector = new Tipo[cantidad_total];
+    raiz->llenar_para_borrar(vector, posicion_actual);
+    posicion_actual = 0;
+}
+
+template <typename Tipo>
 bool Diccionario<Tipo>::hay_siguiente() {
     return posicion_actual != cantidad;
+}
+
+template <typename Tipo>
+bool Diccionario<Tipo>::hay_siguiente_para_borrar() {
+    return posicion_actual != cantidad_total;
 }
 
 template <typename Tipo>

@@ -50,7 +50,9 @@ class Nodo {
 
         // pre: -
         // pos: llena el vector con los datos de este nodo antes de pasar a los otros nodos
-        void llenar(Tipo* vector, int& actual);     
+        void llenar(Tipo* vector, int& actual);
+
+        void llenar_para_borrar(Tipo* vector, int& actual);
 
         ~Nodo();
 };
@@ -258,7 +260,21 @@ void Nodo<Tipo>::llenar(Tipo* vector, int& posicion_actual) {
         if (vias[i] != NULL)
             vias[i]->llenar(vector, posicion_actual);
     }
-}  
+}
+
+template <typename Tipo>
+void Nodo<Tipo>::llenar_para_borrar(Tipo* vector, int& posicion_actual) {
+    int i = 0;
+    while (claves[i] != "") {
+        vector[posicion_actual] = datos[i];
+        posicion_actual += 1;
+        i += 1;
+    }
+    for (int i = 0; i < N; i++) {
+        if (vias[i] != NULL)
+            vias[i]->llenar_para_borrar(vector, posicion_actual);
+    }
+} 
 
 
 template <typename Tipo>
