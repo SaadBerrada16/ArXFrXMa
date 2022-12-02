@@ -365,8 +365,8 @@ bool Reserva::partida_terminada(){
 // Destructor
 Reserva::~Reserva() {
   	Animal * animal_actual;
-  	animales->iniciar();
-  	while (animales->hay_siguiente()){
+  	animales->iniciar_para_borrar();
+  	while (animales->hay_siguiente_para_borrar()){
     	animal_actual = animales->siguiente();
     	delete animal_actual;
   	}
