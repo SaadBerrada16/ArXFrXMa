@@ -1,4 +1,4 @@
-#include "Conejo.hpp"
+#include "conejo.hpp"
 
 Conejo::Conejo(string n, int e, string t, Personalidad* p) {
     nombre = n;

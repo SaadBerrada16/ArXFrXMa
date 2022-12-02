@@ -6,32 +6,32 @@ LDFLAGS=
 
 EXEC=main
 
-SRC=./NodoGrafo.cpp  			\
-	./ListaGrafo.cpp  			\
-	./ABBNodo.cpp				\
-	./ABB.cpp					\
-	./ArbolBusqueda.cpp			\
-	./Mapa.cpp  				\
-	./Dijkstra.cpp  			\
-	./Grafo.cpp					\
-	./Vertice.cpp  				\
-	./Personalidad.cpp 			\
-	./Dormilon.cpp 				\
-	./Jugueton.cpp   			\
-	./Sociable.cpp 				\
-	./Travieso.cpp    			\
-	./Animal.cpp 				\
-    ./Perro.cpp   				\
-	./Gato.cpp 					\
-    ./Caballo.cpp    			\
-	./Roedor.cpp 				\
-	./Conejo.cpp 				\
-	./Erizo.cpp    				\
-	./Lagartija.cpp 			\
-	./AnimalLimpio.cpp 			\
-	./AnimalSucio.cpp 			\
-	./Auto.cpp 					\
-	./Reserva.cpp				\
+SRC=./nodo_grafo.cpp  			\
+	./lista_grafo.cpp  			\
+	./abb_nodo.cpp				\
+	./abb.cpp					\
+	./arbol_busqueda.cpp			\
+	./mapa.cpp  				\
+	./dijkstra.cpp  			\
+	./grafo.cpp					\
+	./vertice.cpp  				\
+	./personalidad.cpp 			\
+	./dormilon.cpp 				\
+	./jugueton.cpp   			\
+	./sociable.cpp 				\
+	./travieso.cpp    			\
+	./animal.cpp 				\
+    ./perro.cpp   				\
+	./gato.cpp 					\
+    ./caballo.cpp    			\
+	./roedor.cpp 				\
+	./conejo.cpp 				\
+	./erizo.cpp    				\
+	./lagartija.cpp 			\
+	./animal_limpio.cpp 			\
+	./animal_sucio.cpp 			\
+	./auto.cpp 					\
+	./reserva.cpp				\
     ./menu.cpp    				\
     ./main.cpp
 

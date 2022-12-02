@@ -1,8 +1,8 @@
 #ifndef GRAFOS_DIJKSTRA_H
 #define GRAFOS_DIJKSTRA_H
 #include <string>
-#include "ListaGrafo.hpp"
-#include "Vertice.hpp"
+#include "lista_grafo.hpp"
+#include "vertice.hpp"
 #include <iostream>
 
 const int INFINITO = 99999999;

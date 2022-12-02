@@ -1,7 +1,7 @@
 #ifndef ABB_ABBNODO_HPP
 #define ABB_ABBNODO_HPP
 
-#include "Animal.hpp"
+#include "animal.hpp"
 
 class ABBNodo
 {

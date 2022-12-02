@@ -1,7 +1,7 @@
 #ifndef GRAFOS_LISTA_H
 #define GRAFOS_LISTA_H
 #include <string>
-#include "NodoGrafo.hpp"
+#include "nodo_grafo.hpp"
 
 using namespace std;
 

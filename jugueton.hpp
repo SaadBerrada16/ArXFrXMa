@@ -1,7 +1,7 @@
 #ifndef JUGUETON_H
 #define JUGUETON_H
 
-#include "Personalidad.hpp"
+#include "personalidad.hpp"
 
 class Jugueton : public Personalidad {
     public:

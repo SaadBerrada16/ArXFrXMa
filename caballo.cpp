@@ -1,4 +1,4 @@
-#include "Caballo.hpp"
+#include "caballo.hpp"
 
 Caballo::Caballo(string n, int e, string t, Personalidad* p) {
     nombre = n;

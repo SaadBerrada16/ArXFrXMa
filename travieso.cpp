@@ -1,4 +1,4 @@
-#include "Travieso.hpp"
+#include "travieso.hpp"
 
 Travieso::Travieso() {
     dormilon_jugueton = 0;

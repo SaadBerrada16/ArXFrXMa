@@ -1,6 +1,6 @@
 #include <iostream>
 #include "menu.hpp"
-#include "Animal.hpp"
+#include "animal.hpp"
 
 
 using namespace std;

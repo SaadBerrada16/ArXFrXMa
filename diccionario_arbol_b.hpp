@@ -1,7 +1,7 @@
 #ifndef DICCIONARIO_H_INCLUDED
 #define DICCIONARIO_H_INCLUDED
 
-#include "nodoArbol.hpp"
+#include "nodo_arbol.hpp"
 using namespace std;
 
 #define N 3

@@ -1,4 +1,4 @@
-#include "Erizo.hpp"
+#include "erizo.hpp"
 
 Erizo::Erizo(string n, int e, string t, Personalidad* p) {
     nombre = n;

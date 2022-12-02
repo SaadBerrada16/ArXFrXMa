@@ -1,7 +1,7 @@
 #ifndef SOCIABLE_H
 #define SOCIABLE_H
 
-#include "Personalidad.hpp"
+#include "personalidad.hpp"
 
 class Sociable : public Personalidad {
     public:

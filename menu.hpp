@@ -2,7 +2,7 @@
 #define MENU_HPP
 
 #include "Reserva.hpp"
-#include "Mapa.hpp"
+#include "mapa.hpp"
 
 using namespace std;
 

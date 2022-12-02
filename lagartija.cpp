@@ -1,4 +1,4 @@
-#include "Lagartija.hpp"
+#include "lagartija.hpp"
 
 Lagartija::Lagartija(string n, int e, string t, Personalidad* p) {
     nombre = n;

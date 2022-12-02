@@ -1,7 +1,7 @@
 #ifndef TRAVIESO_H
 #define TRAVIESO_H
 
-#include "Personalidad.hpp"
+#include "personalidad.hpp"
 
 class Travieso : public Personalidad {
     public:

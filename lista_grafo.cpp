@@ -1,4 +1,4 @@
-#include "ListaGrafo.hpp"
+#include "lista_grafo.hpp"
 
 ListaGrafo::ListaGrafo(){
     cantidad_de_elementos = 0;

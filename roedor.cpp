@@ -1,4 +1,4 @@
-#include "Roedor.hpp"
+#include "roedor.hpp"
 
 Roedor::Roedor(string n, int e, string t, Personalidad* p) {
     nombre = n;

@@ -1,7 +1,7 @@
 #ifndef LAGARTIJA_H
 #define LAGARTIJA_H
 
-#include "AnimalLimpio.hpp"
+#include "animal_limpio.hpp"
 
 class Lagartija : public AnimalLimpio {
     public:

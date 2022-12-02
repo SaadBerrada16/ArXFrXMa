@@ -1,4 +1,4 @@
-#include "Personalidad.hpp"
+#include "personalidad.hpp"
 
 int Personalidad::get_dormilon_jugueton() {
     return dormilon_jugueton;

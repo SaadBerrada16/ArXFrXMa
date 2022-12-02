@@ -1,7 +1,7 @@
 #ifndef GATO_H
 #define GATO_H
 
-#include "AnimalLimpio.hpp"
+#include "animal_limpio.hpp"
 
 class Gato : public AnimalLimpio {
     public:

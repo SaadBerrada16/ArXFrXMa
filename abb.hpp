@@ -1,7 +1,7 @@
 #ifndef ABB_HPP
 #define ABB_HPP
 
-#include "ABBNodo.hpp"
+#include "abb_nodo.hpp"
 #include <iostream>
 #include <vector>
 

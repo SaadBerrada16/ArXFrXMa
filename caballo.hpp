@@ -1,7 +1,7 @@
 #ifndef CABALLO_H
 #define CABALLO_H
 
-#include "AnimalSucio.hpp"
+#include "animal_sucio.hpp"
 
 class Caballo : public AnimalSucio {
     public:

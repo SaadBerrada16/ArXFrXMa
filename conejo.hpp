@@ -1,7 +1,7 @@
 #ifndef CONEJO_H
 #define CONEJO_H
 
-#include "AnimalSucio.hpp"
+#include "animal_sucio.hpp"
 
 class Conejo : public AnimalSucio {
     public:

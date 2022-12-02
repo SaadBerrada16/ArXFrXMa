@@ -1,4 +1,4 @@
-#include "NodoGrafo.hpp"
+#include "nodo_grafo.hpp"
 
 
 NodoGrafo::NodoGrafo(string nombre) {

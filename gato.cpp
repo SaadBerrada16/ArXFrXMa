@@ -1,4 +1,4 @@
-#include "Gato.hpp"
+#include "gato.hpp"
 
 Gato::Gato(string n, int e, string t, Personalidad* p) {
     nombre = n;

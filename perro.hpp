@@ -1,7 +1,7 @@
 #ifndef PERRO_H
 #define PERRO_H
 
-#include "AnimalSucio.hpp"
+#include "animal_sucio.hpp"
 using namespace std;
 
 class Perro : public AnimalSucio {

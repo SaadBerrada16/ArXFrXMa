@@ -1,7 +1,7 @@
 #ifndef ROEDOR_H
 #define ROEDOR_H
 
-#include "AnimalLimpio.hpp"
+#include "animal_limpio.hpp"
 
 class Roedor : public AnimalLimpio {
     public:

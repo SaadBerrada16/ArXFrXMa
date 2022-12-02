@@ -1,4 +1,4 @@
-#include "Dijkstra.hpp"
+#include "dijkstra.hpp"
 
 Dijkstra::Dijkstra(ListaGrafo *vertices, int **matriz_adyacencia) {
     this -> vertices = vertices;

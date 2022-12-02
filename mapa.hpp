@@ -1,8 +1,8 @@
 #ifndef MAPA_H
 #define MAPA_H
 
-#include "Grafo.hpp"
-#include "Animal.hpp"
+#include "grafo.hpp"
+#include "animal.hpp"
 using namespace std;
 
 const int M = 5;

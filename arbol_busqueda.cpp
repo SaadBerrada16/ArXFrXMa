@@ -1,4 +1,4 @@
-#include "ArbolBusqueda.hpp"
+#include "arbol_busqueda.hpp"
 
 ArbolBusqueda::ArbolBusqueda() {
     abb = new ABB();

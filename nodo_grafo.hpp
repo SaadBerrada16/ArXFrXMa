@@ -1,7 +1,7 @@
 #ifndef GRAFOS_NODO_H
 #define GRAFOS_NODO_H
 #include <string>
-#include "Vertice.hpp"
+#include "vertice.hpp"
 
 using namespace std;
 

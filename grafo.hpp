@@ -1,9 +1,9 @@
 #ifndef GRAFOS_GRAFO_H
 #define GRAFOS_GRAFO_H
 #include <string>
-#include "ListaGrafo.hpp"
-#include "Vertice.hpp"
-#include "Dijkstra.hpp"
+#include "lista_grafo.hpp"
+#include "vertice.hpp"
+#include "dijkstra.hpp"
 
 using namespace std;
 

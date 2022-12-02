@@ -1,4 +1,4 @@
-#include "Jugueton.hpp"
+#include "jugueton.hpp"
 
 Jugueton::Jugueton() {
     dormilon_jugueton = 10;

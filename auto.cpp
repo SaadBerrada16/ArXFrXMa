@@ -1,4 +1,4 @@
-#include "Auto.hpp"
+#include "auto.hpp"
 
 Auto::Auto() {
     combustible = 100;

@@ -1,5 +1,5 @@
-#include "ABB.hpp"
-#include "diccionarioArbolB.hpp"
+#include "abb.hpp"
+#include "diccionario_arbol_b.hpp"
 
 class ArbolBusqueda {
 private:

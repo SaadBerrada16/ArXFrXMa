@@ -1,5 +1,5 @@
-#include "Grafo.hpp"
-#include "Dijkstra.hpp"
+#include "grafo.hpp"
+#include "dijkstra.hpp"
 #include <iostream>
 
 Grafo::Grafo() {

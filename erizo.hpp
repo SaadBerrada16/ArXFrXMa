@@ -1,7 +1,7 @@
 #ifndef ERIZO_H
 #define ERIZO_H
 
-#include "AnimalSucio.hpp"
+#include "animal_sucio.hpp"
 
 class Erizo : public AnimalSucio {
     public:

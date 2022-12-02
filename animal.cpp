@@ -1,4 +1,4 @@
-#include "Animal.hpp"
+#include "animal.hpp"
 
 void Animal::crecer_hambre() {
     int perso = this->personalidad->get_dormilon_jugueton();

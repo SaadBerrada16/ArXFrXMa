@@ -2,7 +2,7 @@
 #define ANIMAL_H
 
 #include <iostream>
-#include "Personalidad.hpp"
+#include "personalidad.hpp"
 
 using namespace std;
 

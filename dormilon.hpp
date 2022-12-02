@@ -1,7 +1,7 @@
 #ifndef DORMILON_H
 #define DORMILON_H
 
-#include "Personalidad.hpp"
+#include "personalidad.hpp"
 
 class Dormilon : public Personalidad {
     public:

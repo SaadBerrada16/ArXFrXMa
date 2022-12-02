@@ -1,7 +1,7 @@
 #ifndef ANIMALSUCIO_H
 #define ANIMALSUCIO_H
 
-#include "Animal.hpp"
+#include "animal.hpp"
 
 class AnimalSucio : public Animal {
     public:

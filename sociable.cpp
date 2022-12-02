@@ -1,4 +1,4 @@
-#include "Sociable.hpp"
+#include "sociable.hpp"
 
 Sociable::Sociable() {
     dormilon_jugueton = 0;

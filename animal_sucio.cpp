@@ -1,4 +1,4 @@
-#include "AnimalSucio.hpp"
+#include "animal_sucio.hpp"
 
 void AnimalSucio::ensuciar() {
     int perso = this->personalidad->get_sociable_travieso();

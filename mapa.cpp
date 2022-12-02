@@ -1,4 +1,4 @@
-#include "Mapa.hpp"
+#include "mapa.hpp"
 
 Mapa::Mapa() {
     n = 8;

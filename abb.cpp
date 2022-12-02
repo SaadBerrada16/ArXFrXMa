@@ -1,4 +1,4 @@
-#include "ABB.hpp"
+#include "abb.hpp"
 
 ABB::ABB() {
     this->raiz = NULL;
