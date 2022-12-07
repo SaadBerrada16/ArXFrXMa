@@ -2,8 +2,8 @@
 #include <fstream>
 #include <sstream>
 #include <cstring>
-#include "Reserva.hpp"
-#include "Animal.hpp"
+#include "reserva.hpp"
+#include "animal.hpp"
 
 //constructor
 Reserva::Reserva() {
