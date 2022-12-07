@@ -1,6 +1,6 @@
 #include <iostream>
 #include "menu.hpp"
-#include "Reserva.hpp"
+#include "reserva.hpp"
 
 using namespace std;
 
